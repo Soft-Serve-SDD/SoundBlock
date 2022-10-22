@@ -46,7 +46,7 @@
     "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
     "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "cd .. && husky install frontend/.husky"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -118,6 +118,7 @@
     "electron-log": "^4.4.8",
     "electron-updater": "^5.2.3",
     "react": "^18.2.0",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.3.0"
