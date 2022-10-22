@@ -3,7 +3,9 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import { FileUpload, Close } from '@mui/icons-material';
-import { Button, IconButton } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+
+import "./UploadFile.css";
 
 function Dropzone(Props) {
   const { setOpen } = Props;
@@ -12,21 +14,26 @@ function Dropzone(Props) {
     console.log(acceptedFiles);
   }, []);
 
-  // accepted file types
-  const accept = {
-    'audio/*': ['.wav'],
+  // restrict to one .wav upload
+  const constraints = {
+    accept: {
+      'audio/*': ['.wav'],
+    },
+    multiple: false
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, constraints });
 
   return (
-    <section className="container">
-      <Button onClick={() => setOpen(false)}>
+    <section className="container" onClick={() => setOpen(false)}>
+      <div className="dropzone-container">
+      <Button className ="right" onClick={() => setOpen(false)}>
         <Close></Close>
       </Button>
-      <div className="dropzone-div" {...getRootProps()}>
+      <div className='dropzone-div' {...getRootProps()}>
         <input className="dropzone-input" {...getInputProps()} />
         <p> Drag or drop .wav files here</p>
+      </div>
       </div>
     </section>
   );
