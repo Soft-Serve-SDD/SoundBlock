@@ -108,11 +108,17 @@
     }
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.4",
+    "@mui/icons-material": "^5.10.9",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
@@ -171,6 +177,8 @@
     "sass": "^1.54.4",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard": "^29.0.0",
     "terser-webpack-plugin": "^5.3.5",
     "ts-jest": "^28.0.8",
     "ts-loader": "^9.3.1",
