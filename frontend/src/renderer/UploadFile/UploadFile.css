@@ -1,0 +1,31 @@
+.container {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.right {
+    float: right;
+}
+
+.dropzone-container {
+    position: relative;
+    margin: 0 auto;
+    height: auto;
+    max-height: 70vh;
+    margin-top: calc(100vh - 85vh - 30px);
+    max-width: 60%;
+    background: #fff;
+    border-radius: 15px;
+    overflow: auto; 
+}
+
+.dropzone-div {
+    padding: 30px;
+    border: 3px rgb(224, 28, 142) dashed;
+    border-radius: 15px;
+    text-align: center;
+}

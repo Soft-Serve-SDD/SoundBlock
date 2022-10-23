@@ -4,7 +4,6 @@
  */
 body {
   position: relative;
-  color: white;
   height: 100vh;
   background: linear-gradient(
     200.96deg,
@@ -13,8 +12,4 @@ body {
     #7a2c9e 129.35%
   );
   font-family: sans-serif;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
