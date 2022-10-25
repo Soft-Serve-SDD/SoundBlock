@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from email import iterators
 from psonic import *
 import random  # TODO see if this can be removed
-from os import path
+import os
 
 
 def switch_slashes(s):
@@ -37,9 +37,13 @@ class Block:
         for i in self.subBlocks:
             if (isinstance(i, Block)):  # input validation
                 i.play()
-        for i in self.modifiers:
-            if (isinstance(i, Modifier)):  # input validation
-                i.modify()
+            # for m in self.modifiers:
+            #     if (isinstance(m, Modifier)):  # input validation
+            #         m.modify(i)
+        for m in self.modifiers:
+            if (isinstance(m, Modifier)):  # input validation
+                m.modify(self)
+        
 
 
 class Modifier:  # assuming all modifications will happen post block
@@ -56,10 +60,10 @@ class Sleep(Block):
 
     def play(self):
         sleep(self.sleeptime)
-        return super().play()
+        return 1
 
 
-class ForLoop(Block):  # should sleep be separated into its own block?
+class Loop(Block):
     def __init__(self, sleeptime, iterations):
         super().__init__()
         self.iterations = iterations
@@ -69,6 +73,7 @@ class ForLoop(Block):  # should sleep be separated into its own block?
         for i in range(self.iterations):
             super().play()
             self.sleep.play()
+
 
 class Sample(Block):
     def __init__(self, path, rate=1, amp=1, attack=0, release=0, start=0, finish=1):
@@ -81,9 +86,11 @@ class Sample(Block):
         self.finish = finish
 
     def play(self):
+        print('playing sample ', self.path)
         sample(self.path, attack=self.attack, release=self.release,
                rate=self.rate, amp=self.amp, start=self.start, finish=self.finish)
-        return super().play()
+        return 1
+
 # Modifier child classes
 
 
@@ -93,8 +100,9 @@ class deltaSleeptime(Modifier):
 
     def modify(self, block):
         if (isinstance(block, Sleep)):
-            block.sleeptime += self.delta
-        elif (isinstance(block, ForLoop)):
+            if (block.sleeptime + self.delta > 0):
+                block.sleeptime += self.delta
+        elif (isinstance(block, Loop)):
             block.sleep.sleeptime += self.delta
         return super().modify(block)
 
@@ -107,3 +115,27 @@ class deltaSample(Modifier):
         if (isinstance(block, Sample)):
             block.rate += self.rateDelta
         return super().modify(block)
+
+
+class deltaFinish(Modifier):
+    def __init__(self, finishDelta):
+        self.finishDelta = finishDelta
+
+    def modify(self, block):
+        if (isinstance(block, Sample)):
+            if (block.finish + self.finishDelta > 0 and block.finish + self.finishDelta < 1):
+                block.finish += self.finishDelta
+        return super().modify(block)
+
+
+if __name__ == "__main__":
+    set_server_parameter('127.0.0.1', 4557, 4559)
+    loop1 = Loop(sleeptime=0.01, iterations=16)
+    sample1 = Sample(path=os.path.abspath('backend\samples\key_slime.wav'))
+    loop1.addSubBlock(sample1)
+    modifier = deltaSample(rateDelta=0.5)
+    modifier2 = deltaSleeptime(delta=1)
+    modifier2 = deltaFinish(finishDelta=-0.03)
+    sample1.addModifier(modifier)
+    loop1.addModifier(modifier2)
+    loop1.play()
