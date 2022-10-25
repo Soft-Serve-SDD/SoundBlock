@@ -107,7 +107,7 @@ class deltaSleeptime(Modifier):
         return super().modify(block)
 
 
-class deltaSample(Modifier):
+class deltaRate(Modifier):
     def __init__(self, rateDelta):
         self.rateDelta = rateDelta
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     loop1 = Loop(sleeptime=0.01, iterations=16)
     sample1 = Sample(path=os.path.abspath('backend\samples\key_slime.wav'))
     loop1.addSubBlock(sample1)
-    modifier = deltaSample(rateDelta=0.5)
+    modifier = deltaRate(rateDelta=0.5)
     modifier2 = deltaSleeptime(delta=1)
     modifier2 = deltaFinish(finishDelta=-0.03)
     sample1.addModifier(modifier)
