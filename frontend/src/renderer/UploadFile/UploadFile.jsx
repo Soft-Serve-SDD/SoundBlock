@@ -2,10 +2,10 @@ import React from 'react';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import { FileUpload, Close } from '@mui/icons-material';
-import { Button } from '@material-ui/core';
-
+import upload from '../../../assets/icons/upload.svg';
+import close from '../../../assets/icons/x.svg';
 import "./UploadFile.css";
+import "../styles/Button.css";
 
 function Dropzone(Props) {
   const { setOpen } = Props;
@@ -27,9 +27,9 @@ function Dropzone(Props) {
   return (
     <section className="container" onClick={() => setOpen(false)}>
       <div className="dropzone-container">
-      <Button className ="right" onClick={() => setOpen(false)}>
-        <Close></Close>
-      </Button>
+      <button className ="right" onClick={() => setOpen(false)}>
+        <img width="20" alt="icon" src={close} />
+      </button>
       <div className='dropzone-div' {...getRootProps()}>
         <input className="dropzone-input" {...getInputProps()} />
         <p> Drag or drop .wav files here</p>
@@ -43,9 +43,9 @@ function Popup() {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
-        <FileUpload></FileUpload>
-      </Button>
+      <button onClick={() => setOpen(true)}>
+        <img width="20" alt="icon" src={upload} />
+      </button>
       {isOpen && <Dropzone setOpen={setOpen} />}
     </>
   );
