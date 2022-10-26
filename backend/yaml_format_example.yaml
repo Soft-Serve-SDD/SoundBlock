@@ -12,6 +12,8 @@
       - sample:
           path: "C:/Users/Julian/Documents/SoundBlock/backend/samples/key_slime.wav"
           rate: 4
+      - sample:
+          rate: 5
       - sleep:
           sleeptime: 1
     modifiers:

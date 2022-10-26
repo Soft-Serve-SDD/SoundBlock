@@ -37,13 +37,10 @@ class Block:
         for i in self.subBlocks:
             if (isinstance(i, Block)):  # input validation
                 i.play()
-            # for m in self.modifiers:
-            #     if (isinstance(m, Modifier)):  # input validation
-            #         m.modify(i)
         for m in self.modifiers:
             if (isinstance(m, Modifier)):  # input validation
                 m.modify(self)
-        
+    
 
 
 class Modifier:  # assuming all modifications will happen post block
@@ -53,7 +50,6 @@ class Modifier:  # assuming all modifications will happen post block
 
 # Block child classes
 
-
 class Sleep(Block):
     def __init__(self, sleeptime):
         self.sleeptime = sleeptime
@@ -62,6 +58,9 @@ class Sleep(Block):
         sleep(self.sleeptime)
         return 1
 
+class Start(Block):
+    pass
+    # put record option here
 
 class Loop(Block):
     def __init__(self, sleeptime, iterations):
@@ -77,6 +76,7 @@ class Loop(Block):
 
 class Sample(Block):
     def __init__(self, path, rate=1, amp=1, attack=0, release=0, start=0, finish=1):
+        super().__init__()
         self.path = switch_slashes(path)
         self.rate = rate
         self.amp = amp
@@ -89,7 +89,7 @@ class Sample(Block):
         print('playing sample ', self.path)
         sample(self.path, attack=self.attack, release=self.release,
                rate=self.rate, amp=self.amp, start=self.start, finish=self.finish)
-        return 1
+        return super().play()
 
 # Modifier child classes
 
