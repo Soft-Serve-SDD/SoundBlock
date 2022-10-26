@@ -58,9 +58,12 @@ class Sleep(Block):
         sleep(self.sleeptime)
         return 1
 
-class Start(Block):
-    pass
-    # put record option here
+class Start(Block): #everything will be a subblock of Start; would make recording easier
+    def record(self, path):
+        start_recording() #TODO recording; make sure this starts recording appropriately 
+        self.play()
+        stop_recording() #TODO recording; make sure this stops recording appropriately
+        save_recording(path)
 
 class Loop(Block):
     def __init__(self, sleeptime, iterations):
@@ -128,7 +131,7 @@ class deltaFinish(Modifier):
         return super().modify(block)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #TODO remove debug code?
     set_server_parameter('127.0.0.1', 4557, 4559)
     loop1 = Loop(sleeptime=0.01, iterations=16)
     sample1 = Sample(path=os.path.abspath('backend\samples\key_slime.wav'))
