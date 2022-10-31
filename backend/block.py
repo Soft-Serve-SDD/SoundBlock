@@ -1,15 +1,12 @@
 from abc import ABCMeta, abstractmethod
 from email import iterators
 from psonic import *
-import random  # TODO see if this can be removed
-import os
 
 
 def switch_slashes(s):
     return s.replace('\\', '/')
 
 # Abstract Classes
-
 
 class Block:
     __metaclass__ = ABCMeta
@@ -106,7 +103,8 @@ class deltaSleeptime(Modifier):
             if (block.sleeptime + self.delta > 0):
                 block.sleeptime += self.delta
         elif (isinstance(block, Loop)):
-            block.sleep.sleeptime += self.delta
+            if (block.sleep.sleeptime + self.delta > 0):
+                block.sleep.sleeptime += self.delta
         return super().modify(block)
 
 
@@ -130,15 +128,3 @@ class deltaFinish(Modifier):
                 block.finish += self.finishDelta
         return super().modify(block)
 
-
-if __name__ == "__main__": #TODO remove debug code?
-    set_server_parameter('127.0.0.1', 4557, 4559)
-    loop1 = Loop(sleeptime=0.01, iterations=16)
-    sample1 = Sample(path=os.path.abspath('backend\samples\key_slime.wav'))
-    loop1.addSubBlock(sample1)
-    modifier = deltaRate(rateDelta=0.5)
-    modifier2 = deltaSleeptime(delta=1)
-    modifier2 = deltaFinish(finishDelta=-0.03)
-    sample1.addModifier(modifier)
-    loop1.addModifier(modifier2)
-    loop1.play()
