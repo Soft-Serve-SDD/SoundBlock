@@ -4,7 +4,9 @@ from psonic import *
 
 
 def switch_slashes(s):
-    return s.replace('\\', '/')
+    if s is not None:
+        return s.replace('\\', '/')
+    return None
 
 # Abstract Classes
 
@@ -38,6 +40,11 @@ class Block:
             if (isinstance(m, Modifier)):  # input validation
                 m.modify(self)
     
+    def print(self, buffer = ""): #debug if blocks are working correctly
+        print(buffer, self)
+        for i in self.subBlocks:
+            if (isinstance(i, Block)):
+                i.print(buffer + " ") #todo modifiers
 
 
 class Modifier:  # assuming all modifications will happen post block
@@ -49,6 +56,7 @@ class Modifier:  # assuming all modifications will happen post block
 
 class Sleep(Block):
     def __init__(self, sleeptime):
+        super().__init__()
         self.sleeptime = sleeptime
 
     def play(self):

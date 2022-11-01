@@ -11,28 +11,29 @@ def createBlock(type, thing):  # todo modifiers
     if type == "start":
         return_value = Start()
     elif type == "sleep":
-        sleeptime = thing["sleeptime"]
+        sleeptime = thing.get("sleeptime")
         return_value = Sleep(sleeptime=sleeptime)
     elif type == "loop":
-        sleeptime = thing["sleeptime"]
-        iterations = thing["iterations"]
+        sleeptime = thing.get("sleeptime")
+        iterations = thing.get("iterations")
         return_value = Loop(sleeptime=sleeptime, iterations=iterations)
     elif type == "sample":
-        path = thing["path"]
-        rate = thing["rate"]
-        amp = thing["amp"]
-        attack = thing["attack"]
-        release = thing["release"]
-        start = thing["start"]
-        finish = thing["finish"]
+        path = thing.get("path")
+        rate = thing.get("rate")
+        amp = thing.get("amp")
+        attack = thing.get("attack")
+        release = thing.get("release")
+        start = thing.get("start")
+        finish = thing.get("finish")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
         return None
-    if (thing["subblocks"] != None):
-        for key in thing["subblocks"]:
-            return_value.addSubBlock(createBlock(key, thing["subblocks"][key]))
+    if (thing.get("subblocks") != None):
+        for i in thing["subblocks"]: #list of dicts
+            for key in i:
+                return_value.addSubBlock(createBlock(key, i[key]))
     return return_value
 
 
@@ -41,7 +42,7 @@ def readInput(input):
     for i in input:
         blocks = []
         for key in i:
-            createBlock(key, i[key])
+            createBlock(key, i[key]).print()
 
 
 def main():
@@ -49,6 +50,7 @@ def main():
         try:
             input = yaml.safe_load(stream)
             readInput(input)
+
         except yaml.YAMLError as exc:
             print(exc)
 
