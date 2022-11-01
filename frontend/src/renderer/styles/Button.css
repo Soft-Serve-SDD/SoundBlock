@@ -11,14 +11,14 @@ button{
   cursor: pointer;
   display: inline-block;
   position: relative;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 button:hover{
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7); 
 }
 
-button:active {
+button:active{
   border: 1px solid black;
-  transform: translateY(2px);
+  /* transform: translateY(2px); */
 }

@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 
 import upload from '../../../assets/icons/upload.svg';
 import close from '../../../assets/icons/x.svg';
-import "./UploadFile.css";
+import "../styles/UploadFile.css";
 import "../styles/Button.css";
 
 function Dropzone(Props) {
