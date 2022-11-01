@@ -1,15 +1,14 @@
 from abc import ABCMeta, abstractmethod
 from email import iterators
 from psonic import *
-import random  # TODO see if this can be removed
-from os import path
 
 
 def switch_slashes(s):
-    return s.replace('\\', '/')
+    if s is not None:
+        return s.replace('\\', '/')
+    return None
 
 # Abstract Classes
-
 
 class Block:
     __metaclass__ = ABCMeta
@@ -37,9 +36,15 @@ class Block:
         for i in self.subBlocks:
             if (isinstance(i, Block)):  # input validation
                 i.play()
-        for i in self.modifiers:
-            if (isinstance(i, Modifier)):  # input validation
-                i.modify()
+        for m in self.modifiers:
+            if (isinstance(m, Modifier)):  # input validation
+                m.modify(self)
+    
+    def print(self, buffer = ""): #debug if blocks are working correctly
+        print(buffer, self)
+        for i in self.subBlocks:
+            if (isinstance(i, Block)):
+                i.print(buffer + " ") #todo modifiers
 
 
 class Modifier:  # assuming all modifications will happen post block
@@ -49,17 +54,23 @@ class Modifier:  # assuming all modifications will happen post block
 
 # Block child classes
 
-
 class Sleep(Block):
     def __init__(self, sleeptime):
+        super().__init__()
         self.sleeptime = sleeptime
 
     def play(self):
         sleep(self.sleeptime)
-        return super().play()
+        return 1
 
+class Start(Block): #everything will be a subblock of Start; would make recording easier
+    def record(self, path):
+        start_recording() #TODO recording; make sure this starts recording appropriately 
+        self.play()
+        stop_recording() #TODO recording; make sure this stops recording appropriately
+        save_recording(path)
 
-class ForLoop(Block):  # should sleep be separated into its own block?
+class Loop(Block):
     def __init__(self, sleeptime, iterations):
         super().__init__()
         self.iterations = iterations
@@ -70,8 +81,10 @@ class ForLoop(Block):  # should sleep be separated into its own block?
             super().play()
             self.sleep.play()
 
+
 class Sample(Block):
     def __init__(self, path, rate=1, amp=1, attack=0, release=0, start=0, finish=1):
+        super().__init__()
         self.path = switch_slashes(path)
         self.rate = rate
         self.amp = amp
@@ -81,9 +94,11 @@ class Sample(Block):
         self.finish = finish
 
     def play(self):
+        print('playing sample ', self.path)
         sample(self.path, attack=self.attack, release=self.release,
                rate=self.rate, amp=self.amp, start=self.start, finish=self.finish)
         return super().play()
+
 # Modifier child classes
 
 
@@ -93,13 +108,15 @@ class deltaSleeptime(Modifier):
 
     def modify(self, block):
         if (isinstance(block, Sleep)):
-            block.sleeptime += self.delta
-        elif (isinstance(block, ForLoop)):
-            block.sleep.sleeptime += self.delta
+            if (block.sleeptime + self.delta > 0):
+                block.sleeptime += self.delta
+        elif (isinstance(block, Loop)):
+            if (block.sleep.sleeptime + self.delta > 0):
+                block.sleep.sleeptime += self.delta
         return super().modify(block)
 
 
-class deltaSample(Modifier):
+class deltaRate(Modifier):
     def __init__(self, rateDelta):
         self.rateDelta = rateDelta
 
@@ -107,3 +124,15 @@ class deltaSample(Modifier):
         if (isinstance(block, Sample)):
             block.rate += self.rateDelta
         return super().modify(block)
+
+
+class deltaFinish(Modifier):
+    def __init__(self, finishDelta):
+        self.finishDelta = finishDelta
+
+    def modify(self, block):
+        if (isinstance(block, Sample)):
+            if (block.finish + self.finishDelta > 0 and block.finish + self.finishDelta < 1):
+                block.finish += self.finishDelta
+        return super().modify(block)
+

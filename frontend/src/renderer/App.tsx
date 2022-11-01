@@ -1,7 +1,6 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
 import './styles/App.css';
-import UploadFile from './UploadFile/UploadFile';
+import UploadFile from './Menu/UploadFile';
 import Canvas from './Canvas/Canvas'
 const Hello = () => {
   return (
