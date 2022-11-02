@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import UploadFile from './Menu/UploadFile';
+import PlayButton from './Menu/PlayButton';
 import Canvas from './Canvas/Canvas';
 
 
@@ -27,6 +28,7 @@ const WorkSpace = () => {
     <div style={{width: "50%", background: "grey"}}>
       <h1 >WorkSpace</h1>
       <UploadFile />
+      <PlayButton />
       <Canvas />
     </div>
   );
