@@ -10,8 +10,6 @@ const Hello = () => {
     <div>
       <UploadFile />
       <PlayButton />
-      <Slider />
-      <Knob />
     </div>
   );
 };

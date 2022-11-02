@@ -18,6 +18,7 @@ export default function KnobComponent() {
         rangeWidth={10}
         // size={50}
       />
+      {value}
     </div>
   );
 }
