@@ -10,7 +10,7 @@ import {
 } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import type { Coordinates } from '@dnd-kit/utilities';
-
+import grip from '../../../assets/icons/grip-vertical.svg';
 // used to generate random id
 import { nanoid } from 'nanoid';
 
@@ -21,17 +21,18 @@ const defaultCoordinates = {
 
 // types for the parameters
 interface Props {
+  handle?: boolean;
   children?: React.ReactNode;
 }
 
 interface DraggableProps {
-  style?: React.CSSProperties;
+  handle?: boolean;
   top?: number;
   left?: number;
   children?: React.ReactNode;
 }
 
-export function Draggable({ children }: Props) {
+export function Draggable({ handle, children }: Props) {
   const [{ x, y }, setCoordinates] = useState<Coordinates>(defaultCoordinates);
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -51,16 +52,16 @@ export function Draggable({ children }: Props) {
         });
       }}
     >
-      <DraggableItem top={y} left={x}>
+      <DraggableItem handle={handle} top={y} left={x}>
         {children}
       </DraggableItem>
     </DndContext>
   );
 }
 
-function DraggableItem({ style, top, left, children }: DraggableProps) {
+function DraggableItem({ handle, top, left, children }: DraggableProps) {
   const id = useRef(nanoid());
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { listeners, setNodeRef, transform } = useDraggable({
     id: id.current,
   });
 
@@ -71,8 +72,13 @@ function DraggableItem({ style, top, left, children }: DraggableProps) {
   };
 
   return (
-    <button style={styles} ref={setNodeRef} {...listeners} {...attributes}>
-      {children}
+    <button style={styles} ref={setNodeRef} {...(handle ? {} : listeners)}>
+      <>
+        {children}
+        {handle ? (
+          <img width="20" alt="icon" src={grip} {...listeners} />
+        ) : null}
+      </>
     </button>
   );
 }

@@ -13,7 +13,7 @@ export function PlayBlock() {
 export function SampleBlock() {
   const Component = renderers['sample'];
   return (
-    <Draggable>
+    <Draggable handle={true}>
       <Component />
     </Draggable>
   );

@@ -1,3 +1,4 @@
+import Slider from '../Components/Slider';
 // Sidebar fields
 export const fields = [
   {
@@ -20,12 +21,20 @@ export const renderers = {
     return <div> Play </div>;
   },
   sample: () => {
-    return <div> Sample </div>;
+    return (
+      <div style={{ border: '1px solid black' }}>
+        Attack
+        <Slider />
+        Stretch
+        <Slider />
+        Mod 1
+        <Slider />
+        Mod 2
+        <Slider />
+      </div>
+    );
   },
   loop: () => {
     return <div> Loop </div>;
   },
-  slider: () => {
-    return <div> Slider </div>;
-  }
 };
