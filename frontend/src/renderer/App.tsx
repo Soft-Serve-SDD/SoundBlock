@@ -1,7 +1,8 @@
 import React from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import UploadFile from './Components/UploadFile';
+import UploadFile from './Menu/UploadFile';
+import Canvas from './Canvas/Canvas';
 
 
 const Container = () => {
