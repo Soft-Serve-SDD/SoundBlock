@@ -32,7 +32,7 @@ function Dropzone(Props) {
       </button>
       <div className='dropzone-div' {...getRootProps()}>
         <input className="dropzone-input" {...getInputProps()} />
-        <p> Drag or drop .wav files here</p>
+        <p> upload or drop .wav files here</p>
       </div>
       </div>
     </section>
