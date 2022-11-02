@@ -1,18 +1,16 @@
-import React, { useState, useRef } from 'react';
+import { DndContext } from '@dnd-kit/core';
+import { PlayBlock, SampleBlock } from 'renderer/Blocks/draggableBlocks';
 
-import { DndContext, DragOverlay } from '@dnd-kit/core';
-
-import { DraggableStory } from '../Components/draggable';
-// import {Droppable} from '../Components/droppable';
+// import { Draggable } from '../Components/draggable';
 
 export default function Canvas() {
   return (
     <DndContext>
-      <DraggableStory>Canvas call</DraggableStory>
-
-      <DraggableStory>
-        <div style={{ border: '1px solid black' }}>Dummy Canvas call 2</div>
-      </DraggableStory>
+      <PlayBlock />
+      <PlayBlock />
+      <SampleBlock />
+      <SampleBlock />
+      <SampleBlock />
     </DndContext>
   );
 }

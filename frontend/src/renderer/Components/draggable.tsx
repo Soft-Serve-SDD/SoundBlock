@@ -31,7 +31,7 @@ interface DraggableProps {
   children?: React.ReactNode;
 }
 
-export function DraggableStory({ children }: Props) {
+export function Draggable({ children }: Props) {
   const [{ x, y }, setCoordinates] = useState<Coordinates>(defaultCoordinates);
   const sensors = useSensors(
     useSensor(MouseSensor),

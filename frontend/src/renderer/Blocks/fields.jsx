@@ -10,13 +10,19 @@ export const fields = [
   },
   {
     type: 'loop',
-    title: 'Text',
+    title: 'Loop Block',
   },
 ];
 
 // How fields will be rendered when in workspace
 export const renderers = {
-  play: () => <div> Play </div>,
-  sample: () => <div> Sample </div>,
-  loop: () => <div> Loop </div>,
+  play: () => {
+    return <div> Play </div>;
+  },
+  sample: () => {
+    return <div> Sample </div>;
+  },
+  loop: () => {
+    return <div> Loop </div>;
+  },
 };
