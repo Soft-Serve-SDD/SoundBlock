@@ -25,4 +25,7 @@ export const renderers = {
   loop: () => {
     return <div> Loop </div>;
   },
+  slider: () => {
+    return <div> Slider </div>;
+  }
 };
