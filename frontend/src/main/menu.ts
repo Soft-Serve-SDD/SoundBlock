@@ -207,16 +207,15 @@ export default class MenuBuilder {
             click: () => {
               this.mainWindow.close();
             },
-          }, 
+          },
           // test send json option that calls function sendJson()
-            
+
           {
             label: '&Send YAML TEST',
             click: () => {
               this.sendYaml();
             },
           },
-          
         ],
       },
       {
@@ -311,7 +310,6 @@ export default class MenuBuilder {
       if (err) {
         console.log(err);
       }
-    }
-    );
+    });
   }
 }

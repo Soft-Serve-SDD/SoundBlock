@@ -26,6 +26,7 @@ const WorkSpace = () => {
     <div style={{width: "50%", background: "grey"}}>
       <h1 >WorkSpace</h1>
       <UploadFile />
+      <Canvas />
     </div>
   );
 };

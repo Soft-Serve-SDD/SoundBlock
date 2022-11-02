@@ -4,8 +4,8 @@ import { useDropzone } from 'react-dropzone';
 
 import upload from '../../../assets/icons/upload.svg';
 import close from '../../../assets/icons/x.svg';
-import "../styles/UploadFile.css";
-import "../styles/Button.css";
+import '../styles/UploadFile.css';
+import '../styles/Button.css';
 
 function Dropzone(Props) {
   const { setOpen } = Props;
@@ -19,7 +19,7 @@ function Dropzone(Props) {
     accept: {
       'audio/*': ['.wav'],
     },
-    multiple: false
+    multiple: false,
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop, constraints });
@@ -27,13 +27,13 @@ function Dropzone(Props) {
   return (
     <section className="container" onClick={() => setOpen(false)}>
       <div className="dropzone-container">
-      <button className ="right" onClick={() => setOpen(false)}>
-        <img width="20" alt="icon" src={close} />
-      </button>
-      <div className='dropzone-div' {...getRootProps()}>
-        <input className="dropzone-input" {...getInputProps()} />
-        <p> upload or drop .wav files here</p>
-      </div>
+        <button className="right" onClick={() => setOpen(false)}>
+          <img width="20" alt="icon" src={close} />
+        </button>
+        <div className="dropzone-div" {...getRootProps()}>
+          <input className="dropzone-input" {...getInputProps()} />
+          <p> Drag or drop .wav files here</p>
+        </div>
       </div>
     </section>
   );
