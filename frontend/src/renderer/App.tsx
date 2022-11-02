@@ -1,12 +1,17 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import UploadFile from './Components/UploadFile';
+import PlayButton from './Components/PlayButton';
+import Slider from './Components/Slider';
+import Knob from './Components/Knob';
 
 const Hello = () => {
   return (
     <div>
-      <h1>Hello World Sound Blocks! </h1>
       <UploadFile />
+      <PlayButton />
+      <Slider />
+      <Knob />
     </div>
   );
 };
