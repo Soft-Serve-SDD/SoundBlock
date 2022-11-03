@@ -5,6 +5,10 @@ import UploadFile from './Menu/UploadFile';
 import PlayButton from './Menu/PlayButton';
 import Canvas from './Canvas/Canvas';
 
+import { renderers } from './Blocks/fields';
+import { Draggable } from './Components/draggable';
+import { useState } from 'react';
+import { AduioBlock } from './Blocks/draggableBlocks';
 
 const Container = () => {
   return (
@@ -27,7 +31,6 @@ const WorkSpace = () => {
   return (
     <div style={{width: "50%", background: "grey"}}>
       <h1 >WorkSpace</h1>
-      <UploadFile />
       <PlayButton />
       <Canvas />
     </div>
@@ -43,14 +46,28 @@ const BlockMenu = () => {
 }
 
 const SoundLibrary = () => {
+  const [activeFiles, setActiveFiles] = useState([])
+
+  const createBlock = (file) => {
+    console.log(file[0].name)
+    setActiveFiles([...activeFiles, file])
+  }
+
   return (
-    <div style={{width: "25%", background: "white"}}>
-      <h1>Sound Library</h1>
-    </div>
+    <React.Fragment>
+      <div style={{width: "25%", background: "white"}}>
+        <h1>Sound Library</h1>
+        <UploadFile createBlock={createBlock}/>
+        {activeFiles.map((file) => (
+        <Draggable handle={true}>
+          <AduioBlock title = {file[0].name} duration = {"10"} />
+        </Draggable>
+      ))}
+      </div>
+    </React.Fragment>
   )
+
 }
-
-
 
 
 export default function App() {

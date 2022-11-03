@@ -1,6 +1,6 @@
 import { renderers } from './fields';
 import { Draggable } from '../Components/draggable';
-
+import Slider from '../Components/Slider';
 export function PlayBlock() {
   const Component = renderers['play'];
   return (
@@ -17,4 +17,24 @@ export function SampleBlock() {
       <Component />
     </Draggable>
   );
+}
+
+export function AduioBlock(Props) {
+  return (
+      <div style={{ border: '1px solid black', borderRadius: "5px"}}>
+        <h4 style={{marginTop: "5px", marginBottom: "0px"}}>{Props.title}</h4>
+        <br/> 
+        <h5 style={{marginTop: "5px", marginBottom: "0px"}}> Duration: {Props.duration}</h5>
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          <div>
+            Attack
+          <Slider />
+          </div>
+          <div>
+            Stretch
+          <Slider />
+          </div>
+        </div>
+      </div>
+  )
 }
