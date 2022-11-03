@@ -10,14 +10,14 @@ import '../styles/Button.css';
 
 function Dropzone(Props) {
   const { setOpen, createBlock } = Props;
-  
+
   const [files, setFiles] = useState([]);
 
   // This call back will be used to create a sample block once .wav files is droped
   const onDrop = useCallback((acceptedFiles) => {
     // const reader = new FileReader();
     // console.log(acceptedFiles[0], acceptedFiles[0].name, acceptedFiles[0].path, acceptedFiles[0].type);
-    console.log(acceptedFiles)
+    console.log(acceptedFiles);
     setFiles(
       acceptedFiles.map((file) =>
         Object.assign(file, {
@@ -26,7 +26,7 @@ function Dropzone(Props) {
       )
     );
     console.log(Props);
-    createBlock(acceptedFiles)
+    createBlock(acceptedFiles);
     //this.Props.createBlock(acceptedFiles);
   }, []);
 
@@ -38,10 +38,7 @@ function Dropzone(Props) {
     multiple: false,
   };
 
-
-  const onUpload = () => {
-   
-  }
+  const onUpload = () => {};
   // clean up
   useEffect(
     () => () => {
@@ -76,7 +73,7 @@ function Dropzone(Props) {
 }
 
 function Popup(Props) {
-  //console.log(Props)  
+  //console.log(Props)
   const [isOpen, setOpen] = useState(false);
   return (
     <>
@@ -89,5 +86,5 @@ function Popup(Props) {
 }
 
 export default function UploadFile(Props) {
-  return <Popup createBlock = {Props.createBlock}/>;
+  return <Popup createBlock={Props.createBlock} />;
 }

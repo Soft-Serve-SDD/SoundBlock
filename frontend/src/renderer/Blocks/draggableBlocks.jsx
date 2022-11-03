@@ -21,20 +21,23 @@ export function SampleBlock() {
 
 export function AduioBlock(Props) {
   return (
-      <div style={{ border: '1px solid black', borderRadius: "5px"}}>
-        <h4 style={{marginTop: "5px", marginBottom: "0px"}}>{Props.title}</h4>
-        <br/> 
-        <h5 style={{marginTop: "5px", marginBottom: "0px"}}> Duration: {Props.duration}</h5>
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <div>
-            Attack
+    <div style={{ border: '1px solid black', borderRadius: '5px' }}>
+      <h4 style={{ marginTop: '5px', marginBottom: '0px' }}>{Props.title}</h4>
+      <br />
+      <h5 style={{ marginTop: '5px', marginBottom: '0px' }}>
+        {' '}
+        Duration: {Props.duration}
+      </h5>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div>
+          Attack
           <Slider />
-          </div>
-          <div>
-            Stretch
+        </div>
+        <div>
+          Stretch
           <Slider />
-          </div>
         </div>
       </div>
-  )
+    </div>
+  );
 }
