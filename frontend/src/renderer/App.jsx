@@ -8,7 +8,7 @@ import Canvas from './Canvas/Canvas';
 import { renderers } from './Blocks/fields';
 import { Draggable } from './Components/draggable';
 import { useState } from 'react';
-import { AduioBlock } from './Blocks/draggableBlocks';
+import { AudioBlock } from './Blocks/draggableBlocks';
 
 const Container = () => {
   return (

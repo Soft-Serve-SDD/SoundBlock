@@ -19,7 +19,7 @@ export function SampleBlock() {
   );
 }
 
-export function AduioBlock(Props) {
+export function AudioBlock(Props) {
   return (
     <div style={{ border: '1px solid black', borderRadius: '5px' }}>
       <h4 style={{ marginTop: '5px', marginBottom: '0px' }}>{Props.title}</h4>
