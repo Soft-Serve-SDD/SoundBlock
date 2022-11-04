@@ -39,18 +39,24 @@ const Container = () => {
 
 const WorkSpace = () => {
   return (
-    <div style={{ width: '50%', background: 'grey' }}>
-      <h1>WorkSpace</h1>
-      <PlayButton />
-      <Canvas />
+    <div style={{ width: '50%', background: 'grey', height: 'calc(100vh - 200px)' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <h1>WorkSpace</h1>
+        <PlayButton />
+        <Canvas />
+      </div>
     </div>
   );
 };
 
 const BlockMenu = () => {
   return (
-    <div style={{ width: '25%', background: 'white' }}>
-      <h1>Block Menu</h1>
+    // height is window height - 100px,
+    <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
+      {/* centered div */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <h1>Block Menu</h1>
+      </div>
     </div>
   );
 };
@@ -65,14 +71,16 @@ const SoundLibrary = () => {
 
   return (
     <React.Fragment>
-      <div style={{ width: '25%', background: 'white' }}>
-        <h1>Sound Library</h1>
-        <UploadFile createBlock={createBlock} />
-        {activeFiles.map((file) => (
-          <Draggable handle={true}>
-            <AduioBlock title={file[0].name} duration={'10'} />
-          </Draggable>
-        ))}
+      <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <h1>Sound Library</h1>
+          <UploadFile createBlock={createBlock} />
+          {activeFiles.map((file) => (
+            <Draggable handle={true}>
+              <AduioBlock title={file[0].name} duration={'10'} />
+            </Draggable>
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );
