@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": ".erb/dll",
-    "typeRoots": ["./assets/assets.d.ts"]
   },
-  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
+  "include": ["./asset"],
+  "files": ["./asset/asset.d.ts"],
+  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"] 
 }
