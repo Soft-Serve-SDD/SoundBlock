@@ -77,7 +77,7 @@ const SoundLibrary = () => {
           <UploadFile createBlock={createBlock} />
           {activeFiles.map((file) => (
             <Draggable handle={true} key={file[0].name}>
-              <AduioBlock title={file[0].name} duration={'10'}/>
+              <AudioBlock title={file[0].name} duration={'10'}/>
             </Draggable>
           ))}
         </div>
