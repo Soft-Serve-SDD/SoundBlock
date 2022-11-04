@@ -10,26 +10,6 @@ import '../styles/Button.css';
 
 function Dropzone(Props) {
   const { setOpen, createBlock } = Props;
-
-  const [files, setFiles] = useState([]);
-
-  // This call back will be used to create a sample block once .wav files is droped
-  const onDrop = useCallback((acceptedFiles) => {
-    // const reader = new FileReader();
-    // console.log(acceptedFiles[0], acceptedFiles[0].name, acceptedFiles[0].path, acceptedFiles[0].type);
-    console.log(acceptedFiles);
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    );
-    console.log(Props);
-    createBlock(acceptedFiles);
-    //this.Props.createBlock(acceptedFiles);
-  }, []);
-
   // restrict to one .wav upload
   const constraints = {
     accept: {
@@ -37,24 +17,17 @@ function Dropzone(Props) {
     },
     multiple: false,
   };
-
-  const onUpload = () => {};
-  // clean up
-  useEffect(
-    () => () => {
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
-
-  const thumbs = files.map((file) => (
-    <div key={file.name}>
-      <audio controls src={file.preview} alt={file.name} />
-    </div>
-  ));
+  // This call back will be used to create a sample block once .wav files is droped
+  const onDrop = useCallback((acceptedFiles) => {
+    // const reader = new FileReader();
+    // console.log(acceptedFiles[0], acceptedFiles[0].name, acceptedFiles[0].path, acceptedFiles[0].type);
+    // console.log(Props);
+    createBlock(acceptedFiles);
+    //this.Props.createBlock(acceptedFiles);
+    setOpen(false);
+  }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop, constraints });
-
   return (
     <section className="container">
       <div className="dropzone-container">
