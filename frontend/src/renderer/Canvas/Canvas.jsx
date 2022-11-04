@@ -8,9 +8,6 @@ export default function Canvas() {
     <DndContext>
       <PlayBlock />
       <PlayBlock />
-      <SampleBlock />
-      <SampleBlock />
-      <SampleBlock />
     </DndContext>
   );
 }
