@@ -87,7 +87,7 @@ const SoundLibrary = () => {
   const [activeFiles, setActiveFiles] = useState([]);
 
   const createBlock = (file) => {
-    console.log(file[0].name);
+    console.log(file[0]);
     setActiveFiles([...activeFiles, file]);
   };
 
@@ -98,8 +98,8 @@ const SoundLibrary = () => {
           <h1 style={{color: 'grey'}}>Sound Library</h1>
           <UploadFile createBlock={createBlock} />
           {activeFiles.map((file) => (
-            <Draggable handle={true}>
-              <AudioBlock title={file[0].name} duration={'10'} />
+            <Draggable handle={true} key={file[0].name}>
+              <AudioBlock title={file[0].name} duration={'10'}/>
             </Draggable>
           ))}
         </div>
