@@ -91,7 +91,7 @@ const SoundLibrary = () => {
   };
 
   const exportData = () => {
-    window.electron.sendData(activeFiles)
+    window.electron.sendData()
   }
 
   return (
