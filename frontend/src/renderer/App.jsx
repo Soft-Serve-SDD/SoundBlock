@@ -97,7 +97,7 @@ const SoundLibrary = () => {
   return (
     <React.Fragment>
       <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div>
           <h1 style={{color: 'grey',display: 'flex', justifyContent: 'center' }}>Sound Library</h1>
           <PlayButton onClick={exportData}/>
           <UploadFile createBlock={createBlock} />
