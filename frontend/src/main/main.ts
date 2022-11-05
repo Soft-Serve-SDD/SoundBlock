@@ -101,6 +101,10 @@ const createWindow = async () => {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
+  function saveYAML (event, data) {
+    menuBuilder.sendYaml(data)
+  }
+
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
     shell.openExternal(edata.url);
@@ -127,6 +131,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    ipcMain.on('send-yaml', saveYAML)
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

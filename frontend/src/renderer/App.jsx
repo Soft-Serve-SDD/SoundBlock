@@ -64,7 +64,6 @@ const WorkSpace = (color) => {
     <div style={{ width: '50%', background: "grey", height: 'calc(100vh - 200px)' }}>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h1>WorkSpace</h1>
-        <PlayButton />
         <Canvas />
       </div>
     </div>
@@ -91,11 +90,16 @@ const SoundLibrary = () => {
     setActiveFiles([...activeFiles, file]);
   };
 
+  const exportData = () => {
+    window.electron.sendData(activeFiles)
+  }
+
   return (
     <React.Fragment>
       <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <h1 style={{color: 'grey'}}>Sound Library</h1>
+          <PlayButton onClick={exportData}/>
           <UploadFile createBlock={createBlock} />
           {activeFiles.map((file) => (
             <Draggable handle={true} key={file[0].name}>
