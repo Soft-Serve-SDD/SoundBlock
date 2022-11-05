@@ -116,6 +116,25 @@ const createWindow = async () => {
  * Add event listeners...
  */
 
+//Should probably try
+ function sendYaml() {
+  // import fs
+  const fs = require('fs');
+  // import yaml
+  const yaml = require('js-yaml');
+  // send yaml test
+  const yamlTest = {
+    name: 'test2',
+    value: 'test2',
+  };
+  // write yaml to file
+  fs.writeFile('../backend/music.yaml', yaml.dump(yamlTest), (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
+
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
@@ -127,6 +146,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    ipcMain.on('send-data', sendYaml)
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
