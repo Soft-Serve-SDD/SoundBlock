@@ -100,8 +100,6 @@ const SoundLibrary = () => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <h1 style={{color: 'grey',display: 'flex', justifyContent: 'center' }}>Sound Library</h1>
           <PlayButton onClick={exportData}/>
-        <div>
-          
           <UploadFile createBlock={createBlock} />
           {activeFiles.map((file) => (
             <Draggable handle={true} key={file[0].name}>
