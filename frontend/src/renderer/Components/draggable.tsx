@@ -10,8 +10,9 @@ import {
 } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import type { Coordinates } from '@dnd-kit/utilities';
-// import grip from '../../../assets/icons/grip-vertical.svg';
-const grip = require('../../../assets/icons/grip-vertical.svg') as string;
+// @ts-ignore
+import grip from '../../../assets/icons/grip-vertical.svg';
+// const grip = require('../../../assets/icons/grip-vertical.svg') as string;
 // used to generate random id
 import { nanoid } from 'nanoid';
 
