@@ -10,7 +10,8 @@ import {
 } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import type { Coordinates } from '@dnd-kit/utilities';
-import grip from '../../../assets/icons/grip-vertical.svg';
+// import grip from '../../../assets/icons/grip-vertical.svg';
+const grip = require('../../../assets/icons/grip-vertical.svg') as string;
 // used to generate random id
 import { nanoid } from 'nanoid';
 
@@ -21,6 +22,7 @@ const defaultCoordinates = {
 
 // types for the parameters
 interface Props {
+  key?: string;
   handle?: boolean;
   children?: React.ReactNode;
 }
@@ -32,7 +34,7 @@ interface DraggableProps {
   children?: React.ReactNode;
 }
 
-export function Draggable({ handle, children }: Props) {
+export function Draggable({ handle, children}: Props) {
   const [{ x, y }, setCoordinates] = useState<Coordinates>(defaultCoordinates);
   const sensors = useSensors(
     useSensor(MouseSensor),

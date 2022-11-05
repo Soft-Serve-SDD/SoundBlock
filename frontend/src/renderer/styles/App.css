@@ -5,6 +5,17 @@
 body {
   position: relative;
   height: 100vh;
-  background: rgb(193, 227, 240);
+  background: var(--background);
+  color: var(--text-primary);
   font-family: sans-serif;
+}
+
+
+:root {
+  --background: rgb(193, 227, 240);
+  --text-primary: black;
+}
+[data-theme='dark'] {
+  --background: black;
+  --text-primary: white;
 }
