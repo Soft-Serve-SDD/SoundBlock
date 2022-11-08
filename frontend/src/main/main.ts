@@ -116,19 +116,14 @@ const createWindow = async () => {
  * Add event listeners...
  */
 
-//Should probably try
- function sendYaml() {
+//Should probably try importing from Menu.ts or vice versa
+ function sendYaml(event, param) {
   // import fs
   const fs = require('fs');
   // import yaml
   const yaml = require('js-yaml');
-  // send yaml test
-  const yamlTest = {
-    name: 'test2',
-    value: 'test2',
-  };
   // write yaml to file
-  fs.writeFile('../backend/music.yaml', yaml.dump(yamlTest), (err) => {
+  fs.writeFile('../backend/stream/music.yaml', yaml.dump(param), (err) => {
     if (err) {
       console.log(err);
     }

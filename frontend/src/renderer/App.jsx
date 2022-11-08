@@ -91,7 +91,18 @@ const SoundLibrary = () => {
   };
 
   const exportData = () => {
-    window.electron.sendData()
+    if (activeFiles.length != 0) {
+      const toSend = []
+      for (let i = 0; i < activeFiles.length; i++) {
+        const chunk = {
+          sample: '',
+          path: activeFiles[i][0].name,
+          rate: 4,
+        }
+        toSend.push(chunk)
+    }
+      window.electron.sendData(toSend)
+    }
   }
 
   return (
