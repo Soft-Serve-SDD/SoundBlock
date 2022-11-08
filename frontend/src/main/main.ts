@@ -123,7 +123,7 @@ const createWindow = async () => {
   // import yaml
   const yaml = require('js-yaml');
   // write yaml to file
-  fs.writeFile('../backend/music.yaml', yaml.dump(param), (err) => {
+  fs.writeFile('../backend/stream/music.yaml', yaml.dump(param), (err) => {
     if (err) {
       console.log(err);
     }
