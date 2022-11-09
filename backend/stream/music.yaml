@@ -1,7 +1,4 @@
 - sample:
-    path: key_slime.wav
-    rate: 4
-- sample:
-    path: key_slime.wav
-    ratedelta: 6
-    rate: 3
+    path: guitar_ambient.wav
+    rate: 1
+    amp: 3

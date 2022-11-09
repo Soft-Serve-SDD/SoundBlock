@@ -64,7 +64,7 @@ const WorkSpace = (color) => {
     <div style={{ width: '50%', background: "grey", height: 'calc(100vh - 200px)' }}>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h1>WorkSpace</h1>
-        <Canvas />
+        {/* <Canvas /> */}
       </div>
     </div>
   );
@@ -74,7 +74,6 @@ const BlockMenu = () => {
   return (
     // height is window height - 100px,
     <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
-      {/* centered div */}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h1 style={{color: 'grey'}}>Block Menu</h1>
       </div>
@@ -97,7 +96,8 @@ const SoundLibrary = () => {
         const chunk = {
           sample: {
           path: activeFiles[i][0].name,
-          rate: 4,
+          rate: 1,
+          amp: 3,
           }
         }
         toSend.push(chunk)
