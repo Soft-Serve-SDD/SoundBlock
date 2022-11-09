@@ -81,15 +81,74 @@ const BlockMenu = () => {
   );
 };
 
+/* Block Json has format:
+Block: {
+  duration: d,
+  name: n,
+  rate: r,
+  amp: a,
+  path: p
+}
+*/
 const SoundLibrary = () => {
   const [activeFiles, setActiveFiles] = useState([]);
+  const [activeBlocks, setActiveBlocks] = useState([]);
 
   const createBlock = (file) => {
-    console.log(file[0]);
-    setActiveFiles([...activeFiles, file]);
+    //setActiveFiles([...activeFiles, file]);
+    var new_block = {
+      id: file[0].name, //this should be be adjusted later to be a unqiue (not always unqiue now)
+      duration: -1,
+      name: file[0].name,
+      rate: 1,
+      amp: 3,
+      path: file[0].name
+    }
+
+    setActiveBlocks([...activeBlocks, new_block])
   };
 
+  const adjustProperties = (block, updatedRate) => {
+    const newBlocksState = activeBlocks.map(b => {
+      if (b.id == block.id){
+        var new_block = {
+          id: block.name, //this should be be adjusted later to be a unqiue (not always unqiue now)
+          duration: -1,
+          name: block.name,
+          rate: updatedRate,
+          amp: 3,
+          path: block.name
+        }
+        return new_block
+      }
+      return b
+    })
+    setActiveBlocks(newBlocksState)
+    console.log("updated")
+    console.log(newBlocksState)
+  }
+
+
   const exportData = () => {
+    if (activeBlocks.length != 0) {
+      const toSend = []
+      for (let i = 0; i < activeBlocks.length; i++) {
+        const chunk = {
+          sample: {
+            path: activeBlocks[i].name,
+            rate: (activeBlocks[i].rate/100),
+            amp: 3,
+          }
+        }
+        toSend.push(chunk)
+    }
+    console.log(toSend)
+    window.electron.sendData(toSend)
+    }
+ 
+
+
+    /* old method:
     if (activeFiles.length != 0) {
       const toSend = []
       for (let i = 0; i < activeFiles.length; i++) {
@@ -104,6 +163,7 @@ const SoundLibrary = () => {
     }
       window.electron.sendData(toSend)
     }
+    */
   }
 
   return (
@@ -113,9 +173,9 @@ const SoundLibrary = () => {
           <h1 style={{color: 'grey',display: 'flex', justifyContent: 'center' }}>Sound Library</h1>
           <PlayButton onClick={exportData}/>
           <UploadFile createBlock={createBlock} />
-          {activeFiles.map((file) => (
-            <Draggable handle={true} key={file[0].name}>
-              <AudioBlock title={file[0].name} duration={'10'}/>
+          {activeBlocks.map((block) => (
+            <Draggable handle={true} key={block.name}>
+              <AudioBlock adjustProperties={adjustProperties} blockInfo = {block} duration={'10'}/>
             </Draggable>
           ))}
         </div>
