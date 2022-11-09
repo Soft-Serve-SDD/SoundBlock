@@ -136,7 +136,7 @@ const SoundLibrary = () => {
         const chunk = {
           sample: {
             path: activeBlocks[i].name,
-            rate: (activeBlocks[i].rate/100),
+            rate: (activeBlocks[i].rate/10),
             amp: 3,
           }
         }
