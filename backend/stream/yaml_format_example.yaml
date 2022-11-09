@@ -2,7 +2,7 @@
     sleeptime: 2
     subblocks:
       - sample:
-          path: "C:/Users/Julian/Documents/SoundBlock/backend/samples/key_slime.wav"
+          path: key_slime.wav
           rate: 4
       - sleep:
           sleeptime: 1
@@ -10,9 +10,10 @@
     sleeptime: 2
     subblocks:
       - sample:
-          path: "C:/Users/Julian/Documents/SoundBlock/backend/samples/key_slime.wav"
+          path: key_slime.wav
           rate: 4
       - sample:
+          path: key_slime.wav
           rate: 5
       - sleep:
           sleeptime: 1

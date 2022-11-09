@@ -1,0 +1,7 @@
+- sample:
+    path: key_slime.wav
+    rate: 4
+- sample:
+    path: key_slime.wav
+    ratedelta: 6
+    rate: 3

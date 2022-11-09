@@ -4,7 +4,10 @@ from tracemalloc import start
 from venv import create
 import yaml
 from block import *
+import os
+import time
 
+YAML_FILENAME = "stream/music.yaml"
 
 def createBlock(type, thing):  # todo modifiers
     return_value = Block()
@@ -19,6 +22,7 @@ def createBlock(type, thing):  # todo modifiers
         return_value = Loop(sleeptime=sleeptime, iterations=iterations)
     elif type == "sample":
         path = thing.get("path")
+        path = os.path.abspath("samples/" + path)
         rate = thing.get("rate")
         amp = thing.get("amp")
         attack = thing.get("attack")
@@ -38,22 +42,36 @@ def createBlock(type, thing):  # todo modifiers
 
 
 def readInput(input):
-    # input (at least in sample) is list of some stupid object who actually likes python goddamnit
+    blocks = []
     for i in input:
-        blocks = []
         for key in i:
-            createBlock(key, i[key]).print()
+            blocks.append(createBlock(key, i[key]))
+    return blocks
 
-
-def main():
-    with open("stream/yaml_format_example.yaml", "r") as stream:
+def run():
+    set_server_parameter('127.0.0.1', 4557, 4559)
+    blocks = []
+    with open(YAML_FILENAME, "r") as stream:
         try:
             input = yaml.safe_load(stream)
-            readInput(input)
+            blocks = readInput(input)
 
         except yaml.YAMLError as exc:
             print(exc)
+    
+    for block in blocks:
+        print("calling play on block: ", block)
+        block.play()
+
+def detect_changes():
+    # detects changes in YAML_FILENAME, and calls run if there are any
+    while True:
+        old_time = os.path.getmtime(YAML_FILENAME)
+        time.sleep(0.1)
+        new_time = os.path.getmtime(YAML_FILENAME)
+        if (new_time != old_time):
+            run()
 
 
 if __name__ == '__main__':
-    main()
+    detect_changes()
