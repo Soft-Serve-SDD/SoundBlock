@@ -95,9 +95,10 @@ const SoundLibrary = () => {
       const toSend = []
       for (let i = 0; i < activeFiles.length; i++) {
         const chunk = {
-          sample: '',
+          sample: {
           path: activeFiles[i][0].name,
           rate: 4,
+          }
         }
         toSend.push(chunk)
     }
