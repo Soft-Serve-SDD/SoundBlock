@@ -1,6 +1,7 @@
 import { renderers } from './fields';
 import { Draggable } from '../Components/draggable';
 import Slider from '../Components/Slider';
+import { useState } from 'react';
 export function PlayBlock() {
   const Component = renderers['play'];
   return (
@@ -20,9 +21,18 @@ export function SampleBlock() {
 }
 
 export function AudioBlock(Props) {
+  const { adjustProperties, blockInfo } = Props
+  console.log(blockInfo)
+  const [name, setName ] = useState(blockInfo.name)
+  const [file, setFile] = useState(blockInfo.file)
+
+  const adjustRate = (rate) => {
+    adjustProperties(blockInfo, rate)
+  }
+
   return (
     <div style={{ border: '1px solid black', borderRadius: '5px' }}>
-      <h4 style={{ marginTop: '5px', marginBottom: '0px' }}>{Props.title}</h4>
+      <h4 style={{ marginTop: '5px', marginBottom: '0px' }}>{name}</h4>
       <br />
       <h5 style={{ marginTop: '5px', marginBottom: '0px' }}>
         {' '}
@@ -30,12 +40,8 @@ export function AudioBlock(Props) {
       </h5>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <div>
-          Attack
-          <Slider />
-        </div>
-        <div>
-          Stretch
-          <Slider />
+          Rate
+          <Slider adjustRate={adjustRate}/>
         </div>
       </div>
     </div>

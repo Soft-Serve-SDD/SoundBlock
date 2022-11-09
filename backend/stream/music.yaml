@@ -1,4 +1,4 @@
 - sample:
-    path: guitar_ambient.wav
-    rate: 1
+    path: flute_short.wav
+    rate: 0.41
     amp: 3
