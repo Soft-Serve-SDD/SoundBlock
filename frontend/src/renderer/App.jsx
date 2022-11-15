@@ -9,6 +9,7 @@ import Canvas from './Canvas/Canvas';
 import { Draggable } from './Components/draggable';
 import { useState } from 'react';
 import { AudioBlock } from './Blocks/draggableBlocks';
+import { v4 as uuidv4 } from 'uuid';
 
 const Container = () => {
   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -97,7 +98,7 @@ const SoundLibrary = () => {
   const createBlock = (file) => {
     //setActiveFiles([...activeFiles, file]);
     var new_block = {
-      id: file[0].name, //this should be be adjusted later to be a unqiue (not always unqiue now)
+      id: uuidv4(),
       duration: -1,
       name: file[0].name,
       rate: 1,
@@ -112,7 +113,7 @@ const SoundLibrary = () => {
     const newBlocksState = activeBlocks.map(b => {
       if (b.id == block.id){
         var new_block = {
-          id: block.name, //this should be be adjusted later to be a unqiue (not always unqiue now)
+          id: block.id,
           duration: -1,
           name: block.name,
           rate: updatedRate,
