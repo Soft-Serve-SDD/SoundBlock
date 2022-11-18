@@ -27,8 +27,5 @@ const Slider = (props) => {
 export default Slider;
 
 
-// simple turnable knobs that adjust the rate value and shows the value on the left
-import { Knob } from 'react-rotary-knob';
-
 
 

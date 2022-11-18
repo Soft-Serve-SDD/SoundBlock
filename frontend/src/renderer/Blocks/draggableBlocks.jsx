@@ -63,76 +63,73 @@ export function AudioBlock(Props) {
         {' '}
         Duration: {Props.duration}
       </h5>
-      {/* arrange knobs in a 2x3 grid */}
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <Knob
-              style={{ width: '30', height: '30' }}
-              min={0}
-              max={10}
-              unlockDistance={0}
-              preciseMode={true}
-              value={blockInfo.rate}
-              onChange={adjustRate}
-            />
-            <p style={{ marginTop: 'auto', marginBottom: 'auto' }}>Rate</p>
+      {/* arrange small knobs in a 3x2 grid */}
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <h6>Rate</h6>
+              <Knob
+                min={0}
+                max={10}
+                value={blockInfo.rate}
+                unlockDistance={0}
+                preciseMode={false}
+                onChange={adjustRate}
+                style={{ width: '50px', height: '50px' }}
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <h6>Attack</h6>
+              <Knob
+                min={0}
+                max={10}
+                value={blockInfo.attack}
+                unlockDistance={0}
+                preciseMode={false}
+                onChange={adjustAttack}
+                style={{ width: '50px', height: '50px' }}
+              />
+            </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <Knob
-              style={{ width: '30', height: '30' }}
-              min={0}
-              max={10}
-              unlockDistance={0}
-              preciseMode={true}
-              value={blockInfo.amp}
-              onChange={adjustAmp}
-            />
-            <p style={{ marginTop: 'auto', marginBottom: 'auto' }}>Amp</p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <Knob
-              style={{ width: '30', height: '30' }}
-              min={0}
-              max={10}
-              unlockDistance={0}
-              preciseMode={true}
-              value={blockInfo.attack}
-              onChange={adjustAttack}
-            />
-            <p style={{ marginTop: 'auto', marginBottom: 'auto' }}>Attack</p>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <h6>Start</h6>
+              <Knob
+                min={0}
+                max={10}
+                value={blockInfo.start}
+                unlockDistance={0}
+                preciseMode={false}
+                onChange={adjustStart}
+                style={{ width: '50px', height: '50px' }}
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <h6>Amp</h6>
+              <Knob
+                min={0}
+                max={10}
+                value={blockInfo.amp}
+                unlockDistance={0}
+                preciseMode={false}
+                onChange={adjustAmp}
+                style={{ width: '50px', height: '50px' }}
+              />
+            </div>
           </div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <Knob
-              style={{ width: '30', height: '30' }}
-              min={0}
-              max={10}
-              unlockDistance={0}
-              preciseMode={true}
-              value={blockInfo.release}
-              onChange={adjustRelease}
-            />
-            <p style={{ marginTop: 'auto', marginBottom: 'auto' }}>Release</p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <Knob
-              style={{ width: '30', height: '30' }}
-              min={0}
-              max={10}
-              unlockDistance={0}
-              preciseMode={true}
-              value={blockInfo.start}
-              onChange={adjustStart}
-            />
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <h6>Finish</h6>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 
 
 
