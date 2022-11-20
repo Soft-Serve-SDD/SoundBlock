@@ -15,7 +15,7 @@ class Block:
 
     def __init__(self):
         # blocks that can exist on their own (can be played)
-        self.subBlocks = []  
+        self.subBlocks = []
         self.modifiers = []  # blocks that cannot be played and act to modify the current Block
 
     # adds to sublock array if element to add is a block
@@ -100,6 +100,7 @@ class Sample(Block):
         return super().play()
 
 # Modifier child classes
+
 
 class deltaSleeptime(Modifier):
     def __init__(self, delta):

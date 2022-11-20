@@ -25,7 +25,3 @@ const Slider = (props) => {
 };
 
 export default Slider;
-
-
-
-

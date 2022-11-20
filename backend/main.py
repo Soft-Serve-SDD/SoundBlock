@@ -10,7 +10,6 @@ import time
 YAML_FILENAME = "stream/music.yaml"
 
 def createBlock(type, thing):  # todo modifiers
-    # creates blocks from YAML passed from frontend
     return_value = Block()
     if type == "start":
         return_value = Start()
