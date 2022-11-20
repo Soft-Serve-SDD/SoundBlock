@@ -1,13 +1,10 @@
-// import { renderers } from './fields';
+import { renderers } from './fields';
 import { Draggable } from '../Components/draggable';
-
-// import Slider from '../Components/Slider';
-// import { useState } from 'react';
+import Slider from '../Components/Slider';
+import { useState } from 'react';
 // import simple knobs 
 import { Basic } from 'react-dial-knob'
 import React from 'react';
-
-
 export function PlayBlock() {
   const Component = renderers['play'];
   return (
@@ -17,33 +14,44 @@ export function PlayBlock() {
   );
 }
 
+export function SampleBlock() {
+  const Component = renderers['sample'];
+  return (
+    <Draggable handle={true}>
+      <Component />
+    </Draggable>
+  );
+}
+
 export function AudioBlock(Props) {   
   const { adjustProperties, blockInfo } = Props
+  console.log(blockInfo)
+  const [name, setName ] = useState(blockInfo.name)
+  const [file, setFile] = useState(blockInfo.file)
 
-
-  const setRate = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, rate: val})
+  
+  const setRate = (rate) => {
+    adjustProperties(blockInfo, rate)
   }
 
-  const setAmp = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, amp: val})
+  const setAmp = (amp) => {
+    adjustProperties(blockInfo, amp)
   }
 
-  const setAttack = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, attack: val})
+  const setAttack = (attack) => {
+    adjustProperties(blockInfo, attack)
   }
 
-  const setRelease = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, release: val})
+  const setRelease = (release) => {
+    adjustProperties(blockInfo, release)
   }
 
-  const setStart = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, start: val})
+  const setStart = (start) => {
+    adjustProperties(blockInfo, start)
   }
 
-  const setFinish = (val) => {
-    adjustProperties(blockInfo, {...blockInfo, finish: val})
-
+  const setFinish = (finish) => {
+    adjustProperties(blockInfo, finish)
   }
 
   const diameter = 65
@@ -125,8 +133,4 @@ export function AudioBlock(Props) {
       </div>
     </div>
   );
-}
-
-export function LoopBlock(){
-  return (<Div> -- Loop Block --</Div>)
 }

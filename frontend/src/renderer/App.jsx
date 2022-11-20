@@ -10,7 +10,6 @@ import { Draggable } from './Components/draggable';
 import { useState } from 'react';
 import { AudioBlock } from './Blocks/draggableBlocks';
 import { v4 as uuidv4 } from 'uuid';
-import {LoopBlock} from './Blocks/fields'
 
 const Container = () => {
   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -25,6 +24,7 @@ const Container = () => {
     } else {
       document.body.style.background ="black";
       document.body.style.color ="white";
+      // document.button.style.background ="grey";
     }
     setTheme(newTheme);
   }
@@ -33,7 +33,6 @@ const Container = () => {
     color: theme === 'light' ? 'black' : 'white',
     border: theme === 'light' ? '1px solid black' : '1px solid white',
   }
-
   return (
     <React.Fragment>
       <div style={{ width: '100%' }}>
@@ -79,7 +78,6 @@ const BlockMenu = () => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h1 style={{color: 'grey'}}>Block Menu</h1>
       </div>
-      <LoopBlock onClick={()=>{console.log("Loop Block")}}/>
     </div>
   );
 };
@@ -101,31 +99,36 @@ const SoundLibrary = () => {
     //setActiveFiles([...activeFiles, file]);
     var new_block = {
       id: uuidv4(),
+      duration: -1,
       name: file[0].name,
-      path: file[0].name,
-      // duration: -1,
       rate: 1,
       amp: 3,
-      attack: 1, 
-      release: 1, 
-      start: 1, 
-      finish: 1
+      path: file[0].name
     }
 
     setActiveBlocks([...activeBlocks, new_block])
   };
 
-  const adjustProperties = (block, updatedBlock) => {
+  const adjustProperties = (block, updatedRate) => {
     const newBlocksState = activeBlocks.map(b => {
       if (b.id == block.id){
-       return updatedBlock
+        var new_block = {
+          id: block.id,
+          duration: -1,
+          name: block.name,
+          rate: updatedRate,
+          amp: 3,
+          path: block.name
+        }
+        return new_block
       }
       return b
     })
     setActiveBlocks(newBlocksState)
-    // console.log("updated")
-    // console.log(newBlocksState)
+    console.log("updated")
+    console.log(newBlocksState)
   }
+
 
   const exportData = () => {
     if (activeBlocks.length != 0) {
@@ -133,17 +136,35 @@ const SoundLibrary = () => {
       for (let i = 0; i < activeBlocks.length; i++) {
         const chunk = {
           sample: {
-            ...activeBlocks[i],
             path: activeBlocks[i].name,
             rate: (activeBlocks[i].rate/10),
+            amp: 3,
           }
         }
         toSend.push(chunk)
     }
-    console.log("sending data", toSend)
+    console.log(toSend)
     window.electron.sendData(toSend)
     }
-    
+ 
+
+
+    /* old method:
+    if (activeFiles.length != 0) {
+      const toSend = []
+      for (let i = 0; i < activeFiles.length; i++) {
+        const chunk = {
+          sample: {
+          path: activeFiles[i][0].name,
+          rate: 1,
+          amp: 3,
+          }
+        }
+        toSend.push(chunk)
+    }
+      window.electron.sendData(toSend)
+    }
+    */
   }
 
   return (
