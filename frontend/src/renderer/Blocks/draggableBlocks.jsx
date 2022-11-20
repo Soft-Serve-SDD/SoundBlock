@@ -3,7 +3,8 @@ import { Draggable } from '../Components/draggable';
 import Slider from '../Components/Slider';
 import { useState } from 'react';
 // import simple knobs 
-import { Donut } from 'react-dial-knob'
+import { Basic } from 'react-dial-knob'
+import React from 'react';
 export function PlayBlock() {
   const Component = renderers['play'];
   return (
@@ -28,57 +29,107 @@ export function AudioBlock(Props) {
   const [name, setName ] = useState(blockInfo.name)
   const [file, setFile] = useState(blockInfo.file)
 
-// blocks have properties: rate, amp, attack, release, start, finish
-
-  const adjustRate = (rate) => {
+  
+  const setRate = (rate) => {
     adjustProperties(blockInfo, rate)
   }
 
-  const adjustAmp = (amp) => {
+  const setAmp = (amp) => {
     adjustProperties(blockInfo, amp)
   }
 
-  const adjustAttack = (attack) => {
+  const setAttack = (attack) => {
     adjustProperties(blockInfo, attack)
   }
 
-  const adjustRelease = (release) => {
+  const setRelease = (release) => {
     adjustProperties(blockInfo, release)
   }
 
-  const adjustStart = (start) => {
+  const setStart = (start) => {
     adjustProperties(blockInfo, start)
   }
 
-  const adjustFinish = (finish) => {
+  const setFinish = (finish) => {
     adjustProperties(blockInfo, finish)
   }
 
+  const diameter = 65
 
-
-  const setValue = (value) => {
-    adjustProperties(blockInfo, value)
-  }
-
-// return knobs in a 3x2 grid
-  var value = 0;
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '1fr 1fr' }}>
-      <div style={{ gridColumn: '1', gridRow: '1' }}>
-      <Donut
-        diameter={200}
-        min={0}
-        max={100}
-        step={1}
-        value={value}
-        theme={{
-            donutColor: 'blue'
-        }}
-        onValueChange={setValue}
-        ariaLabelledBy={'my-label'}
-    >
-        <label id={'my-label'}>Some label</label>
-    </Donut>
+    // 3 x 2 grid of Basic knobs
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)'}}>
+      <div style={{gridColumn: '1', gridRow: '1'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.rate}
+          onValueChange={setRate}
+          ariaLabelledBy={'rate'}
+        />
+        <label id={'rate'}>Rate</label>
+      </div>
+      <div style={{gridColumn: '2', gridRow: '1'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.amp}
+          onValueChange={setAmp}
+          ariaLabelledBy={'amp'}
+        />
+        <label id={'amp'}>Amp</label>
+      </div>
+      <div style={{gridColumn: '3', gridRow: '1'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.attack}
+          onValueChange={setAttack}
+          ariaLabelledBy={'attack'}
+        />
+        <label id={'attack'}>Attack</label>
+      </div>
+      <div style={{gridColumn: '1', gridRow: '2'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.release}
+          onValueChange={setRelease}
+          ariaLabelledBy={'release'}
+        />
+        <label id={'release'}>Release</label>
+      </div>
+      <div style={{gridColumn: '2', gridRow: '2'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.start}
+          onValueChange={setStart}
+          ariaLabelledBy={'start'}
+        />
+        <label id={'start'}>Start</label>
+      </div>
+      <div style={{gridColumn: '3', gridRow: '2'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
+          value={blockInfo.finish}
+          onValueChange={setFinish}
+          ariaLabelledBy={'finish'}
+        />
+        <label id={'finish'}>Finish</label>
       </div>
     </div>
   );

@@ -72,6 +72,7 @@ function DraggableItem({ handle, top, left, children }: DraggableProps) {
     transform: CSS.Translate.toString(transform),
     top: `${top}px`,
     left: `${left}px`,
+    backgroundColor: 'lightblue',
   };
 
   return (
