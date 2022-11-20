@@ -1,4 +1,8 @@
 - sample:
     path: flute_short.wav
-    rate: 0.41
-    amp: 3
+    rate: 0.24999999999999975
+    amp: 1
+    attack: 0
+    release: 0
+    start: 0
+    finish: 1

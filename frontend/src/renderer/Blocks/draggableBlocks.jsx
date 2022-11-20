@@ -47,6 +47,23 @@ export function AudioBlock(Props) {
   }
 
   const diameter = 65
+  const default_values = {
+    rate: 0,
+    amp: 5,
+    attack: 0,
+    release: 0,
+    start: 0,
+    finish: 10
+  }
+
+  const setDefault = () => {
+    adjustProperties(blockInfo, {...blockInfo, ...default_values})
+  }
+
+  // on create, setDefault
+  React.useEffect(() => {
+    setDefault()
+  }, [])
 
   return (
     // 3 x 2 grid of Basic knobs
@@ -54,14 +71,14 @@ export function AudioBlock(Props) {
       <div style={{gridColumn: '1', gridRow: '1'}}>
         <Basic
           diameter={diameter}
-          min={0}
-          max={10}
+          min={-24}
+          max={24}
           step={1}
           value={blockInfo.rate}
           onValueChange={setRate}
           ariaLabelledBy={'rate'}
         />
-        <label id={'rate'}>Rate</label>
+        <label id={'rate'}>Semitones</label>
       </div>
       <div style={{gridColumn: '2', gridRow: '1'}}>
         <Basic
@@ -123,7 +140,13 @@ export function AudioBlock(Props) {
         />
         <label id={'finish'}>Finish</label>
       </div>
+      <div style={{gridColumn: '1', gridRow: '3', gridColumnEnd: 'span 3'}}>
+        <button onClick={setDefault} style={{backgroundColor: 'aqua'}}>Reset</button>
+      </div>
     </div>
+
+    
+
   );
 }
 

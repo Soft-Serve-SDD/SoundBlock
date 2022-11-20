@@ -83,15 +83,6 @@ const BlockMenu = () => {
   );
 };
 
-/* Block Json has format:
-Block: {
-  duration: d,
-  name: n,
-  rate: r,
-  amp: a,
-  path: p
-}
-*/
 const SoundLibrary = () => {
   const [activeFiles, setActiveFiles] = useState([]);
   const [activeBlocks, setActiveBlocks] = useState([]);
@@ -102,9 +93,8 @@ const SoundLibrary = () => {
       id: uuidv4(),
       name: file[0].name,
       path: file[0].name,
-      // duration: -1,
       rate: 1,
-      amp: 3,
+      amp: 1,
       attack: 1, 
       release: 1, 
       start: 1, 
@@ -132,9 +122,14 @@ const SoundLibrary = () => {
       for (let i = 0; i < activeBlocks.length; i++) {
         const chunk = {
           sample: {
-            ...activeBlocks[i],
+            // ...activeBlocks[i],
             path: activeBlocks[i].name,
-            rate: (activeBlocks[i].rate/10),
+            rate: ((2**(1/12))**activeBlocks[i].rate),
+            amp: (activeBlocks[i].amp/5),
+            attack: (activeBlocks[i].attack/10),
+            release: (activeBlocks[i].release/10),
+            start: (activeBlocks[i].start/10),
+            finish: (activeBlocks[i].finish/10)
           }
         }
         toSend.push(chunk)

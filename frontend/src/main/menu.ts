@@ -209,13 +209,6 @@ export default class MenuBuilder {
             },
           },
           // test send json option that calls function sendJson()
-
-          {
-            label: '&Send YAML TEST',
-            click: () => {
-              this.sendYaml();
-            },
-          },
         ],
       },
       {
@@ -294,22 +287,5 @@ export default class MenuBuilder {
     ];
 
     return templateDefault;
-  }
-  sendYaml() {
-    // import fs
-    const fs = require('fs');
-    // import yaml
-    const yaml = require('js-yaml');
-    // send yaml test
-    const yamlTest = {
-      name: 'test2',
-      value: 'test2',
-    };
-    // write yaml to file
-    fs.writeFile('../backend/test.yaml', yaml.dump(yamlTest), (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
   }
 }
