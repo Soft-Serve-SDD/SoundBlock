@@ -1,10 +1,12 @@
 // import { renderers } from './fields';
 import { Draggable } from '../Components/draggable';
+
 // import Slider from '../Components/Slider';
 // import { useState } from 'react';
 // import simple knobs 
 import { Basic } from 'react-dial-knob'
 import React from 'react';
+
 
 export function PlayBlock() {
   const Component = renderers['play'];
@@ -17,6 +19,7 @@ export function PlayBlock() {
 
 export function AudioBlock(Props) {   
   const { adjustProperties, blockInfo } = Props
+
 
   const setRate = (val) => {
     adjustProperties(blockInfo, {...blockInfo, rate: val})
@@ -40,6 +43,7 @@ export function AudioBlock(Props) {
 
   const setFinish = (val) => {
     adjustProperties(blockInfo, {...blockInfo, finish: val})
+
   }
 
   const diameter = 65
