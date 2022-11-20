@@ -46,9 +46,14 @@ export function AudioBlock(Props) {
 
   }
 
+  const setDeltaRate = (val) => {
+    adjustProperties(blockInfo, {...blockInfo, deltarate: val})
+  }
+
   const diameter = 65
   const default_values = {
     rate: 0,
+    deltarate: 0,
     amp: 5,
     attack: 0,
     release: 0,
@@ -86,13 +91,25 @@ export function AudioBlock(Props) {
           min={0}
           max={10}
           step={1}
+          value={blockInfo.deltarate}
+          onValueChange={setDeltaRate}
+          ariaLabelledBy={'deltarate'}
+        />
+        <label id={'deltarate'}>Rate Change</label>
+      </div>
+      <div style={{gridColumn: '3', gridRow: '1'}}>
+        <Basic
+          diameter={diameter}
+          min={0}
+          max={10}
+          step={1}
           value={blockInfo.amp}
           onValueChange={setAmp}
           ariaLabelledBy={'amp'}
         />
         <label id={'amp'}>Amp</label>
       </div>
-      <div style={{gridColumn: '3', gridRow: '1'}}>
+      <div style={{gridColumn: '1', gridRow: '2'}}>
         <Basic
           diameter={diameter}
           min={0}
@@ -103,18 +120,6 @@ export function AudioBlock(Props) {
           ariaLabelledBy={'attack'}
         />
         <label id={'attack'}>Attack</label>
-      </div>
-      <div style={{gridColumn: '1', gridRow: '2'}}>
-        <Basic
-          diameter={diameter}
-          min={0}
-          max={10}
-          step={1}
-          value={blockInfo.release}
-          onValueChange={setRelease}
-          ariaLabelledBy={'release'}
-        />
-        <label id={'release'}>Release</label>
       </div>
       <div style={{gridColumn: '2', gridRow: '2'}}>
         <Basic

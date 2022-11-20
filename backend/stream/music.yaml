@@ -1,7 +1,8 @@
 - sample:
-    path: flute_short.wav
-    rate: 0.24999999999999975
-    amp: 1
+    path: key_slime.wav
+    rate: 0.7491535384383405
+    deltarate: 1.1892071150027212
+    amp: 2
     attack: 0
     release: 0
     start: 0
