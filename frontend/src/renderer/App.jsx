@@ -17,9 +17,9 @@ import { arrayMove, insertAtIndex, removeAtIndex } from "./utils/array";
 
 // import React from 'react';
 // import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-// import './styles/App.css';
-// import UploadFile from './Menu/UploadFile';
-// import PlayButton from './Menu/PlayButton';
+import './styles/App.css';
+import UploadFile from './Menu/UploadFile';
+import PlayButton from './Menu/PlayButton';
 // import LoopButton from './Menu/LoopButton';
 // import Canvas from './Canvas/Canvas';
 // // import useLocalStorage from 'use-local-storage'
@@ -27,7 +27,7 @@ import { arrayMove, insertAtIndex, removeAtIndex } from "./utils/array";
 // import {DndContext} from '@dnd-kit/core';
 // import { Draggable } from './Components/draggable';
 // import { useState } from 'react';
-// import { AudioBlock } from './Blocks/draggableBlocks';
+import { AudioBlock } from './Blocks/draggableBlocks';
 // import { v4 as uuidv4 } from 'uuid';
 // import {LoopBlock} from './Blocks/draggableBlocks';
 // import { TestDraggable } from './Blocks/draggableBlocks';
@@ -216,15 +216,34 @@ const SoundLibrary = () => {
 //     // </Router>
 // }
 
+
+
+
 // taken playground code:
 
 function App() {
   const [itemGroups, setItemGroups] = useState({
-    group1: ["1", "2", "3"],
-    group2: ["4", "5", "6"],
-    group3: ["7", "8", "9"],
+    loop1: ["1", "2", "3"],
+    loop2: ["4", "5", "6"],
+    loop3: ["7", "8", "9"],
   });
   const [activeId, setActiveId] = useState(null);
+
+  const itemProps = (id) => ({
+    loop1: {
+      rate: 1,
+      amp: 1,
+    },
+    loop2: {
+      rate: 1,
+      amp: 1,
+    },
+    loop3: {
+      rate: 1,
+      amp: 1,
+    },
+  });
+
 
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -327,6 +346,22 @@ function App() {
     };
   };
 
+  const blockinfo1 = {
+    name: "test",
+    path: "test",
+    rate: 1,
+    deltarate: 0,
+    amp: 1,
+    attack: 1,
+    release: 1,
+    start: 1,
+    finish: 1
+  }
+
+  const adjustProperties = (block, updatedBlock) => {
+    console.log("updated")
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -342,10 +377,11 @@ function App() {
             items={itemGroups[group]}
             activeId={activeId}
             key={group}
+            // rate={itemProps(group).rate}
           />
         ))}
       </div>
-      <DragOverlay>{activeId ? <Item id={activeId} dragOverlay/> : null}</DragOverlay>
+      {/* <DragOverlay>{activeId ? <Item id={activeId}/> : null}</DragOverlay> */}
     </DndContext>
   );
 }

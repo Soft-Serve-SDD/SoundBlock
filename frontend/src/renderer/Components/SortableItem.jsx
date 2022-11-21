@@ -1,10 +1,10 @@
-import React from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import React from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
-import Item from "./Item";
+import Item from './Item';
 
-const SortableItem = ({ id }) => {
+const SortableItem = ({ id, props}) => {
   const {
     attributes,
     listeners,
@@ -21,13 +21,8 @@ const SortableItem = ({ id }) => {
   };
 
   return (
-    <li
-      style={style}
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
-    >
-      <Item id={id} />
+    <li style={style} ref={setNodeRef} {...attributes} {...listeners}>
+      <Item id={id} props={props}/>
     </li>
   );
 };
