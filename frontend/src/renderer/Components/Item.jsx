@@ -36,9 +36,9 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     //   adjustProperties(props, {...props, attack: val})
     }
   
-    const setRelease = (val) => {
-    //   adjustProperties(props, {...props, release: val})
-    }
+    // const setRelease = (val) => {
+    // //   adjustProperties(props, {...props, release: val})
+    // }
   
     const setStart = (val) => {
     //   adjustProperties(props, {...props, start: val})

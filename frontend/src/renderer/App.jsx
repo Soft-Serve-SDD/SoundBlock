@@ -230,9 +230,9 @@ function App() {
   const [activeId, setActiveId] = useState(null);
 
   const [itemProps, setItemProps] = useState({
-    loop1: [{rate: 1, amp: 2}, {rate: 1, amp: 2}, {rate: 1, amp: 2}],
-    loop2: [{rate: 3, amp: 4}, {rate: 3, amp: 4}, {rate: 3, amp: 4}],
-    loop3: [{rate: 5, amp: 6}, {rate: 5, amp: 6}, {rate: 5, amp: 6}],
+    loop1: [{rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}],
+    loop2: [{rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}, {rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}, {rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}],
+    loop3: [{rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}],
   });
   const [activeItemProps, setActiveItemProps] = useState(null);
 
@@ -337,18 +337,6 @@ function App() {
       [overContainer]: insertAtIndex(items[overContainer], overIndex, item),
     };
   };
-
-  const blockinfo1 = {
-    name: "test",
-    path: "test",
-    rate: 1,
-    deltarate: 0,
-    amp: 1,
-    attack: 1,
-    release: 1,
-    start: 1,
-    finish: 1
-  }
 
   const adjustProperties = (block, props) => {
     console.log("updated")
