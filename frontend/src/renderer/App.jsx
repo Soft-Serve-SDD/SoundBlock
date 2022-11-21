@@ -229,20 +229,12 @@ function App() {
   });
   const [activeId, setActiveId] = useState(null);
 
-  const itemProps = (id) => ({
-    loop1: {
-      rate: 1,
-      amp: 1,
-    },
-    loop2: {
-      rate: 1,
-      amp: 1,
-    },
-    loop3: {
-      rate: 1,
-      amp: 1,
-    },
+  const [itemProps, setItemProps] = useState({
+    loop1: [{rate: 1, amp: 2}, {rate: 1, amp: 2}, {rate: 1, amp: 2}],
+    loop2: [{rate: 3, amp: 4}, {rate: 3, amp: 4}, {rate: 3, amp: 4}],
+    loop3: [{rate: 5, amp: 6}, {rate: 5, amp: 6}, {rate: 5, amp: 6}],
   });
+  const [activeItemProps, setActiveItemProps] = useState(null);
 
 
   const sensors = useSensors(
@@ -358,7 +350,7 @@ function App() {
     finish: 1
   }
 
-  const adjustProperties = (block, updatedBlock) => {
+  const adjustProperties = (block, props) => {
     console.log("updated")
   }
 
@@ -377,7 +369,8 @@ function App() {
             items={itemGroups[group]}
             activeId={activeId}
             key={group}
-            // rate={itemProps(group).rate}
+            props={itemProps[group]}
+            adjustProperties={adjustProperties}
           />
         ))}
       </div>
