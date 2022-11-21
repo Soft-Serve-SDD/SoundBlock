@@ -521,7 +521,7 @@ function App() {
         onDragEnd={handleDragEnd}
       >
         <div style={{ display: "flex", justifyContent: 'center' }}>
-          <div style={{ width: '80%', background: "#47636e", borderRadius: '10px', padding: '10px', margin: '5px' }}>
+          <div style={{ width: '80%', background: "#43565e", borderRadius: '10px', padding: '10px', margin: '5px' }}>
             <div style={{display: "flex", justifyContent: 'center'}}>
              
               {/* <button onClick={addGroup}>Add Loop</button>
