@@ -236,11 +236,18 @@ function App() {
   };
 
   const deleteBlock = () => {
-    console.log('delete')
+    //Deletes last block of last loop
     if (Object.keys(itemGroups).length == 1){
-      // Only works with first loop for now
       itemGroups['loop1'].pop()
       itemProps['loop1'].pop()
+      setItemGroups({...itemGroups})
+      setItemProps({...itemProps})
+    }
+    else {
+      const key = Object.keys(itemGroups)[Object.keys(itemGroups).length-1]
+      console.log(key)
+      itemGroups[key].pop()
+      itemProps[key].pop()
       setItemGroups({...itemGroups})
       setItemProps({...itemProps})
     }
