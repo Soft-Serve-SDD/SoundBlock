@@ -33,6 +33,7 @@ import { AudioBlock } from './Blocks/draggableBlocks';
 // import { TestDraggable } from './Blocks/draggableBlocks';
 // import { TestDroppable } from './Blocks/draggableBlocks';
 // import Droppable from "./components/Droppable";
+import { LoopChild } from './Blocks/LoopBlock';
 
 const Container = () => {
   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -360,7 +361,10 @@ function App() {
             key={group}
             props={itemProps[group]}
             adjustProperties={adjustProperties}
-          />
+          >
+            {<LoopChild/>}
+          </Droppable>
+
         ))}
       </div>
       {/* <DragOverlay>{activeId ? <Item id={activeId}/> : null}</DragOverlay> */}
