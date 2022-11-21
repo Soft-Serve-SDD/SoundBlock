@@ -1,36 +1,4 @@
 - loop:
-    iterations: 12
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: 56cf3a19-bcba-4397-917c-79f2638b3855
-          name: guitar_ambient.wav
-          path: guitar_ambient.wav
-          rate: 1
-          deltarate: 0.05946309435929531
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0.36
-          finish: 0.18
-          interval: 0.08
-      - sample:
-          id: 00de19e9-a2a7-4db5-9291-e688b93065ae
-          name: cool kick.wav
-          path: cool kick.wav
-          rate: 1
-          deltarate: 0.18920711500272125
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0.11
-          finish: 1
-          interval: 0.08
-- loop:
-    iterations: 12
-    sleeptime: 0
-    subblocks: []
-- loop:
     iterations: 1
     sleeptime: 0
     subblocks: []

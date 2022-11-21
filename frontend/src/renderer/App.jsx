@@ -201,24 +201,15 @@ function App() {
   // const [activeItemProps, setActiveItemProps] = useState(null);
   // const [activeLoopParams, setActiveLoopParams] = useState(null);
 
-// -----------------not working yet: ---------------
   const addGroup = () => {
-    const newId = Math.random().toString(36).substr(2, 9);
-    setItemGroups({
-      ...itemGroups,
-      [newId]: [],
-    });
-    setItemProps({
-      ...itemGroups,
-      [newId]: [],
-    });
-    const newParams = {
-      ...loopParams,
-      [newId]: {
-        iterations: 4, sleep: 1, interval: 1
-      }
-    }
-    setLoopParams(newParams)
+    const last_id = Object.keys(itemGroups).slice(-1)[0]
+    const new_id = 'loop' + (parseInt(last_id.slice(4)) + 1)
+    setItemGroups({ ...itemGroups, [new_id]: [] });
+    setItemProps({ ...itemProps, [new_id]: [] });
+    setLoopParams({ ...loopParams, [new_id]: { iterations: 1, sleep: 1, interval: 1 } });
+    console.log('itemGroups', itemGroups);
+    console.log('itemProps', itemProps);
+    console.log('loopParams', loopParams);
   };
 
   const removeLastGroup = () => {
@@ -252,7 +243,6 @@ function App() {
     setItemGroups({...itemGroups})
     setItemProps({...itemProps})
   }
-// -------------------up until here------------------------
 
   const exportData = () => {
     if (itemGroups.length != 0) {
