@@ -19,6 +19,9 @@ import SoundLibrary from "./Components/SoundLibrary";
 import './styles/App.css';
 
 import PlayButton from './Menu/PlayButton';
+import LoopButton from './Menu/LoopButton';
+import DeleteButton from './Menu/DeleteButton';
+import DeleteButton2 from './Menu/DeleteButton2';
 import LoopChild from './Blocks/LoopBlock';
 import UploadFile from "./Menu/UploadFile";
 import { cornersOfRectangle } from "@dnd-kit/core/dist/utilities/algorithms/helpers";
@@ -479,9 +482,10 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <button onClick={addGroup}>Add Loop Lane</button>
-      <button onClick={removeLastGroup}>Remove Last Loop Lane</button>
-      <button onClick={deleteBlock}>Remove Last Block</button>
+      <PlayButton onClick={exportData}/>
+      <LoopButton onClick={addGroup} />
+      <DeleteButton onClick={removeLastGroup} />
+      
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
@@ -489,11 +493,7 @@ function App() {
         onDragEnd={handleDragEnd}
       >
         <div style={{ display: "flex", justifyContent: 'center' }}>
-          <div style={{ width: '80%', background: "grey" }}> 
-          <h3 style={{paddingLeft: '15px'}}>
-            Play Sample  
-          </h3>
-          <PlayButton onClick={exportData}/>
+          <div style={{ width: '80%', background: "#47636e", borderRadius: '10px', padding: '10px' }}>
             <div style={{display: "flex", justifyContent: 'center'}}>
              
               {/* <button onClick={addGroup}>Add Loop</button>
@@ -514,11 +514,12 @@ function App() {
               ))}
              </div>
           </div>
-          <div style={{background: 'white', width: '20%'}}>
+          <div style={{background: 'white', width: '20%', borderRadius: '10px', padding: '10px' }}>
             <h3 style={{textAlign: 'center'}}>
               Upload Samples
             </h3>
             <UploadFile createBlock={generateBlock}/>
+            <DeleteButton2 onClick={deleteBlock} />
           </div>
           
         </div>

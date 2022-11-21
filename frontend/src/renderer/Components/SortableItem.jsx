@@ -19,10 +19,10 @@ const SortableItem = ({ id, props, adjustProperties}) => {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
-    backgroundColor: isDragging ? 'rgba(0, 0, 0, 1)' : 'transparent',
+    backgroundColor: isDragging ? 'transparent' : 'white',
     // small rounded corners outline
-    border: '2px solid rgba(0, 0, 0, 1)',
-    borderRadius: '5px',
+    // border: '2px solid rgba(0, 0, 0, 1)',
+    borderRadius: '10px',
     margin: '10px',
   };
 

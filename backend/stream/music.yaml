@@ -1,4 +1,16 @@
 - loop:
-    iterations: 1
+    iterations: 10
     sleeptime: 0
-    subblocks: []
+    subblocks:
+      - sample:
+          id: 43aa8c37-20a5-4ef1-b05d-6fcb5ed9771c
+          name: cool kick.wav
+          path: cool kick.wav
+          rate: 1
+          deltarate: 0
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 1
+          interval: 0.46
