@@ -35,7 +35,7 @@ import SortableItem from "./SortableItem";
 
 import "./Droppable.css";
 
-const Droppable = ({ id, items, props, adjustProperties }) => {
+const Droppable = ({ id, items, props, adjustProperties, children }) => {
   const { setNodeRef } = useDroppable({ id });
 
   var props_ids  = {};
@@ -47,6 +47,8 @@ const Droppable = ({ id, items, props, adjustProperties }) => {
   return (
     <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
       <ul className="droppable" ref={setNodeRef}>
+        {children}
+        <hline></hline>
         {items.map((item) => (
           <SortableItem key={item} id={item} props={props_ids[item]} adjustProperties={adjustProperties} />
         ))}

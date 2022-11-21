@@ -3,6 +3,7 @@ import React from "react";
 import "./Item.css";
 import { Basic } from 'react-dial-knob'
 
+
 // const Item = ({ id, dragOverlay, props, adjustProperties}) => {
 //   const style = {
 //     cursor: dragOverlay ? "grabbing" : "grab",
@@ -23,6 +24,8 @@ import { Basic } from 'react-dial-knob'
 
 
 const Item = ({ id, dragOverlay, props, adjustProperties}) => {  
+  props = {rate: 0.5, amp: 5, attack: 0, release: 0, start: 0, finish: 10, deltarate: 0}
+
 
     console.log("Item id: ", id)
     console.log('Item props: ', props)
