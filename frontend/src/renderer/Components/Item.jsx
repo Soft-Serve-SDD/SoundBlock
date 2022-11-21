@@ -24,8 +24,6 @@ import { Basic } from 'react-dial-knob'
 
 
 const Item = ({ id, dragOverlay, props, adjustProperties}) => {  
-  props = {rate: 0.5, amp: 5, attack: 0, release: 0, start: 0, finish: 10, deltarate: 0}
-
 
     console.log("Item id: ", id)
     console.log('Item props: ', props)
@@ -38,32 +36,32 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     };
 
     const setRate = (val) => {
-      adjustProperties(props, {...props, rate: val})
+      adjustProperties(id, {...props, rate: val})
     }
   
     const setAmp = (val) => {
-      adjustProperties(props, {...props, amp: val})
+      adjustProperties(id, {...props, amp: val})
     }
   
     const setAttack = (val) => {
-      adjustProperties(props, {...props, attack: val})
+      adjustProperties(id, {...props, attack: val})
     }
   
     // const setRelease = (val) => {
-    // //   adjustProperties(props, {...props, release: val})
+    // //   adjustProperties(id, {...props, release: val})
     // }
   
     const setStart = (val) => {
-      adjustProperties(props, {...props, start: val})
+      adjustProperties(id, {...props, start: val})
     }
   
     const setFinish = (val) => {
-      adjustProperties(props, {...props, finish: val})
+      adjustProperties(id, {...props, finish: val})
   
     }
   
     const setDeltaRate = (val) => {
-      adjustProperties(props, {...props, deltarate: val})
+      adjustProperties(id, {...props, deltarate: val})
     }
   
     const diameter = 65
@@ -78,7 +76,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     }
   
     const setDefault = () => {
-    //   adjustProperties(props, {...props, ...default_values})
+    //   adjustProperties(id, {...props, ...default_values})
     }
   
     // on create, setDefault

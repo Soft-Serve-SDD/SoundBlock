@@ -29,8 +29,8 @@ export function LoopChild(Props){
     <div style={{gridColumn: '2', gridRow: '1'}}>
     <Basic
       diameter={diameter}
-      min={-24}
-      max={24}
+      min={0}
+      max={32}
       step={1}
       value={10}
       onValueChange={setIterations}

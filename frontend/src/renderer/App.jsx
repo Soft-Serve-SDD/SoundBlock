@@ -389,8 +389,22 @@ function App() {
     };
   };
 
-  const adjustProperties = (block, props) => {
-    console.log("updated")
+  const adjustProperties = (id, props) => {
+    // get container id and index of item with id
+    let containerId = null;
+    let index = null;
+    for (const [key, value] of Object.entries(itemGroups)) {
+      if (value.includes(id)) {
+        containerId = key;
+        index = value.indexOf(id);
+      }
+    }
+    // update itemProps
+    setItemProps((itemProps) => {
+      const newProps = {...itemProps};
+      newProps[containerId][index] = props;
+      return newProps;
+    });
   }
 
   return (
