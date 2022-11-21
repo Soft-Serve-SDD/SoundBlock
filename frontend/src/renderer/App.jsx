@@ -234,6 +234,17 @@ function App() {
     delete newItems[Object.keys(newItems)[Object.keys(newItems).length -1]];
     setItemProps(newItems)
   };
+
+  const deleteBlock = () => {
+    console.log('delete')
+    if (Object.keys(itemGroups).length == 1){
+      // Only works with first loop for now
+      itemGroups['loop1'].pop()
+      itemProps['loop1'].pop()
+      setItemGroups({...itemGroups})
+      setItemProps({...itemProps})
+    }
+  }
 // -------------------up until here------------------------
 
   const exportData = () => {
@@ -472,6 +483,7 @@ function App() {
       </h2>
       <button onClick={addGroup}>Add Loop Lane</button>
       <button onClick={removeLastGroup}>Remove Last Loop Lane</button>
+      <button onClick={deleteBlock}>Remove Last Block</button>
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
