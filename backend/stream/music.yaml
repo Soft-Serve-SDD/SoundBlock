@@ -1,32 +1,4 @@
 - loop:
-    iterations: 17
+    iterations: 1
     sleeptime: 0
-    subblocks:
-      - sample:
-          id: de6b91d6-f74c-4e2e-86e2-0ed46036ed69
-          name: flute_short.wav
-          path: flute_short.wav
-          rate: 0.5946035575013603
-          deltarate: 0.3348398541700346
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 0.52
-          interval: 0.05
-- loop:
-    iterations: 5
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: 8a78a16e-a785-489d-9ef4-de6ec7ae47fd
-          name: guitar_ambient.wav
-          path: guitar_ambient.wav
-          rate: 1.1892071150027212
-          deltarate: 0
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
+    subblocks: []
