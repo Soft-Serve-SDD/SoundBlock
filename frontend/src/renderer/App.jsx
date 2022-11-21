@@ -185,31 +185,29 @@ import UploadFile from "./Menu/UploadFile";
 // taken playground code:
 
 function App() {
-  const [itemGroups, setItemGroups] = useState({
-    loop1: [],
-    loop2: [],
-    loop3: [],
-  });
   const [activeId, setActiveId] = useState(null);
-
+  // State state of loops and their sample blokcs
+  const [itemGroups, setItemGroups] = useState({
+    loop1: [], 
+  });
   const [itemProps, setItemProps] = useState({
-    loop1: [],
-    loop2: [],
-    loop3: [],
+    loop1: [], 
   });
-  const [activeItemProps, setActiveItemProps] = useState(null);
-
   const [loopParams, setLoopParams] = useState({
-    loop1: { iterations: 4, sleep: 1, interval: 1 }, 
-    loop2: { iterations: 5, sleep: 1, interval: 1 },
-    loop3: { iterations: 6, sleep: 1, interval: 1 },
+    loop1: { iterations: 1, sleep: 1, interval: 1 }, 
   });
-  const [activeLoopParams, setActiveLoopParams] = useState(null);
+
+  // const [activeItemProps, setActiveItemProps] = useState(null);
+  // const [activeLoopParams, setActiveLoopParams] = useState(null);
 
 // -----------------not working yet: ---------------
   const addGroup = () => {
     const newId = Math.random().toString(36).substr(2, 9);
     setItemGroups({
+      ...itemGroups,
+      [newId]: [],
+    });
+    setItemProps({
       ...itemGroups,
       [newId]: [],
     });
@@ -220,16 +218,21 @@ function App() {
       }
     }
     setLoopParams(newParams)
-
   };
 
   const removeLastGroup = () => {
+    if (Object.keys(itemGroups).length ==1){
+      return;
+    }
     const newGroups = { ...itemGroups };
     delete newGroups[Object.keys(newGroups)[Object.keys(newGroups).length - 1]];
     setItemGroups(newGroups);
     const newParams = { ...loopParams };
     delete newParams[Object.keys(newParams)[Object.keys(newParams).length - 1]];
     setLoopParams(newParams)
+    const newItems = { ...itemProps};
+    delete newItems[Object.keys(newItems)[Object.keys(newItems).length -1]];
+    setItemProps(newItems)
   };
 // -------------------up until here------------------------
 
@@ -244,6 +247,7 @@ function App() {
             subblocks: []
           }
         }
+        console.log("sending item props", key, itemProps)
 
         for (var i = 0; i < itemProps[key].length; i++) {
           var sample = {}
@@ -319,15 +323,15 @@ function App() {
   };
 
   const handleDragEnd = ({ active, over }) => {
-    const activeContainer = active.data.current.sortable.containerId;
-    const overContainer = over.data.current?.sortable.containerId || over.id;
-    const activeIndex = active.data.current.sortable.index;
-    const overIndex =
-      over.id in itemGroups
-        ? itemGroups[overContainer].length + 1
-        : over.data.current.sortable.index;
+    // const activeContainer = active.data.current.sortable.containerId;
+    // const overContainer = over.data.current?.sortable.containerId || over.id;
+    // const activeIndex = active.data.current.sortable.index;
+    // const overIndex =
+    //   over.id in itemGroups
+    //     ? itemGroups[overContainer].length + 1
+    //     : over.data.current.sortable.index;
    // console.log('drag end, props:', itemProps[activeContainer])
-    c//onsole.log('activeindex:', activeIndex)
+    //console.log('activeindex:', activeIndex)
     if (!over) {
       setActiveId(null);
       return;
@@ -452,11 +456,11 @@ function App() {
     }
     
     // Auto Add to group 1:
-    setItemGroups({loop1: [...itemGroups.loop1, new_block.id], loop2: itemGroups.loop2, loop3: itemGroups.loop3})
-    setItemProps({loop1: [...itemProps.loop1, new_block], loop2: itemProps.loop2, loop3: itemProps.loop3})
+    setItemGroups({...itemGroups, loop1: [...itemGroups.loop1, new_block.id]})
+    setItemProps({...itemGroups, loop1: [...itemProps.loop1, new_block]})
   }
 
-
+  console.log("itemGroups", itemGroups)
   return (
     <div style={{ width: '100%' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '0px', paddingTop: '30px' }}>
@@ -466,6 +470,8 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
+      <button onClick={addGroup}>Add Loop Lane</button>
+      <button onClick={removeLastGroup}>Remove Last Loop Lane</button>
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
@@ -478,8 +484,8 @@ function App() {
             Play Sample  
           </h3>
           <PlayButton onClick={exportData}/>
-           
             <div style={{display: "flex", justifyContent: 'center'}}>
+             
               {/* <button onClick={addGroup}>Add Loop</button>
               <button onClick={removeLastGroup}>Remove Loop</button> */}
                 {Object.keys(itemGroups).map((group) => (
