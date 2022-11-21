@@ -76,7 +76,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     }
   
     const setDefault = () => {
-    //   adjustProperties(id, {...props, ...default_values})
+      adjustProperties(id, {...props, ...default_values})
     }
   
     // on create, setDefault
@@ -102,7 +102,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
         <div style={{gridColumn: '2', gridRow: '1'}}>
           <Basic
             diameter={diameter}
-            min={0}
+            min={-10}
             max={10}
             step={1}
             value={props.deltarate}

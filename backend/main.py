@@ -32,6 +32,10 @@ def createBlock(type, thing):  # todo modifiers
         deltarate = thing.get("deltarate")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
+        interval = thing.get("interval")
+        if (interval):
+            sleep = Sleep(sleeptime=interval)
+            return_value.addSubBlock(sleep)
         return_value.addModifier(deltaRate(deltarate))
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
@@ -51,6 +55,7 @@ def readInput(input):
     return blocks
 
 def run():
+    from threading import Thread
     set_server_parameter('127.0.0.1', 4557, 4559)
     blocks = []
     with open(YAML_FILENAME, "r") as stream:
@@ -62,8 +67,10 @@ def run():
             print(exc)
     
     for block in blocks:
-        print("calling play on block: ", block)
-        block.play()
+        block_thread = Thread(target=block.play)
+        block_thread.start()
+        # print("calling play on block: ", block)
+        # block.play()
 
 def detect_changes():
     # detects changes in YAML_FILENAME, and calls run if there are any

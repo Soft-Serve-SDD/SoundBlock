@@ -33,7 +33,7 @@ import { AudioBlock } from './Blocks/draggableBlocks';
 // import { TestDraggable } from './Blocks/draggableBlocks';
 // import { TestDroppable } from './Blocks/draggableBlocks';
 // import Droppable from "./components/Droppable";
-import { LoopChild } from './Blocks/LoopBlock';
+import LoopChild from './Blocks/LoopBlock';
 
 const Container = () => {
   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -165,30 +165,6 @@ const SoundLibrary = () => {
     // console.log(newBlocksState)
   }
 
-  const exportData = () => {
-    if (activeBlocks.length != 0) {
-      const toSend = []
-      for (let i = 0; i < activeBlocks.length; i++) {
-        const chunk = {
-          sample: {
-            // ...activeBlocks[i],
-            path: activeBlocks[i].name,
-            rate: ((2**(1/12))**activeBlocks[i].rate),
-            deltarate: ((2**(1/12))**activeBlocks[i].deltarate),
-            amp: (activeBlocks[i].amp/5),
-            attack: (activeBlocks[i].attack/10),
-            release: (activeBlocks[i].release/10),
-            start: (activeBlocks[i].start/10),
-            finish: (activeBlocks[i].finish/10)
-          }
-        }
-        toSend.push(chunk)
-    }
-    console.log("sending data", toSend)
-    window.electron.sendData(toSend)
-    }
-    
-  }
 
   return (
     <React.Fragment>
@@ -236,6 +212,51 @@ function App() {
     loop3: [{rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}],
   });
   const [activeItemProps, setActiveItemProps] = useState(null);
+
+  const [loopParams, setLoopParams] = useState({
+    loop1: { iterations: 4, sleep: 1, interval: 1 }, 
+    loop2: { iterations: 5, sleep: 1, interval: 1 },
+    loop3: { iterations: 6, sleep: 1, interval: 1 }
+  });
+  const [activeLoopParams, setActiveLoopParams] = useState(null);
+
+  const exportData = () => {
+    if (itemGroups.length != 0) {
+      const toSend = []
+      for (const [key, value] of Object.entries(loopParams)) {
+        const chunk = {
+          loop: {
+            iterations: value.iterations,
+            sleeptime: value.sleep/10,
+            subblocks: []
+          }
+        }
+
+        for (var i = 0; i < itemProps[key].length; i++) {
+          var sample = {}
+          for (const [key2, value2] of Object.entries(itemProps[key][i])) {
+            sample[key2] = value2
+          }
+          sample["path"] = "key_slime.wav"
+          sample["rate"] = ((2**(1/12))**sample["rate"])
+          sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
+          sample["amp"] = (sample["amp"]/5)
+          sample["attack"] = (sample["attack"]/10)
+          sample["start"] = (sample["start"]/10)
+          sample["finish"] = (sample["finish"]/10)
+          sample["interval"] = (value.interval/10)
+          chunk.loop.subblocks.push(sample = {sample})
+        }
+        toSend.push(chunk)
+      }
+    console.log("sending data", toSend)
+    window.electron.sendData(toSend)
+    }
+  }
+
+
+
+
 
 
   const sensors = useSensors(
@@ -407,6 +428,14 @@ function App() {
     });
   }
 
+  const adjustLoopParams = (id, params) => {
+    setLoopParams((loopParams) => {
+      const newParams = {...loopParams};
+      newParams[id] = params;
+      return newParams;
+    });
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -415,8 +444,8 @@ function App() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      {/* columns div, with groups left to right mapped */}
       <div style={{ display: "flex" }}>
+      <PlayButton onClick={exportData}/>
         {Object.keys(itemGroups).map((group) => (
           <Droppable
             id={group}
@@ -426,7 +455,7 @@ function App() {
             props={itemProps[group]}
             adjustProperties={adjustProperties}
           >
-            {<LoopChild/>}
+            {<LoopChild id={group} params={loopParams[group]} adjustLoopParams={adjustLoopParams} />}
           </Droppable>
 
         ))}
