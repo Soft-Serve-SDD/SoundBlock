@@ -75,7 +75,7 @@ class Loop(Block):
         self.iterations = iterations
         self.sleep = Sleep(sleeptime)
 
-    @in_thread
+    # @in_thread
     def play(self):
         for i in range(self.iterations):
             super().play()

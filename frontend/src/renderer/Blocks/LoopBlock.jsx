@@ -21,7 +21,7 @@ const LoopChild = ({id, params, adjustLoopParams}) => {
   const defaults = {
     sleep: 0,
     iterations: 1,
-    interval: 10,
+    interval: 100,
   }
 
   const setDefaults = () => {
@@ -65,7 +65,7 @@ const LoopChild = ({id, params, adjustLoopParams}) => {
       <Basic
         diameter={diameter}
         min={0}
-        max={20}
+        max={200}
         step={1}
         value={params.interval}
         onValueChange={setInterval}

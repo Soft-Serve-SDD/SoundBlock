@@ -277,9 +277,9 @@ function App() {
           sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
           sample["amp"] = (sample["amp"]/5)
           sample["attack"] = (sample["attack"]/10)
-          sample["start"] = (sample["start"]/10)
-          sample["finish"] = (sample["finish"]/10)
-          sample["interval"] = (value.interval/10)
+          sample["start"] = (sample["start"]/100)
+          sample["finish"] = (sample["finish"]/100)
+          sample["interval"] = (value.interval/100)
           chunk.loop.subblocks.push(sample = {sample})
         }
         toSend.push(chunk)
@@ -460,17 +460,18 @@ function App() {
   }
 
   const generateBlock = (file) => {
+
     var new_block = {
       id: uuidv4(),
       name: file[0].name,
       path: file[0].name,
-      rate: 1,
+      rate: 0,
       deltarate: 0,
-      amp: 1,
-      attack: 1, 
-      release: 1, 
-      start: 1, 
-      finish: 1
+      amp: 5,
+      attack: 0,
+      release: 0,
+      start: 0,
+      finish: 100
     }
     
     // Auto Add to group 1:

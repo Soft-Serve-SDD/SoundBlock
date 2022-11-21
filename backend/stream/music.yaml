@@ -1,19 +1,11 @@
 - loop:
-    iterations: 1
-    sleeptime: 0
-    subblocks: []
-- loop:
-    iterations: 1
-    sleeptime: 0
-    subblocks: []
-- loop:
-    iterations: 1
+    iterations: 4
     sleeptime: 0
     subblocks:
       - sample:
-          id: e5a09c1d-9cb6-4a6c-85ff-f914d6585c1b
-          name: guitar_ambient.wav
-          path: guitar_ambient.wav
+          id: 82895681-935f-4545-a44a-1551832a95d4
+          name: cool kick.wav
+          path: cool kick.wav
           rate: 1
           deltarate: 0
           amp: 1
@@ -21,4 +13,36 @@
           release: 0
           start: 0
           finish: 1
-          interval: 1
+          interval: 0.6
+- loop:
+    iterations: 8
+    sleeptime: 0
+    subblocks:
+      - sample:
+          id: d1c6fb45-5c1e-4169-932b-e367100d99ec
+          name: Basic Hat.wav
+          path: Basic Hat.wav
+          rate: 1
+          deltarate: 0
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 1
+          interval: 0.3
+- loop:
+    iterations: 4
+    sleeptime: 0
+    subblocks:
+      - sample:
+          id: a65e2e66-cc74-4005-96f5-4821b45db6e6
+          name: guitar_ambient.wav
+          path: guitar_ambient.wav
+          rate: 0.4999999999999997
+          deltarate: 0.05946309435929531
+          amp: 1
+          attack: 0.3
+          release: 0
+          start: 0
+          finish: 0.03
+          interval: 0.6

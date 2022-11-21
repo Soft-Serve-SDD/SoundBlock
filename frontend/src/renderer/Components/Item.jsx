@@ -72,7 +72,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
       attack: 0,
       release: 0,
       start: 0,
-      finish: 10
+      finish: 100
     }
   
     const setDefault = () => {
@@ -80,9 +80,9 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     }
   
     // on create, setDefault
-    React.useEffect(() => {
-      setDefault()
-    }, [])
+    // React.useEffect(() => {
+    //   setDefault()
+    // }, [])
   
     return (
       // 3 x 2 grid of Basic knobs
@@ -144,7 +144,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
           <Basic
             diameter={diameter}
             min={0}
-            max={10}
+            max={100}
             step={1}
             value={props.start}
             onValueChange={setStart}
@@ -156,7 +156,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
           <Basic
             diameter={diameter}
             min={0}
-            max={10}
+            max={100}
             step={1}
             value={props.finish}
             onValueChange={setFinish}
