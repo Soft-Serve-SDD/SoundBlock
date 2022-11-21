@@ -21,6 +21,7 @@ import './styles/App.css';
 import PlayButton from './Menu/PlayButton';
 import LoopChild from './Blocks/LoopBlock';
 import UploadFile from "./Menu/UploadFile";
+import { cornersOfRectangle } from "@dnd-kit/core/dist/utilities/algorithms/helpers";
 
 // const Container = () => {
 //   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -179,7 +180,7 @@ import UploadFile from "./Menu/UploadFile";
 //     // </Router>
 // }
 
-
+var activeContainer = 'loop1'
 
 
 // taken playground code:
@@ -236,21 +237,20 @@ function App() {
   };
 
   const deleteBlock = () => {
-    //Deletes last block of last loop
-    if (Object.keys(itemGroups).length == 1){
-      itemGroups['loop1'].pop()
-      itemProps['loop1'].pop()
-      setItemGroups({...itemGroups})
-      setItemProps({...itemProps})
+    //Deletes blocks starting with last modified
+    //Then deletes starting at the end of the last loop and moves toward first
+    if (itemGroups[activeContainer].length == 0) {
+      for (const x of Object.keys(itemGroups)) {
+        console.log(x)
+        if (itemGroups[x].length != 0) {
+          activeContainer = x
+        }
+      }
     }
-    else {
-      const key = Object.keys(itemGroups)[Object.keys(itemGroups).length-1]
-      console.log(key)
-      itemGroups[key].pop()
-      itemProps[key].pop()
-      setItemGroups({...itemGroups})
-      setItemProps({...itemProps})
-    }
+    itemGroups[activeContainer].pop()
+    itemProps[activeContainer].pop()
+    setItemGroups({...itemGroups})
+    setItemProps({...itemProps})
   }
 // -------------------up until here------------------------
 
@@ -301,7 +301,7 @@ function App() {
       return;
     }
 
-    const activeContainer = active.data.current.sortable.containerId;
+    activeContainer = active.data.current.sortable.containerId;
     const overContainer = over.data.current?.sortable.containerId || over.id;
 
     if (activeContainer !== overContainer) {
