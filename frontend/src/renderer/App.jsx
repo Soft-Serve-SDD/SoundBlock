@@ -266,7 +266,7 @@ function App() {
           over.id in itemGroups
             ? itemGroups[overContainer].length + 1
             : over.data.current.sortable.index;
-
+        
         return moveBetweenContainers(
           itemGroups,
           activeContainer,
@@ -350,7 +350,8 @@ function App() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="container">
+      {/* columns div, with groups left to right mapped */}
+      <div style={{ display: "flex" }}>
         {Object.keys(itemGroups).map((group) => (
           <Droppable
             id={group}
