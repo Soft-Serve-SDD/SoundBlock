@@ -87,24 +87,29 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     return (
       // 3 x 2 grid of Basic knobs
       <React.Fragment>
-        <h3>
+        <h3 style={{textAlign: 'center', paddingTop: '5px'}}>
           {props.name}
         </h3>
 
       <div style={style} className="item">
         <div style={{gridColumn: '1', gridRow: '1'}}>
-          <Basic
-            diameter={diameter}
-            min={-24}
-            max={24}
-            step={1}
-            value={props.rate}
-            onValueChange={setRate}
-            ariaLabelledBy={'rate'}
-          />
-          <label id={'rate'}>Semitones</label>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Basic
+              diameter={diameter}
+              min={-24}
+              max={24}
+              step={1}
+              value={props.rate}
+              onValueChange={setRate}
+              ariaLabelledBy={'rate'}
+            />
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <label id={'rate'} >Semitones</label>
+          </div>
         </div>
         <div style={{gridColumn: '2', gridRow: '1'}}>
+          <div style={{display: 'flex', justifyContent: 'center'}}>   
           <Basic
             diameter={diameter}
             min={-10}
@@ -114,9 +119,12 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
             onValueChange={setDeltaRate}
             ariaLabelledBy={'deltarate'}
           />
-          <label id={'deltarate'}>Rate Change</label>
+          </div>
+           <label id={'deltarate'} style={{textAlign: 'center' }}>Rate Change</label>
+          
         </div>
         <div style={{gridColumn: '3', gridRow: '1'}}>
+          <div style={{display: 'flex', justifyContent: 'center'}}>   
           <Basic
             diameter={diameter}
             min={0}
@@ -126,9 +134,14 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
             onValueChange={setAmp}
             ariaLabelledBy={'amp'}
           />
-          <label id={'amp'}>Amp</label>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}> 
+            <label id={'amp'} style={{textAlign: 'center'}}>Amp</label>
+          </div>
+          
         </div>
         <div style={{gridColumn: '1', gridRow: '2'}}>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
           <Basic
             diameter={diameter}
             min={0}
@@ -138,21 +151,31 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
             onValueChange={setAttack}
             ariaLabelledBy={'attack'}
           />
-          <label id={'attack'}>Attack</label>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <label id={'attack'}>Attack</label>
+          </div>
+          
         </div>
         <div style={{gridColumn: '2', gridRow: '2'}}>
-          <Basic
-            diameter={diameter}
-            min={0}
-            max={100}
-            step={1}
-            value={props.start}
-            onValueChange={setStart}
-            ariaLabelledBy={'start'}
-          />
-          <label id={'start'}>Start</label>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Basic
+              diameter={diameter}
+              min={0}
+              max={100}
+              step={1}
+              value={props.start}
+              onValueChange={setStart}
+              ariaLabelledBy={'start'}
+            />
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <label id={'start'}>Start</label>
+          </div>
+          
         </div>
         <div style={{gridColumn: '3', gridRow: '2'}}>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Basic
             diameter={diameter}
             min={0}
@@ -162,7 +185,10 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
             onValueChange={setFinish}
             ariaLabelledBy={'finish'}
           />
-          <label id={'finish'}>Finish</label>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <label id={'finish'}>Finish</label>
+          </div>
         </div>
         <div style={{gridColumn: '1', gridRow: '3', gridColumnEnd: 'span 3'}}>
           <button onClick={setDefault} style={{backgroundColor: 'aqua'}}>Reset</button>

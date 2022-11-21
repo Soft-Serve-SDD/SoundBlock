@@ -482,9 +482,37 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <PlayButton onClick={exportData}/>
-      <LoopButton onClick={addGroup} />
-      <DeleteButton onClick={removeLastGroup} />
+      <div style={{background: 'white', margin: '5px', borderRadius: '5px', display: 'flex'}}>
+        <div style={{marginLeft: '15px', marginRight: '15px'}}>
+          <h4>
+            PlayBack
+          </h4>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <PlayButton onClick={exportData}/>
+          </div>
+          
+        </div>
+
+        <div style={{marginLeft: '15px', marginRight: '15px'}}>
+          <h4>
+            Add Looping Group
+          </h4>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <LoopButton onClick={addGroup} />
+          </div>
+        </div>
+
+        <div style={{marginLeft: '15px', marginRight: '10px', marginBottom: '-20px'}}>
+          <h4>
+            Remove Looping Group
+          </h4>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <DeleteButton onClick={removeLastGroup} />
+          </div>
+        
+        </div>
+
+      </div>
       
       <DndContext
         onDragStart={handleDragStart}
@@ -493,7 +521,7 @@ function App() {
         onDragEnd={handleDragEnd}
       >
         <div style={{ display: "flex", justifyContent: 'center' }}>
-          <div style={{ width: '80%', background: "#47636e", borderRadius: '10px', padding: '10px' }}>
+          <div style={{ width: '80%', background: "#47636e", borderRadius: '10px', padding: '10px', margin: '5px' }}>
             <div style={{display: "flex", justifyContent: 'center'}}>
              
               {/* <button onClick={addGroup}>Add Loop</button>
@@ -514,12 +542,14 @@ function App() {
               ))}
              </div>
           </div>
-          <div style={{background: 'white', width: '20%', borderRadius: '10px', padding: '10px' }}>
-            <h3 style={{textAlign: 'center'}}>
+          <div style={{background: 'white', width: '20%', borderRadius: '10px', padding: '10px', margin: '5px' }}>
+            <h2 style={{textAlign: 'center'}}>
               Upload Samples
-            </h3>
-            <UploadFile createBlock={generateBlock}/>
-            <DeleteButton2 onClick={deleteBlock} />
+            </h2>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <UploadFile createBlock={generateBlock}/>
+              <DeleteButton2 onClick={deleteBlock} />
+            </div>
           </div>
           
         </div>
