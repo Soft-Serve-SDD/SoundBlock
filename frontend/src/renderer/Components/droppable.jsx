@@ -39,6 +39,7 @@ const Droppable = ({ id, items, props, adjustProperties, children }) => {
   const { setNodeRef } = useDroppable({ id });
 
   var props_ids  = {};
+  console.log(items)
   for (let i = 0; i < items.length; i++) {
     props_ids[items[i]] = props[i];
   }

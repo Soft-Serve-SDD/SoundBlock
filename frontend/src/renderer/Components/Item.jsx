@@ -86,6 +86,11 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
   
     return (
       // 3 x 2 grid of Basic knobs
+      <React.Fragment>
+        <h3>
+          {props.name}
+        </h3>
+
       <div style={style} className="item">
         <div style={{gridColumn: '1', gridRow: '1'}}>
           <Basic
@@ -163,7 +168,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
           <button onClick={setDefault} style={{backgroundColor: 'aqua'}}>Reset</button>
         </div>
       </div>
-  
+      </React.Fragment>
     );
   }
   
