@@ -1,5 +1,8 @@
 // import { renderers } from './fields';
 import { Draggable } from '../Components/draggable';
+import { DropTarget } from '../Components/droppable';
+import {useDroppable} from '@dnd-kit/core';
+import {useDraggable} from '@dnd-kit/core';
 
 // import Slider from '../Components/Slider';
 // import { useState } from 'react';
@@ -155,6 +158,55 @@ export function AudioBlock(Props) {
   );
 }
 
-export function LoopBlock(){
-  return (<Div> -- Loop Block --</Div>)
+export function LoopBlock(props) {
+  // a droppable block 100px by 100px light gray
+  const {isOver, setNodeRef } = useDroppable({
+    id: 'loop' + Math.random(),
+  });
+    const style = {
+      color: isOver ? 'green' : undefined,
+      width: '300px', height: '300px', backgroundColor: 'lightgray'
+    };
+    
+    return (
+      <div ref={setNodeRef} style={style}>
+      {props.children}
+    </div>
+  );
+}
+
+
+
+export function TestDroppable(props) {
+  const {isOver, setNodeRef} = useDroppable({
+    id: 'droppable',
+  });
+  const style = {
+    color: isOver ? 'green' : undefined,
+  };
+  
+  
+  return (
+    <div ref={setNodeRef} style={style}>
+      {props.children}
+    </div>
+  );
+}
+
+
+export function TestDraggable(props) {
+  const {attributes, listeners, setNodeRef, transform} = useDraggable({
+    id: 'draggable1',
+  });
+  const style = transform ? {
+    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+  } : undefined;
+
+  
+  return (
+    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
+      <div style={{width: '100px', height: '100px', backgroundColor: 'orange'}}></div>
+      {props.children}
+    </button>
+  );
 }

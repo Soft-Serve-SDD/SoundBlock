@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Button.css';
 import play from '../../../assets/icons/play.svg';
 
+
 // play button with icon play.svg
 const PlayButton = (props) => {
   return (
@@ -11,4 +12,7 @@ const PlayButton = (props) => {
   );
 };
 
+
+
 export default PlayButton;
+

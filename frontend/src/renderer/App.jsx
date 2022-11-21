@@ -1,16 +1,38 @@
-import React from 'react';
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import './styles/App.css';
-import UploadFile from './Menu/UploadFile';
-import PlayButton from './Menu/PlayButton';
-import Canvas from './Canvas/Canvas';
-// import useLocalStorage from 'use-local-storage'
+import React, { useState } from "react";
+import {
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
-import { Draggable } from './Components/draggable';
-import { useState } from 'react';
-import { AudioBlock } from './Blocks/draggableBlocks';
-import { v4 as uuidv4 } from 'uuid';
-import {LoopBlock} from './Blocks/fields'
+import Droppable from "./components/Droppable";
+import Item from "./components/Item";
+import { arrayMove, insertAtIndex, removeAtIndex } from "./utils/array";
+
+
+// import React from 'react';
+// import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+// import './styles/App.css';
+// import UploadFile from './Menu/UploadFile';
+// import PlayButton from './Menu/PlayButton';
+// import LoopButton from './Menu/LoopButton';
+// import Canvas from './Canvas/Canvas';
+// // import useLocalStorage from 'use-local-storage'
+
+// import {DndContext} from '@dnd-kit/core';
+// import { Draggable } from './Components/draggable';
+// import { useState } from 'react';
+// import { AudioBlock } from './Blocks/draggableBlocks';
+// import { v4 as uuidv4 } from 'uuid';
+// import {LoopBlock} from './Blocks/draggableBlocks';
+// import { TestDraggable } from './Blocks/draggableBlocks';
+// import { TestDroppable } from './Blocks/draggableBlocks';
+// import Droppable from "./components/Droppable";
 
 const Container = () => {
   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -73,11 +95,32 @@ const WorkSpace = (color) => {
 };
 
 const BlockMenu = () => {
+  const [activeBlocks, setActiveBlocks] = useState([]);
+
+  const createLoop = () => {
+    const newLoop = {
+      id: uuidv4(),
+      type: 'loop',
+      name: 'loop' + uuidv4(),
+    };
+    setActiveBlocks([...activeBlocks, newLoop])
+  };
+
+
   return (
     // height is window height - 100px,
     <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <h1 style={{color: 'grey'}}>Block Menu</h1>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <LoopButton onClick={createLoop} />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Droppable />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <TestDraggable />
       </div>
     </div>
   );
@@ -103,6 +146,10 @@ const SoundLibrary = () => {
     }
 
     setActiveBlocks([...activeBlocks, new_block])
+  };
+
+  const deleteBlock = (id) => {
+    setActiveBlocks(activeBlocks.filter((block) => block.id !== id));
   };
 
   const adjustProperties = (block, updatedBlock) => {
@@ -150,8 +197,8 @@ const SoundLibrary = () => {
           <PlayButton onClick={exportData}/>
           <UploadFile createBlock={createBlock} />
           {activeBlocks.map((block) => (
-            <Draggable handle={true} key={block.name}>
-              <AudioBlock adjustProperties={adjustProperties} blockInfo = {block} duration={'10'}/>
+            <Draggable key={block.name}>
+              <AudioBlock adjustProperties={adjustProperties} blockInfo = {block}/>
             </Draggable>
           ))}
         </div>
@@ -160,12 +207,149 @@ const SoundLibrary = () => {
   );
 };
 
-export default function App() {
+// export default function App() {
+//   // return (
+//     // <Router>
+//     //   <Routes>
+//     //     <Route path="/" element={<Container />} />
+//     //   </Routes>
+//     // </Router>
+// }
+
+// taken playground code:
+
+function App() {
+  const [itemGroups, setItemGroups] = useState({
+    group1: ["1", "2", "3"],
+    group2: ["4", "5", "6"],
+    group3: ["7", "8", "9"],
+  });
+  const [activeId, setActiveId] = useState(null);
+
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragStart = ({ active }) => setActiveId(active.id);
+
+  const handleDragCancel = () => setActiveId(null);
+
+  const handleDragOver = ({ active, over }) => {
+    const overId = over?.id;
+
+    if (!overId) {
+      return;
+    }
+
+    const activeContainer = active.data.current.sortable.containerId;
+    const overContainer = over.data.current?.sortable.containerId || over.id;
+
+    if (activeContainer !== overContainer) {
+      setItemGroups((itemGroups) => {
+        const activeIndex = active.data.current.sortable.index;
+        const overIndex =
+          over.id in itemGroups
+            ? itemGroups[overContainer].length + 1
+            : over.data.current.sortable.index;
+
+        return moveBetweenContainers(
+          itemGroups,
+          activeContainer,
+          activeIndex,
+          overContainer,
+          overIndex,
+          active.id
+        );
+      });
+    }
+  };
+
+  const handleDragEnd = ({ active, over }) => {
+    if (!over) {
+      setActiveId(null);
+      return;
+    }
+
+    if (active.id !== over.id) {
+      const activeContainer = active.data.current.sortable.containerId;
+      const overContainer = over.data.current?.sortable.containerId || over.id;
+      const activeIndex = active.data.current.sortable.index;
+      const overIndex =
+        over.id in itemGroups
+          ? itemGroups[overContainer].length + 1
+          : over.data.current.sortable.index;
+
+      setItemGroups((itemGroups) => {
+        let newItems;
+        if (activeContainer === overContainer) {
+          newItems = {
+            ...itemGroups,
+            [overContainer]: arrayMove(
+              itemGroups[overContainer],
+              activeIndex,
+              overIndex
+            ),
+          };
+        } else {
+          newItems = moveBetweenContainers(
+            itemGroups,
+            activeContainer,
+            activeIndex,
+            overContainer,
+            overIndex,
+            active.id
+          );
+        }
+
+        return newItems;
+      });
+    }
+
+    setActiveId(null);
+  };
+
+  const moveBetweenContainers = (
+    items,
+    activeContainer,
+    activeIndex,
+    overContainer,
+    overIndex,
+    item
+  ) => {
+    return {
+      ...items,
+      [activeContainer]: removeAtIndex(items[activeContainer], activeIndex),
+      [overContainer]: insertAtIndex(items[overContainer], overIndex, item),
+    };
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Container />} />
-      </Routes>
-    </Router>
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragCancel={handleDragCancel}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="container">
+        {Object.keys(itemGroups).map((group) => (
+          <Droppable
+            id={group}
+            items={itemGroups[group]}
+            activeId={activeId}
+            key={group}
+          />
+        ))}
+      </div>
+      <DragOverlay>{activeId ? <Item id={activeId} dragOverlay/> : null}</DragOverlay>
+    </DndContext>
   );
 }
+
+export default App;
+
+
