@@ -230,7 +230,7 @@ function App() {
   const [activeId, setActiveId] = useState(null);
 
   const [itemProps, setItemProps] = useState({
-    loop1: [{rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 0, amp: 1, attack: 1, start: 1, finish: 1}],
+    loop1: [{rate: 1, deltarate: 1, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 2, amp: 1, attack: 1, start: 1, finish: 1}, {rate: 1, deltarate: 3, amp: 1, attack: 1, start: 1, finish: 1}],
     loop2: [{rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}, {rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}, {rate: 2, deltarate: 0, amp: 2, attack: 2, start: 2, finish: 2}],
     loop3: [{rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}, {rate: 3, deltarate: 0, amp: 3, attack: 3, start: 3, finish: 3}],
   });
@@ -276,10 +276,35 @@ function App() {
           active.id
         );
       });
+      setItemProps((itemProps) => {
+        const activeIndex = active.data.current.sortable.index;
+        const overIndex =
+          over.id in itemProps
+            ? itemProps[overContainer].length + 1
+            : over.data.current.sortable.index;
+        
+        return moveBetweenContainers(
+          itemProps,
+          activeContainer,
+          activeIndex,
+          overContainer,
+          overIndex,
+          itemProps[activeContainer][activeIndex]
+        );
+      });
     }
   };
 
   const handleDragEnd = ({ active, over }) => {
+    const activeContainer = active.data.current.sortable.containerId;
+    const overContainer = over.data.current?.sortable.containerId || over.id;
+    const activeIndex = active.data.current.sortable.index;
+    const overIndex =
+      over.id in itemGroups
+        ? itemGroups[overContainer].length + 1
+        : over.data.current.sortable.index;
+    console.log('drag end, props:', itemProps[activeContainer])
+    console.log('activeindex:', activeIndex)
     if (!over) {
       setActiveId(null);
       return;
@@ -313,6 +338,31 @@ function App() {
             overContainer,
             overIndex,
             active.id
+          );
+        }
+
+        return newItems;
+      });
+      
+      setItemProps((itemProps) => {
+        let newItems;
+        if (activeContainer === overContainer) {
+          newItems = {
+            ...itemProps,
+            [overContainer]: arrayMove(
+              itemProps[overContainer],
+              activeIndex,
+              overIndex
+            ),
+          };
+        } else {
+          newItems = moveBetweenContainers(
+            itemProps,
+            activeContainer,
+            activeIndex,
+            overContainer,
+            overIndex,
+            itemProps[activeContainer][activeIndex]
           );
         }
 

@@ -15,23 +15,28 @@ const SortableItem = ({ id, props, adjustProperties}) => {
   } = useSortable({ id });
 
   
-  console.log('sortable props: ', props);
-//   props = props[parseInt(id)];
-
-  console.log('sortable id: ', id);
-//   console.log('sortable id: ', parseInt(id));
-//   console.log('sortable props: ', props);
-
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+    backgroundColor: isDragging ? 'rgba(0, 0, 0, 1)' : 'transparent',
+    // small rounded corners outline
+    border: '2px solid rgba(0, 0, 0, 1)',
+    borderRadius: '5px',
+    margin: '10px',
   };
 
+  const image_style = {
+    rotate: '90deg',
+  }
+
   return (
-    <li style={style} ref={setNodeRef}>
+    <li style={style} ref={setNodeRef} >
       <Item id={id} props={props} adjustProperties={adjustProperties}/>
-      <img width="20" alt="icon" src={grip} {...listeners} {...attributes} />
+      <div className="grip" {...listeners} {...attributes}>
+        <img width="30" rotate="20" src={grip} alt="grip" style={image_style}/>
+      </div>
+
     </li>
   );
 };

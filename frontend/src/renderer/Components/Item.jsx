@@ -24,16 +24,26 @@ import { Basic } from 'react-dial-knob'
 
 const Item = ({ id, dragOverlay, props, adjustProperties}) => {  
 
+    console.log("Item id: ", id)
+    console.log('Item props: ', props)
+    
+    const style = {
+        cursor: dragOverlay ? "grabbing" : "grab",
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridTemplateRows: 'repeat(2, 1fr)',
+    };
+
     const setRate = (val) => {
       adjustProperties(props, {...props, rate: val})
     }
   
     const setAmp = (val) => {
-    //   adjustProperties(props, {...props, amp: val})
+      adjustProperties(props, {...props, amp: val})
     }
   
     const setAttack = (val) => {
-    //   adjustProperties(props, {...props, attack: val})
+      adjustProperties(props, {...props, attack: val})
     }
   
     // const setRelease = (val) => {
@@ -41,16 +51,16 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
     // }
   
     const setStart = (val) => {
-    //   adjustProperties(props, {...props, start: val})
+      adjustProperties(props, {...props, start: val})
     }
   
     const setFinish = (val) => {
-    //   adjustProperties(props, {...props, finish: val})
+      adjustProperties(props, {...props, finish: val})
   
     }
   
     const setDeltaRate = (val) => {
-    //   adjustProperties(props, {...props, deltarate: val})
+      adjustProperties(props, {...props, deltarate: val})
     }
   
     const diameter = 65
@@ -75,7 +85,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties}) => {
   
     return (
       // 3 x 2 grid of Basic knobs
-      <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)'}}>
+      <div style={style} className="item">
         <div style={{gridColumn: '1', gridRow: '1'}}>
           <Basic
             diameter={diameter}
