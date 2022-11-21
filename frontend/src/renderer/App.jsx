@@ -220,6 +220,33 @@ function App() {
   });
   const [activeLoopParams, setActiveLoopParams] = useState(null);
 
+// -----------------not working yet: ---------------
+  const addGroup = () => {
+    const newId = Math.random().toString(36).substr(2, 9);
+    setItemGroups({
+      ...itemGroups,
+      [newId]: [],
+    });
+    const newParams = {
+      ...loopParams,
+      [newId]: {
+        iterations: 4, sleep: 1, interval: 1
+      }
+    }
+    setLoopParams(newParams)
+
+  };
+
+  const removeLastGroup = () => {
+    const newGroups = { ...itemGroups };
+    delete newGroups[Object.keys(newGroups)[Object.keys(newGroups).length - 1]];
+    setItemGroups(newGroups);
+    const newParams = { ...loopParams };
+    delete newParams[Object.keys(newParams)[Object.keys(newParams).length - 1]];
+    setLoopParams(newParams)
+  };
+// -------------------up until here------------------------
+
   const exportData = () => {
     if (itemGroups.length != 0) {
       const toSend = []
@@ -446,6 +473,8 @@ function App() {
     >
       <div style={{ display: "flex" }}>
       <PlayButton onClick={exportData}/>
+      {/* <button onClick={addGroup}>Add Loop</button>
+      <button onClick={removeLastGroup}>Remove Loop</button> */}
         {Object.keys(itemGroups).map((group) => (
           <Droppable
             id={group}

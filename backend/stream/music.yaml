@@ -1,102 +1,102 @@
 - loop:
-    iterations: 3
+    iterations: 1
     sleeptime: 0
     subblocks:
       - sample:
-          rate: 1
-          deltarate: 0.2599210498948734
+          rate: 0.7937005259840996
+          deltarate: 0.3348398541700346
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
-      - sample:
-          rate: 0.8408964152537144
-          deltarate: 0.05946309435929531
-          amp: 1
-          attack: 0.4
-          start: 0
-          finish: 1
-          release: 0
-          path: key_slime.wav
-          interval: 0.1
+          interval: 1
       - sample:
           rate: 1
-          deltarate: 0.05946309435929531
+          deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
+      - sample:
+          rate: 1
+          deltarate: 0
+          amp: 1
+          attack: 0
+          start: 0
+          finish: 1
+          release: 0
+          path: key_slime.wav
+          interval: 1
 - loop:
-    iterations: 3
+    iterations: 1
     sleeptime: 0
     subblocks:
       - sample:
-          rate: 4.000000000000004
-          deltarate: 0.7817974362806794
+          rate: 1
+          deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
       - sample:
           rate: 1
           deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
       - sample:
           rate: 1
           deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
 - loop:
-    iterations: 3
+    iterations: 1
     sleeptime: 0
     subblocks:
       - sample:
           rate: 1
           deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
       - sample:
           rate: 1
           deltarate: 0
           amp: 1
-          attack: 0.4
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
       - sample:
           rate: 1
           deltarate: 0
           amp: 1
-          attack: 0.5
+          attack: 0
           start: 0
           finish: 1
           release: 0
           path: key_slime.wav
-          interval: 0.1
+          interval: 1
