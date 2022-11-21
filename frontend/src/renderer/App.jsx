@@ -476,7 +476,7 @@ function App() {
     
     // Auto Add to group 1:
     setItemGroups({...itemGroups, loop1: [...itemGroups.loop1, new_block.id]})
-    setItemProps({...itemGroups, loop1: [...itemProps.loop1, new_block]})
+    setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
   }
 
   console.log("itemGroups", itemGroups)
