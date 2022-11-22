@@ -3,9 +3,8 @@ import React from 'react';
 
 const LoopChild = ({id, params, adjustLoopParams}) => {
 
-  console.log("loopchild params: ", params)
   
-
+  // TODO: setup above ability to have sleep delay in each loop lane
   const setSleep = (val) => {
     // adjustLoopParams(id, {...params, sleep: val})
   }

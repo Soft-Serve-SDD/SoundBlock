@@ -1,26 +1,8 @@
 import React from "react";
 
-import "./Item.css";
+import "../styles/Item.css"
 import { Basic } from 'react-dial-knob'
 
-
-// const Item = ({ id, dragOverlay, props, adjustProperties}) => {
-//   const style = {
-//     cursor: dragOverlay ? "grabbing" : "grab",
-//   };
-
-//   console.log("Item id: ", id)
-//   console.log('Item props: ', props)
-
-//   return (
-//     <div style={style} className="item">
-//       Item {id} 
-//       {/* Rate: {props.rate} */}
-//     </div>
-//   );
-// };
-
-// export default Item;
 
 
 const Item = ({ id, dragOverlay, props, adjustProperties}) => {  
