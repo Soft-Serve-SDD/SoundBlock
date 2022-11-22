@@ -1,0 +1,9 @@
+.droppable {
+    min-width: 110px;
+    padding: 20px 10px;
+    margin: 10px;
+    border-radius: 10px;
+    list-style-type: none;
+    background-color: rgb(117, 154, 194);
+  }
+  

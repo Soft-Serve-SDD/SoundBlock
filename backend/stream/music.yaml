@@ -1,9 +1,4 @@
-- sample:
-    path: key_slime.wav
-    rate: 0.7491535384383405
-    deltarate: 1.1892071150027212
-    amp: 2
-    attack: 0
-    release: 0
-    start: 0
-    finish: 1
+- loop:
+    iterations: 1
+    sleeptime: 0
+    subblocks: []

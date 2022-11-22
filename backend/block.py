@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 from email import iterators
 from psonic import *
 
-
 def switch_slashes(s):
     if s is not None:
         return s.replace('\\', '/')
@@ -71,11 +70,12 @@ class Start(Block): #everything will be a subblock of Start; would make recordin
         save_recording(path)
 
 class Loop(Block):
-    def __init__(self, sleeptime, iterations):
+    def __init__(self, sleeptime, iterations, interval=0):
         super().__init__()
         self.iterations = iterations
         self.sleep = Sleep(sleeptime)
 
+    # @in_thread
     def play(self):
         for i in range(self.iterations):
             super().play()
