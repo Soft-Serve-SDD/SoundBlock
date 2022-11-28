@@ -233,18 +233,19 @@ function App() {
   const deleteBlock = () => {
     //Deletes blocks starting with last modified
     //Then deletes starting at the end of the last loop and moves toward first
-    if (itemGroups[activeContainer].length == 0) {
+    if (itemGroups[activeContainer] == undefined || itemGroups[activeContainer].length == 0) {
       for (const x of Object.keys(itemGroups)) {
-        console.log(x)
-        if (itemGroups[x].length != 0) {
+        if (itemGroups[x] != undefined && itemGroups[x].length != 0) {
           activeContainer = x
         }
       }
     }
-    itemGroups[activeContainer].pop()
-    itemProps[activeContainer].pop()
-    setItemGroups({...itemGroups})
-    setItemProps({...itemProps})
+    if (itemGroups[activeContainer] != undefined) {
+      itemGroups[activeContainer].pop()
+      itemProps[activeContainer].pop()
+      setItemGroups({...itemGroups})
+      setItemProps({...itemProps})
+    }
   }
 
   const exportData = () => {
