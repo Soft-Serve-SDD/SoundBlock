@@ -11,25 +11,26 @@ import Droppable from "./Components/Droppable";
 import BlockDeleteButton from './Menu/BlockDeleteButton';
 import LoopChild from './Blocks/LoopBlock';
 import UploadFile from "./Menu/UploadFile";
+import ToolsMenu from "./Menu/ToolsMenu";
 
 /* Styles */
 import './styles/App.css';
-import ToolsMenu from "./Menu/ToolsMenu";
 
 
 var activeContainer = 'loop1'
 
-
 function App() {
   const [activeId, setActiveId] = useState(null);
 
-  // State of loops lanes and associated sample blokcs
+  // Associated sample blocks for each loop lane
   const [itemGroups, setItemGroups] = useState({
     loop1: [], 
   });
+  // Parameters of each item in group
   const [itemProps, setItemProps] = useState({
     loop1: [], 
   });
+  // Parameters for each loop lane
   const [loopParams, setLoopParams] = useState({
     loop1: { iterations: 1, sleep: 1, interval: 1 }, 
   });
@@ -41,15 +42,18 @@ function App() {
     setItemGroups({ ...itemGroups, [new_id]: [] });
     setItemProps({ ...itemProps, [new_id]: [] });
     setLoopParams({ ...loopParams, [new_id]: { iterations: 1, sleep: 1, interval: 1 } });
-    console.log('itemGroups', itemGroups);
-    console.log('itemProps', itemProps);
-    console.log('loopParams', loopParams);
+    // console.log('itemGroups', itemGroups);
+    // console.log('itemProps', itemProps);
+    // console.log('loopParams', loopParams);
   };
 
   const removeLastGroup = () => {
-    if (Object.keys(itemGroups).length ==1){
+    // There must be at least one  loop lane
+    // disable last loop lane from being removed
+    if (Object.keys(setLoopParams).length ==1){
       return;
     }
+
     const newGroups = { ...itemGroups };
     delete newGroups[Object.keys(newGroups)[Object.keys(newGroups).length - 1]];
     setItemGroups(newGroups);
@@ -100,7 +104,7 @@ function App() {
             subblocks: []
           }
         }
-        console.log("sending item props", key, itemProps)
+        // console.log("sending item props", key, itemProps)
 
         for (var i = 0; i < itemProps[key].length; i++) {
           var sample = {}
@@ -318,7 +322,7 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      {/* <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/> */}
+      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/>
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}

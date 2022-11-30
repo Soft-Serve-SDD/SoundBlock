@@ -2,7 +2,7 @@ import React from 'react';
 
 // slider that adjusts the rate value and shows the value on the left
 const Slider = (props) => {
-  const {adjustRate} = props
+  const { adjustRate } = props;
   const [value, setValue] = React.useState(props.value || 50);
 
   const handleChange = (event) => {

@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/Button.css';
 import delete_icon from '../../../assets/icons/delete_icon.svg';
 
-
 const DeleteButton = (props) => {
   return (
     <button className="delete-button" onClick={props.onClick}>
@@ -11,8 +10,4 @@ const DeleteButton = (props) => {
   );
 };
 
-
 export default DeleteButton;
-
-
-

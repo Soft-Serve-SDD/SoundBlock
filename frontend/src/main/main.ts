@@ -117,7 +117,7 @@ const createWindow = async () => {
  */
 
 //Should probably try importing from Menu.ts or vice versa
- function sendYaml(event, param) {
+function sendYaml(event, param) {
   // import fs
   const fs = require('fs');
   // import yaml
@@ -141,7 +141,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    ipcMain.on('send-data', sendYaml)
+    ipcMain.on('send-data', sendYaml);
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

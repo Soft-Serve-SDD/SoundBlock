@@ -1,40 +1,38 @@
-import { Basic } from 'react-dial-knob'
+import { Basic } from 'react-dial-knob';
 import React from 'react';
 
-const LoopChild = ({id, params, adjustLoopParams}) => {
-
-  
+const LoopChild = ({ id, params, adjustLoopParams }) => {
   // TODO: setup above ability to have sleep delay in each loop lane
   const setSleep = (val) => {
     // adjustLoopParams(id, {...params, sleep: val})
-  }
+  };
 
   const setIterations = (val) => {
-    adjustLoopParams(id, {...params, iterations: val})
-  }
+    adjustLoopParams(id, { ...params, iterations: val });
+  };
 
   const setInterval = (val) => {
-    adjustLoopParams(id, {...params, interval: val})
-  }
+    adjustLoopParams(id, { ...params, interval: val });
+  };
 
   const defaults = {
     sleep: 0,
     iterations: 1,
     interval: 100,
-  }
+  };
 
   const setDefaults = () => {
-    adjustLoopParams(id, {...params, ...defaults})
-  }
+    adjustLoopParams(id, { ...params, ...defaults });
+  };
 
   React.useEffect(() => {
-    setDefaults()
-  }, [])
+    setDefaults();
+  }, []);
 
-  const diameter = 65
+  const diameter = 65;
 
   return (
-    <div style={{display: 'flex', justifyContent: 'space-around'}}>
+    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
       <div>
         <Basic
           diameter={diameter}
@@ -46,9 +44,8 @@ const LoopChild = ({id, params, adjustLoopParams}) => {
           ariaLabelledBy={'Iteration'}
         />
         <label id={'Iteration'}>Iteration</label>
-        <hline></hline>
       </div>
-      <div style={{gridColumn: '2', gridRow: '1'}}>
+      <div style={{ gridColumn: '2', gridRow: '1' }}>
         <Basic
           diameter={diameter}
           min={0}
@@ -59,11 +56,9 @@ const LoopChild = ({id, params, adjustLoopParams}) => {
           ariaLabelledBy={'Interval'}
         />
         <label id={'Interval'}>Interval</label>
-        <hline></hline>
-    </div>
+      </div>
     </div>
   );
-}
+};
 
 export default LoopChild;
-

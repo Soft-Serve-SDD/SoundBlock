@@ -1,4 +1,4 @@
-import { arrayMove as dndKitArrayMove } from "@dnd-kit/sortable";
+import { arrayMove as dndKitArrayMove } from '@dnd-kit/sortable';
 
 export const removeAtIndex = (array, index) => {
   return [...array.slice(0, index), ...array.slice(index + 1)];

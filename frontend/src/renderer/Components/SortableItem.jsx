@@ -4,7 +4,7 @@ import { CSS } from '@dnd-kit/utilities';
 import grip from '../../../assets/icons/grip-vertical.svg';
 import Item from './Item';
 
-const SortableItem = ({ id, props, adjustProperties}) => {
+const SortableItem = ({ id, props, adjustProperties }) => {
   const {
     attributes,
     listeners,
@@ -14,7 +14,6 @@ const SortableItem = ({ id, props, adjustProperties}) => {
     isDragging,
   } = useSortable({ id });
 
-  
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -28,22 +27,19 @@ const SortableItem = ({ id, props, adjustProperties}) => {
 
   const image_style = {
     rotate: '90deg',
-  }
+  };
 
   return (
-    <li style={style} ref={setNodeRef} >
-      <Item id={id} props={props} adjustProperties={adjustProperties}/>
+    <li style={style} ref={setNodeRef}>
+      <Item id={id} props={props} adjustProperties={adjustProperties} />
       <div className="grip" {...listeners} {...attributes}>
-        <img width="30" rotate="20" src={grip} alt="grip" style={image_style}/>
+        <img width="30" rotate="20" src={grip} alt="grip" style={image_style} />
       </div>
-
     </li>
   );
 };
 
 export default SortableItem;
-
-
 
 // return (
 //   <li style={style} ref={setNodeRef} {...attributes} {...listeners}>

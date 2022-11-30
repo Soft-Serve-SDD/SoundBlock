@@ -19,11 +19,7 @@ function Dropzone(Props) {
   };
   // This call back will be used to create a sample block once .wav files is droped
   const onDrop = useCallback((acceptedFiles) => {
-    // const reader = new FileReader();
-    // console.log(acceptedFiles[0], acceptedFiles[0].name, acceptedFiles[0].path, acceptedFiles[0].type);
-    // console.log(Props);
     createBlock(acceptedFiles);
-    //this.Props.createBlock(acceptedFiles);
     setOpen(false);
   }, []);
 
@@ -44,7 +40,6 @@ function Dropzone(Props) {
 }
 
 function Popup(Props) {
-  //console.log(Props)
   const [isOpen, setOpen] = useState(false);
   return (
     <>
