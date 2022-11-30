@@ -64,25 +64,34 @@ function App() {
   // Deletes most recently added block
   // TODO: Add System for deleting any given block
   const deleteBlock = () => {
-    if (itemGroups[activeContainer].length == 0) {
+    //Deletes blocks starting with last modified
+    //Then deletes starting at the end of the last loop and moves toward first
+    if (itemGroups[activeContainer] == undefined || itemGroups[activeContainer].length == 0) {
       for (const x of Object.keys(itemGroups)) {
-        console.log(x)
-        if (itemGroups[x].length != 0) {
+        if (itemGroups[x] != undefined && itemGroups[x].length != 0) {
           activeContainer = x
         }
       }
     }
-    itemGroups[activeContainer].pop()
-    itemProps[activeContainer].pop()
-    setItemGroups({...itemGroups})
-    setItemProps({...itemProps})
+    if (itemGroups[activeContainer] != undefined) {
+      itemGroups[activeContainer].pop()
+      itemProps[activeContainer].pop()
+      setItemGroups({...itemGroups})
+      setItemProps({...itemProps})
+    }
   }
 
   // When play button is pressed, function is called to format data
   // and send IPC message via electron
-  const exportData = () => {
+  const exportData = (q) => {
     if (itemGroups.length != 0) {
       const toSend = []
+      if (q) {
+        const file = {
+          export: uuidv4()
+        }
+        toSend.push(file)
+      }
       for (const [key, value] of Object.entries(loopParams)) {
         const chunk = {
           loop: {
@@ -309,8 +318,7 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/>
-      
+      {/* <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/> */}
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
