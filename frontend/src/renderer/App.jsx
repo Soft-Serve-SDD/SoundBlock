@@ -248,9 +248,15 @@ function App() {
     }
   }
 
-  const exportData = () => {
+  const exportData = (q) => {
     if (itemGroups.length != 0) {
       const toSend = []
+      if (q) {
+        const file = {
+          export: uuidv4()
+        }
+        toSend.push(file)
+      }
       for (const [key, value] of Object.entries(loopParams)) {
         const chunk = {
           loop: {
@@ -489,7 +495,17 @@ function App() {
             PlayBack
           </h4>
           <div style={{display: 'flex', justifyContent: 'center'}}>
-            <PlayButton onClick={exportData}/>
+            <PlayButton onClick={() => exportData(false)}/>
+          </div>
+          
+        </div>
+
+        <div style={{marginLeft: '15px', marginRight: '15px'}}>
+          <h4>
+            Export WAV
+          </h4>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <PlayButton onClick={() => exportData(true)}/>
           </div>
           
         </div>
