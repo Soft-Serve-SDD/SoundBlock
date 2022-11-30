@@ -1,196 +1,29 @@
+/* External */
 import React, { useState } from "react";
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { DndContext } from "@dnd-kit/core";
 import { v4 as uuidv4 } from 'uuid';
 
-import Droppable from "./components/Droppable";
-import Item from "./components/Item";
+/* Utilities */
 import { arrayMove, insertAtIndex, removeAtIndex } from "./utils/array";
-import SoundLibrary from "./Components/SoundLibrary";
 
-import './styles/App.css';
-
-import PlayButton from './Menu/PlayButton';
-import LoopButton from './Menu/LoopButton';
-import DeleteButton from './Menu/DeleteButton';
-import DeleteButton2 from './Menu/DeleteButton2';
+/* Component Imports */
+import Droppable from "./Components/Droppable";
+import BlockDeleteButton from './Menu/BlockDeleteButton';
 import LoopChild from './Blocks/LoopBlock';
 import UploadFile from "./Menu/UploadFile";
-import { cornersOfRectangle } from "@dnd-kit/core/dist/utilities/algorithms/helpers";
 
-// const Container = () => {
-//   // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-//   const [theme, setTheme] = React.useState('light');
+/* Styles */
+import './styles/App.css';
+import ToolsMenu from "./Menu/ToolsMenu";
 
-//   const switchTheme = () => {
-
-//     const newTheme = theme === 'light' ? 'dark' : 'light';
-//     if (newTheme === 'light'){
-//       document.body.style.background ="rgb(193, 227, 240)";
-//       document.body.style.color ="black";
-//     } else {
-//       document.body.style.background ="black";
-//       document.body.style.color ="white";
-//     }
-//     setTheme(newTheme);
-//   }
-
-//   const buttonStyle = {
-//     color: theme === 'light' ? 'black' : 'white',
-//     border: theme === 'light' ? '1px solid black' : '1px solid white',
-//   }
-
-//   return (
-//     <React.Fragment>
-//       <div style={{ width: '100%' }}>
-//         <h1 style={{ textAlign: 'center', marginBottom: '0px' }}>
-//           Sound Blocks
-//         </h1>
-//         <br />
-//         <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
-//           Music Editing Software
-//         </h2>
-//         <button style={buttonStyle} onClick={switchTheme}> {theme === 'light' ? 'dark' : 'light'} Mode </button>
-//       </div>
-//       <div
-//         style={{
-//           display: 'flex',
-//           paddingTop: '25px',
-//           justifyContent: 'center',
-//         }}
-//       >
-//         <BlockMenu />
-//         <WorkSpace color={theme === 'light' ? 'grey' : 'dark blue'}/>
-//         <SoundLibrary />
-//       </div>
-//     </React.Fragment>
-//   );
-// };
-
-// const WorkSpace = (color) => {
-//   return (
-//     <div style={{ width: '50%', background: "grey", height: 'calc(100vh - 200px)' }}>
-//       <div style={{ display: 'flex', justifyContent: 'center' }}>
-//         <h1>WorkSpace</h1>
-//         {/* <Canvas /> */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// const BlockMenu = () => {
-//   const [activeBlocks, setActiveBlocks] = useState([]);
-
-//   const createLoop = () => {
-//     const newLoop = {
-//       id: uuidv4(),
-//       type: 'loop',
-//       name: 'loop' + uuidv4(),
-//     };
-//     setActiveBlocks([...activeBlocks, newLoop])
-//   };
-
-
-//   return (
-//     // height is window height - 100px,
-//     <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
-//       <div style={{ display: 'flex', justifyContent: 'center' }}>
-//         <h1 style={{color: 'grey'}}>Block Menu</h1>
-//       </div>
-//       <div style={{ display: 'flex', justifyContent: 'center' }}>
-//         <LoopButton onClick={createLoop} />
-//       </div>
-//       <div style={{ display: 'flex', justifyContent: 'center' }}>
-//         <Droppable />
-//       </div>
-//       <div style={{ display: 'flex', justifyContent: 'center' }}>
-//         <TestDraggable />
-//       </div>
-//     </div>
-//   );
-// };
-
-/*const SoundLibrary = () => {
-  const [activeFiles, setActiveFiles] = useState([]);
-  const [activeBlocks, setActiveBlocks] = useState([]);
-
-  const createBlock = (file) => {
-    //setActiveFiles([...activeFiles, file]);
-    var new_block = {
-      id: uuidv4(),
-      name: file[0].name,
-      path: file[0].name,
-      rate: 1,
-      deltarate: 0,
-      amp: 1,
-      attack: 1, 
-      release: 1, 
-      start: 1, 
-      finish: 1
-    }
-
-    setActiveBlocks([...activeBlocks, new_block])
-  };
-
-  const deleteBlock = (id) => {
-    setActiveBlocks(activeBlocks.filter((block) => block.id !== id));
-  };
-
-  const adjustProperties = (block, updatedBlock) => {
-    const newBlocksState = activeBlocks.map(b => {
-      if (b.id == block.id){
-       return updatedBlock
-      }
-      return b
-    })
-    setActiveBlocks(newBlocksState)
-    // console.log("updated")
-    // console.log(newBlocksState)
-  }
-
-
-  return (
-    <React.Fragment>
-      <div style={{ width: '25%', background: 'white', height: 'calc(100vh - 200px)' }}>
-        <div>
-          <h1 style={{color: 'grey',display: 'flex', justifyContent: 'center' }}>Sound Library</h1>
-          <UploadFile createBlock={createBlock} />
-          {activeBlocks.map((block) => (
-            <Draggable key={block.name}>
-              <AudioBlock adjustProperties={adjustProperties} blockInfo = {block}/>
-            </Draggable>
-          ))}
-        </div>
-      </div>
-    </React.Fragment>
-  );
-};
-*/
-// export default function App() {
-//   // return (
-//     // <Router>
-//     //   <Routes>
-//     //     <Route path="/" element={<Container />} />
-//     //   </Routes>
-//     // </Router>
-// }
 
 var activeContainer = 'loop1'
 
 
-// taken playground code:
-
 function App() {
   const [activeId, setActiveId] = useState(null);
-  // State state of loops and their sample blokcs
+
+  // State of loops lanes and associated sample blokcs
   const [itemGroups, setItemGroups] = useState({
     loop1: [], 
   });
@@ -201,8 +34,6 @@ function App() {
     loop1: { iterations: 1, sleep: 1, interval: 1 }, 
   });
 
-  // const [activeItemProps, setActiveItemProps] = useState(null);
-  // const [activeLoopParams, setActiveLoopParams] = useState(null);
 
   const addGroup = () => {
     const last_id = Object.keys(itemGroups).slice(-1)[0]
@@ -230,6 +61,8 @@ function App() {
     setItemProps(newItems)
   };
 
+  // Deletes most recently added block
+  // TODO: Add System for deleting any given block
   const deleteBlock = () => {
     //Deletes blocks starting with last modified
     //Then deletes starting at the end of the last loop and moves toward first
@@ -248,6 +81,8 @@ function App() {
     }
   }
 
+  // When play button is pressed, function is called to format data
+  // and send IPC message via electron
   const exportData = (q) => {
     if (itemGroups.length != 0) {
       const toSend = []
@@ -284,7 +119,6 @@ function App() {
         }
         toSend.push(chunk)
       }
-    console.log("sending data", toSend)
     window.electron.sendData(toSend)
     }
   }
@@ -340,16 +174,12 @@ function App() {
     }
   };
 
+  // At end of drag handle cases:
+  // * Item is dragged out of bounds
+  // * Item is dragged ontop of itself
+  // * Item is dragged to different loop lane
+  // * Item is dragged to different order in current loop lane
   const handleDragEnd = ({ active, over }) => {
-    // const activeContainer = active.data.current.sortable.containerId;
-    // const overContainer = over.data.current?.sortable.containerId || over.id;
-    // const activeIndex = active.data.current.sortable.index;
-    // const overIndex =
-    //   over.id in itemGroups
-    //     ? itemGroups[overContainer].length + 1
-    //     : over.data.current.sortable.index;
-   // console.log('drag end, props:', itemProps[activeContainer])
-    //console.log('activeindex:', activeIndex)
     if (!over) {
       setActiveId(null);
       return;
@@ -479,7 +309,6 @@ function App() {
     setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
   }
 
-  console.log("itemGroups", itemGroups)
   return (
     <div style={{ width: '100%' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '0px', paddingTop: '30px' }}>
@@ -489,48 +318,7 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <div style={{background: 'white', margin: '5px', borderRadius: '5px', display: 'flex'}}>
-        <div style={{marginLeft: '15px', marginRight: '15px'}}>
-          <h4>
-            PlayBack
-          </h4>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <PlayButton onClick={() => exportData(false)}/>
-          </div>
-          
-        </div>
-
-        <div style={{marginLeft: '15px', marginRight: '15px'}}>
-          <h4>
-            Export WAV
-          </h4>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <PlayButton onClick={() => exportData(true)}/>
-          </div>
-          
-        </div>
-
-        <div style={{marginLeft: '15px', marginRight: '15px'}}>
-          <h4>
-            Add Looping Group
-          </h4>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <LoopButton onClick={addGroup} />
-          </div>
-        </div>
-
-        <div style={{marginLeft: '15px', marginRight: '10px', marginBottom: '-20px'}}>
-          <h4>
-            Remove Looping Group
-          </h4>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <DeleteButton onClick={removeLastGroup} />
-          </div>
-        
-        </div>
-
-      </div>
-      
+      {/* <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/> */}
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
@@ -540,9 +328,6 @@ function App() {
         <div style={{ display: "flex", justifyContent: 'center' }}>
           <div style={{ width: '80%', background: "#43565e", borderRadius: '10px', padding: '10px', margin: '5px' }}>
             <div style={{display: "flex", justifyContent: 'center'}}>
-             
-              {/* <button onClick={addGroup}>Add Loop</button>
-              <button onClick={removeLastGroup}>Remove Loop</button> */}
                 {Object.keys(itemGroups).map((group) => (
                   <Droppable
                     id={group}
@@ -565,53 +350,13 @@ function App() {
             </h2>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <UploadFile createBlock={generateBlock}/>
-              <DeleteButton2 onClick={deleteBlock} />
+              <BlockDeleteButton onClick={deleteBlock} />
             </div>
           </div>
           
         </div>
-          
-      {/* <DragOverlay>{activeId ? <Item id={activeId}/> : null}</DragOverlay> */}
     </DndContext>
     </div>
   );
 }
-
-/*
-
-    <div style={{ width: '50%', background: "grey", height: 'calc(100vh - 200px)' }}>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <h1>WorkSpace</h1>
-        </div>
-        </div>
-
-
-
-
-
-
-<div style={{ width: '100%' }}>
-<h1 style={{ textAlign: 'center', marginBottom: '0px' }}>
-  Sound Blocks
-</h1>
-<br />
-<h2 style={{ textAlign: 'center', marginTop: '0px' }}>
-  Music Editing Software
-</h2>
-<button style={buttonStyle} onClick={switchTheme}> {theme === 'light' ? 'dark' : 'light'} Mode </button>
-</div>
-<div
-style={{
-  display: 'flex',
-  paddingTop: '25px',
-  justifyContent: 'center',
-}}
->
-<BlockMenu />
-<WorkSpace color={theme === 'light' ? 'grey' : 'dark blue'}/>
-<SoundLibrary />
-</div>
-*/
 export default App;
-
-

@@ -1,39 +1,14 @@
-// import React from 'react';
-// import { useDroppable } from '@dnd-kit/core';
 
-// export function DropTarget(props) {
-//   const { children, ...rest } = props;
-//   const { setNodeRef, isOver } = useDroppable({
-//     id: props.id,
-//   });
-
-//   return (
-//     <div
-//       ref={setNodeRef}
-//       style={{
-//         backgroundColor: isOver ? 'rgba(0, 0, 0, 0.2)' : 'transparent',
-//         width: '100%',
-//         height: '100%',
-//         display: 'flex',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//       }}
-//       {...rest}
-//     >
-//       {children}
-//     </div>
-//   );
-// }
-
-
-
+/* External */
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
+/* Components */
 import SortableItem from "./SortableItem";
 
-import "./Droppable.css";
+/* Styles */
+import "../styles/Droppable.css";
 
 const Droppable = ({ id, items, props, adjustProperties, children }) => {
   const { setNodeRef } = useDroppable({ id });
