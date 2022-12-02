@@ -107,8 +107,8 @@ function App() {
         // console.log("sending item props", key, itemProps)
 
         for (var i = 0; i < itemProps[key].length; i++) {
-          // if sample, add sample else add sleep
-          if (itemProps[key][i].type == 'sample') {
+          // if item name is not Sleep
+          if (itemProps[key][i].name != "Sleep") {
 
             var sample = {}
             for (const [key2, value2] of Object.entries(itemProps[key][i])) {
@@ -124,12 +124,12 @@ function App() {
             sample["interval"] = (value.interval/100)
             chunk.loop.subblocks.push(sample = {sample})
           }
-          else if (itemProps[key][i].type == 'sleep') {
+          else{
             var sleep = {}
             for (const [key2, value2] of Object.entries(itemProps[key][i])) {
               sleep[key2] = value2
             }
-            sleep["sleeptime"] = (value.sleeptime/100)
+            sleep["sleeptime"] = sleep["sleeptime"]/100
             chunk.loop.subblocks.push(sleep = {sleep})
           }
         }
@@ -326,6 +326,8 @@ function App() {
   }
 
   const generateSleepBlock = () => {
+    // log all items in loop1
+    console.log(itemProps.loop1)
     var new_block = {
       id: uuidv4(),
       name: "Sleep",
