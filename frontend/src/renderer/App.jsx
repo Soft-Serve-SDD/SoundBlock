@@ -50,7 +50,7 @@ function App() {
   const removeLastGroup = () => {
     // There must be at least one  loop lane
     // disable last loop lane from being removed
-    if (Object.keys(setLoopParams).length ==1){
+    if (Object.keys(loopParams).length ==1){
       return;
     }
 
@@ -88,43 +88,45 @@ function App() {
   // When play button is pressed, function is called to format data
   // and send IPC message via electron
   const exportData = (q) => {
-    if (itemGroups.length != 0) {
-      const toSend = []
-      if (q) {
-        const file = {
-          export: uuidv4()
-        }
-        toSend.push(file)
-      }
-      for (const [key, value] of Object.entries(loopParams)) {
-        const chunk = {
-          loop: {
-            iterations: value.iterations,
-            sleeptime: value.sleep/10,
-            subblocks: []
-          }
-        }
-        // console.log("sending item props", key, itemProps)
-
-        for (var i = 0; i < itemProps[key].length; i++) {
-          var sample = {}
-          for (const [key2, value2] of Object.entries(itemProps[key][i])) {
-            sample[key2] = value2
-          }
-          sample["path"] = sample["path"]
-          sample["rate"] = ((2**(1/12))**sample["rate"])
-          sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
-          sample["amp"] = (sample["amp"]/5)
-          sample["attack"] = (sample["attack"]/10)
-          sample["start"] = (sample["start"]/100)
-          sample["finish"] = (sample["finish"]/100)
-          sample["interval"] = (value.interval/100)
-          chunk.loop.subblocks.push(sample = {sample})
-        }
-        toSend.push(chunk)
-      }
-    window.electron.sendData(toSend)
+    if (itemGroups.length == 0) {
+      return
     }
+    const toSend = []
+    if (q) {
+      const file = {
+        export: uuidv4()
+      }
+      toSend.push(file)
+    }
+    for (const [key, value] of Object.entries(loopParams)) {
+      const chunk = {
+        loop: {
+          iterations: value.iterations,
+          sleeptime: value.sleep/10,
+          subblocks: []
+        }
+      }
+      console.log("sending item props", key, itemProps)
+
+      for (var i = 0; i < itemProps[key].length; i++) {
+        var sample = {}
+        for (const [key2, value2] of Object.entries(itemProps[key][i])) {
+          sample[key2] = value2
+        }
+        sample["path"] = sample["path"]
+        sample["rate"] = ((2**(1/12))**sample["rate"])
+        sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
+        sample["amp"] = (sample["amp"]/5)
+        sample["attack"] = (sample["attack"]/10)
+        sample["start"] = (sample["start"]/100)
+        sample["finish"] = (sample["finish"]/100)
+        sample["interval"] = (value.interval/100)
+        chunk.loop.subblocks.push(sample = {sample})
+      }
+      toSend.push(chunk)
+    }
+  // console.log("sending data", toSend)
+  window.electron.sendData(toSend) 
   }
 
 
