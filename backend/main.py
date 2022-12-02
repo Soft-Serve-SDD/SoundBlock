@@ -36,7 +36,7 @@ def createBlock(type, thing):  # todo modifiers
         # if (interval):
         #     sleep = Sleep(sleeptime=interval)
         #     return_value.addSubBlock(sleep)
-        # return_value.addModifier(deltaRate(deltarate))
+        return_value.addModifier(deltaRate(deltarate))
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
         return None
@@ -51,7 +51,9 @@ def readInput(input):
     blocks = []
     for i in input:
         for key in i:
-            blocks.append(createBlock(key, i[key]))
+            newblock = createBlock(key, i[key])
+            if newblock != None:
+                blocks.append(newblock)
     return blocks
 
 def run():

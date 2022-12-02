@@ -1,13 +1,85 @@
-- export: 8e4d8eb2-1f16-4732-9896-b65c675eb001
+- export: 5462cf57-ec58-4e40-b6b6-7411f4216404
 - loop:
-    iterations: 5
+    iterations: 16
+    sleeptime: 0
+    subblocks:
+      - sample:
+          id: d34fb449-e3d9-4ec2-bd8b-f4479681d67c
+          name: basic hat.wav
+          path: basic hat.wav
+          rate: 1
+          deltarate: 0
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 0.5
+          interval: 1
+      - sleep:
+          id: e1c64878-fa52-4ad8-9f96-290fcad443a3
+          name: Sleep
+          sleeptime: 0.2
+- loop:
+    iterations: 2
     sleeptime: 0
     subblocks:
       - sleep:
-          id: 9299ec1c-43e4-48fd-a835-4e032735becb
+          id: 081f89ff-37de-4901-9a79-326d38806406
           name: Sleep
-          sleeptime: 0.36
+          sleeptime: 0.8
+      - sample:
+          id: d5e193ee-1f03-4fa2-bbb6-2b7bcfce4b6d
+          name: clap.wav
+          path: clap.wav
+          rate: 1
+          deltarate: 0
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 0.5
+          interval: 1
       - sleep:
-          id: 0fca6d47-7eee-4134-a14f-14f8a5728e9a
+          id: 277828f9-d51e-4c06-a641-b08dd9b26478
           name: Sleep
-          sleeptime: 0.11
+          sleeptime: 0.8
+- loop:
+    iterations: 4
+    sleeptime: 0
+    subblocks:
+      - sample:
+          id: a48fd76e-7b90-4610-b697-c5edc4426f21
+          name: beetle bass.wav
+          path: beetle bass.wav
+          rate: 1
+          deltarate: 0.05946309435929531
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 1
+          interval: 1
+      - sleep:
+          id: 24abcd35-4e9b-4d3b-a8b9-63756b87135c
+          name: Sleep
+          sleeptime: 0.8
+- loop:
+    iterations: 8
+    sleeptime: 0
+    subblocks:
+      - sample:
+          id: bd0ad127-d74a-4fbf-97e5-13eb18e3a20b
+          name: key slime.wav
+          path: key slime.wav
+          rate: 2.000000000000001
+          deltarate: 0.05946309435929531
+          amp: 1
+          attack: 0
+          release: 0
+          start: 0
+          finish: 1
+          interval: 1
+      - sleep:
+          id: 24a1cbd5-7add-4258-abc1-bd2fb7a868f1
+          name: Sleep
+          sleeptime: 0.4
