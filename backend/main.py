@@ -49,12 +49,18 @@ def createBlock(type, thing):  # todo modifiers
 
 def readInput(input):
     blocks = []
+    export_filename = None
+    newblock = None
     for i in input:
         for key in i:
-            newblock = createBlock(key, i[key])
+            if(key != "export"):
+                newblock = createBlock(key, i[key])
+            else:
+                export_filename = i[key]+".wav"
+                print("export_wav = ", export_filename)
             if newblock != None:
                 blocks.append(newblock)
-    return blocks
+    return blocks, export_filename
 
 def run():
     from threading import Thread
@@ -63,14 +69,18 @@ def run():
     with open(YAML_FILENAME, "r") as stream:
         try:
             input = yaml.safe_load(stream)
-            blocks = readInput(input)
-
+            blocks, export_path = readInput(input)
         except yaml.YAMLError as exc:
             print(exc)
     
+    if(export_path != None):
+        start_recording()
     for block in blocks:
         block_thread = Thread(target=block.play)
         block_thread.start()
+    if(export_path != None):
+        stop_recording()
+        save_recording(export_path)
         # print("calling play on block: ", block)
         # block.play()
 
