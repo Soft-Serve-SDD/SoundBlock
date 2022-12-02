@@ -107,19 +107,31 @@ function App() {
         // console.log("sending item props", key, itemProps)
 
         for (var i = 0; i < itemProps[key].length; i++) {
-          var sample = {}
-          for (const [key2, value2] of Object.entries(itemProps[key][i])) {
-            sample[key2] = value2
+          // if sample, add sample else add sleep
+          if (itemProps[key][i].type == 'sample') {
+
+            var sample = {}
+            for (const [key2, value2] of Object.entries(itemProps[key][i])) {
+              sample[key2] = value2
+            }
+            sample["path"] = sample["path"]
+            sample["rate"] = ((2**(1/12))**sample["rate"])
+            sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
+            sample["amp"] = (sample["amp"]/5)
+            sample["attack"] = (sample["attack"]/10)
+            sample["start"] = (sample["start"]/100)
+            sample["finish"] = (sample["finish"]/100)
+            sample["interval"] = (value.interval/100)
+            chunk.loop.subblocks.push(sample = {sample})
           }
-          sample["path"] = sample["path"]
-          sample["rate"] = ((2**(1/12))**sample["rate"])
-          sample["deltarate"] = ((2**(1/12))**sample["deltarate"] - 1)
-          sample["amp"] = (sample["amp"]/5)
-          sample["attack"] = (sample["attack"]/10)
-          sample["start"] = (sample["start"]/100)
-          sample["finish"] = (sample["finish"]/100)
-          sample["interval"] = (value.interval/100)
-          chunk.loop.subblocks.push(sample = {sample})
+          else if (itemProps[key][i].type == 'sleep') {
+            var sleep = {}
+            for (const [key2, value2] of Object.entries(itemProps[key][i])) {
+              sleep[key2] = value2
+            }
+            sleep["sleeptime"] = (value.sleeptime/100)
+            chunk.loop.subblocks.push(sleep = {sleep})
+          }
         }
         toSend.push(chunk)
       }
@@ -313,6 +325,17 @@ function App() {
     setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
   }
 
+  const generateSleepBlock = () => {
+    var new_block = {
+      id: uuidv4(),
+      name: "Sleep",
+      sleeptime: 1
+    }
+    // Auto Add to group 1:
+    setItemGroups({...itemGroups, loop1: [...itemGroups.loop1, new_block.id]})
+    setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
+  }
+
   return (
     <div style={{ width: '100%' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '0px', paddingTop: '30px' }}>
@@ -322,7 +345,7 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/>
+      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup} sleepBlock={generateSleepBlock} />
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}

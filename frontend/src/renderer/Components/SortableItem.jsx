@@ -3,6 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import grip from '../../../assets/icons/grip-vertical.svg';
 import Item from './Item';
+import Sleep from './Sleep';
 
 const SortableItem = ({ id, props, adjustProperties }) => {
   const {
@@ -29,6 +30,18 @@ const SortableItem = ({ id, props, adjustProperties }) => {
     rotate: '90deg',
   };
 
+  // if props.name is 'Sleep', render Sleep component
+  if (props.name === 'Sleep') {
+    return (
+        <li style={style} ref={setNodeRef}>
+          <Sleep id={id} props={props} adjustProperties={adjustProperties} />
+          <div className="grip" {...listeners} {...attributes}>
+            <img width="30" rotate="20" src={grip} alt="grip" style={image_style} />
+          </div>
+        </li>
+    );
+  }
+  
   return (
     <li style={style} ref={setNodeRef}>
       <Item id={id} props={props} adjustProperties={adjustProperties} />
@@ -37,12 +50,8 @@ const SortableItem = ({ id, props, adjustProperties }) => {
       </div>
     </li>
   );
+
 };
 
 export default SortableItem;
 
-// return (
-//   <li style={style} ref={setNodeRef} {...attributes} {...listeners}>
-//     <Item id={id} props={props} adjustProperties={adjustProperties}/>
-//   </li>
-// );

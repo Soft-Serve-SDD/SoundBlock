@@ -5,6 +5,7 @@ import React from 'react';
 import PlayButton from './PlayButton';
 import LoopButton from './LoopButton';
 import LoopDeleteButton from './LoopDeleteButton';
+import SleepBlockButton from './SleepBlockButton';
 
 // All Tools for adjusting workspace interface are here
 // Props are used to pass state back to parent (App.jsx)
@@ -42,6 +43,13 @@ function ToolsMenu(props) {
         <h4>Remove Looping Group</h4>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <LoopDeleteButton onClick={props.removeLastGroup} />
+        </div>
+      </div>
+
+      <div style={{ marginLeft: '15px', marginRight: '15px' }}>
+        <h4>Add Sleep Block</h4>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <SleepBlockButton onClick={props.sleepBlock} />
         </div>
       </div>
     </div>
