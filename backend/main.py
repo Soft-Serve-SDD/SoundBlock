@@ -80,6 +80,7 @@ def run():
         block_thread = Thread(target=block.play)
         block_thread.start()
     if(export_path != None):
+        sleep(1)
         stop_recording()
         dir = "../recordings/"
         export_path = dir + export_path
