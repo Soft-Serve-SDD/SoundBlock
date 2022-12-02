@@ -1,20 +1,3 @@
-- export: 6e57d34f-1290-4ca1-9b2a-fc0a3eb1d67d
-- loop:
-    iterations: 1
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: c70e10cd-4639-440e-8471-f5986dffd31d
-          name: cool kick.wav
-          path: cool kick.wav
-          rate: 1
-          deltarate: 0
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
 - loop:
     iterations: 1
     sleeptime: 0

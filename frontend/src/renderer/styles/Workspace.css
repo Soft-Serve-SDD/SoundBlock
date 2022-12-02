@@ -1,0 +1,5 @@
+div.scrollmenu {
+  display: flex;
+  flex-wrap: no-wrap;
+  overflow-x: auto;  
+}

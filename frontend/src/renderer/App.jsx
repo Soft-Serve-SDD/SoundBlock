@@ -7,12 +7,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { arrayMove, insertAtIndex, removeAtIndex } from "./utils/array";
 
 /* Component Imports */
-import Droppable from "./Components/Droppable";
 import BlockDeleteButton from './Menu/BlockDeleteButton';
-import LoopChild from './Blocks/LoopBlock';
 import UploadFile from "./Menu/UploadFile";
 import ToolsMenu from "./Menu/ToolsMenu";
-
+import Workspace from "./Workspace";
 /* Styles */
 import './styles/App.css';
 
@@ -332,24 +330,7 @@ function App() {
         onDragEnd={handleDragEnd}
       >
         <div style={{ display: "flex", justifyContent: 'center' }}>
-          <div style={{ width: '80%', background: "#43565e", borderRadius: '10px', padding: '10px', margin: '5px' }}>
-            <div style={{display: "flex", justifyContent: 'center'}}>
-                {Object.keys(itemGroups).map((group) => (
-                  <Droppable
-                    id={group}
-                    items={itemGroups[group]}
-                    activeId={activeId}
-                    key={group}
-                    props={itemProps[group]}
-                    adjustProperties={adjustProperties}
-                  >
-                    <div style={{width: '320px'}}>
-                      {<LoopChild id={group} params={loopParams[group]} adjustLoopParams={adjustLoopParams} />}
-                    </div>
-                  </Droppable>
-              ))}
-             </div>
-          </div>
+          <Workspace itemGroups={itemGroups} itemProps={itemProps} loopParams={loopParams} adjustLoopParams={adjustLoopParams} adjustProperties={adjustProperties} activeId={activeId}/>
           <div style={{background: 'white', width: '20%', borderRadius: '10px', padding: '10px', margin: '5px' }}>
             <h2 style={{textAlign: 'center'}}>
               Upload Samples
