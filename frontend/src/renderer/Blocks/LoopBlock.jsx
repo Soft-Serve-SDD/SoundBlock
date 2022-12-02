@@ -45,7 +45,7 @@ const LoopChild = ({ id, params, adjustLoopParams }) => {
         />
         <label id={'Iteration'}>Iteration</label>
       </div>
-      <div style={{ gridColumn: '2', gridRow: '1' }}>
+      {/* <div style={{ gridColumn: '2', gridRow: '1' }}>
         <Basic
           diameter={diameter}
           min={0}
@@ -56,7 +56,7 @@ const LoopChild = ({ id, params, adjustLoopParams }) => {
           ariaLabelledBy={'Interval'}
         />
         <label id={'Interval'}>Interval</label>
-      </div>
+      </div> */}
     </div>
   );
 };
