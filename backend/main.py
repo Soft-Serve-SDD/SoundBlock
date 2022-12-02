@@ -53,6 +53,7 @@ def readInput(input):
     newblock = None
     for i in input:
         for key in i:
+            print("key: ", key)
             if(key != "export"):
                 newblock = createBlock(key, i[key])
             else:
@@ -80,9 +81,10 @@ def run():
         block_thread.start()
     if(export_path != None):
         stop_recording()
+        dir = "../recordings/"
+        export_path = dir + export_path
+        export_path = os.path.abspath(export_path)
         save_recording(export_path)
-        # print("calling play on block: ", block)
-        # block.play()
 
 def detect_changes():
     # detects changes in YAML_FILENAME, and calls run if there are any

@@ -1,56 +1,12 @@
-- export: 93467573-4ac5-4c3d-bc86-8234d687b262
+- export: fd81e63f-c780-490a-ba7d-3644716edefc
 - loop:
     iterations: 1
     sleeptime: 0
     subblocks:
       - sample:
-          id: b7a86b99-29b0-46a9-912e-7b0460ba625b
-          name: clap.wav
-          path: clap.wav
-          rate: 1
-          deltarate: 0
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
-- loop:
-    iterations: 1
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: f018a828-02fc-487e-97d4-ab6bc457e733
-          name: clap.wav
-          path: clap.wav
-          rate: 1
-          deltarate: 0
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
-      - sample:
-          id: 3fc9da0f-dbdb-4e8e-96c5-14b24e05f252
-          name: guitar ambient.wav
-          path: guitar ambient.wav
-          rate: 1
-          deltarate: 0
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
-- loop:
-    iterations: 1
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: fb784ad6-565f-4ed1-973b-cdf99cb3ffed
-          name: Basic Hat.wav
-          path: Basic Hat.wav
+          id: f4893954-cc66-4d6a-9112-372efbee9afa
+          name: beetle bass.wav
+          path: beetle bass.wav
           rate: 1
           deltarate: 0
           amp: 1
