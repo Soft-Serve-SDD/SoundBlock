@@ -315,6 +315,19 @@ function App() {
     setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
   }
 
+  const generateSleepBlock = () => {
+    // log all items in loop1
+    console.log(itemProps.loop1)
+    var new_block = {
+      id: uuidv4(),
+      name: "Sleep",
+      sleeptime: 1
+    }
+    // Auto Add to group 1:
+    setItemGroups({...itemGroups, loop1: [...itemGroups.loop1, new_block.id]})
+    setItemProps({...itemProps, loop1: [...itemProps.loop1, new_block]})
+  }
+
   return (
     <div style={{ width: '100%' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '0px', paddingTop: '30px' }}>
@@ -324,7 +337,7 @@ function App() {
       <h2 style={{ textAlign: 'center', marginTop: '0px' }}>
         Music Editing Software
       </h2>
-      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup}/>
+      <ToolsMenu addGroup={addGroup} exportData={exportData} removeLastGroup={removeLastGroup} sleepBlock={generateSleepBlock} />
       <DndContext
         onDragStart={handleDragStart}
         onDragCancel={handleDragCancel}
