@@ -63,23 +63,3 @@
           id: 24abcd35-4e9b-4d3b-a8b9-63756b87135c
           name: Sleep
           sleeptime: 0.8
-- loop:
-    iterations: 8
-    sleeptime: 0
-    subblocks:
-      - sample:
-          id: bd0ad127-d74a-4fbf-97e5-13eb18e3a20b
-          name: key slime.wav
-          path: key slime.wav
-          rate: 2.000000000000001
-          deltarate: 0.05946309435929531
-          amp: 1
-          attack: 0
-          release: 0
-          start: 0
-          finish: 1
-          interval: 1
-      - sleep:
-          id: 24a1cbd5-7add-4258-abc1-bd2fb7a868f1
-          name: Sleep
-          sleeptime: 0.4
