@@ -11,6 +11,7 @@ YAML_FILENAME = "stream/music.yaml"
 
 def createBlock(type, thing):  # todo modifiers
     return_value = Block()
+    print("type: ", type)
     if type == "start":
         return_value = Start()
     elif type == "sleep":
@@ -32,10 +33,6 @@ def createBlock(type, thing):  # todo modifiers
         deltarate = thing.get("deltarate")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
-        # interval = thing.get("interval")
-        # if (interval):
-        #     sleep = Sleep(sleeptime=interval)
-        #     return_value.addSubBlock(sleep)
         return_value.addModifier(deltaRate(deltarate))
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
@@ -80,11 +77,12 @@ def run():
         block_thread = Thread(target=block.play)
         block_thread.start()
     if(export_path != None):
-        sleep(1)
+        sleep(10)
         stop_recording()
         dir = "../recordings/"
         export_path = dir + export_path
         export_path = os.path.abspath(export_path)
+        print("export_path = ", export_path)
         save_recording(export_path)
 
 def detect_changes():

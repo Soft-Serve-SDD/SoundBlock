@@ -1,17 +1,21 @@
-- export: fd81e63f-c780-490a-ba7d-3644716edefc
+- export: 762cfa0e-4f11-4939-a31b-c80a04ae56c5
 - loop:
-    iterations: 1
+    iterations: 4
     sleeptime: 0
     subblocks:
       - sample:
-          id: f4893954-cc66-4d6a-9112-372efbee9afa
-          name: beetle bass.wav
-          path: beetle bass.wav
+          id: 3f047ae7-dcec-4e81-828e-b21eeada8360
+          name: flute short.wav
+          path: flute short.wav
           rate: 1
-          deltarate: 0
+          deltarate: 0.2599210498948734
           amp: 1
           attack: 0
           release: 0
           start: 0
           finish: 1
           interval: 1
+      - sleep:
+          id: b380c342-5265-4762-864d-14e93c5be274
+          name: Sleep
+          sleeptime: 0.45
