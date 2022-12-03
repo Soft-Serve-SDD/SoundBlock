@@ -6,5 +6,5 @@ start /b npm start
 cd ..
 cd backend
 ECHO Running Sonic-Pi Backend
-start /b python3 main.py
+start /b python main.py
 PAUSE
