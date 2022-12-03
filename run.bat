@@ -1,0 +1,10 @@
+@ECHO OFF
+ECHO Preparing to run Sonic-Pi Frontend
+cd frontend
+ECHO Running Sonic-Pi Frontend
+start /b npm start
+cd ..
+cd backend
+ECHO Running Sonic-Pi Backend
+start /b python main.py
+PAUSE

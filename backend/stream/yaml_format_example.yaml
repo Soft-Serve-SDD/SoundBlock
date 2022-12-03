@@ -1,0 +1,23 @@
+- loop:
+    sleeptime: 2
+    subblocks:
+      - sample:
+          path: key_slime.wav
+          rate: 4
+      - sleep:
+          sleeptime: 1
+- loop:
+    sleeptime: 2
+    subblocks:
+      - sample:
+          path: key_slime.wav
+          rate: 4
+      - sample:
+          path: key_slime.wav
+          rate: 5
+      - sleep:
+          sleeptime: 1
+    modifiers:
+      -deltarate:
+        ratedelta: 0.1
+
