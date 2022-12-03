@@ -2,7 +2,7 @@
 import React from 'react';
 
 /* Components */
-import {PlayButton, DownloadButton, LoopButton} from './Buttons';
+import { PlayButton, DownloadButton, LoopButton } from './Buttons';
 import LoopDeleteButton from './LoopDeleteButton';
 import SleepBlockButton from './SleepBlockButton';
 
@@ -21,11 +21,11 @@ function ToolsMenu(props) {
       <div style={{ marginLeft: '15px', marginRight: '15px' }}>
         <h4>PlayBack</h4>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <PlayButton onClick={()=> props.exportData(false)}/>
+          <PlayButton onClick={() => props.exportData(false)} />
         </div>
       </div>
       <div style={{ marginLeft: '15px', marginRight: '15px' }}>
-          <h4>&nbsp; Export</h4>
+        <h4>&nbsp; Export</h4>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <DownloadButton onClick={() => props.exportData(true)} />
         </div>

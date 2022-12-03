@@ -15,7 +15,6 @@ const Sleep = ({ id, dragOverlay, props, adjustProperties }) => {
     adjustProperties(id, { ...props, sleeptime: val });
   };
 
-
   const diameter = 65;
   const default_values = {
     sleeptime: 0,
@@ -31,17 +30,17 @@ const Sleep = ({ id, dragOverlay, props, adjustProperties }) => {
       <h3 style={{ textAlign: 'center', paddingTop: '5px' }}>{props.name}</h3>
 
       <div style={style} className="sleep">
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Basic
-              diameter={diameter}
-              min={0}
-              max={100}
-              step={1}
-              value={props.sleeptime}
-              onValueChange={setSleepTime}
-              ariaLabelledBy={'sleeptime'}
-            />
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Basic
+            diameter={diameter}
+            min={0}
+            max={100}
+            step={1}
+            value={props.sleeptime}
+            onValueChange={setSleepTime}
+            ariaLabelledBy={'sleeptime'}
+          />
+        </div>
       </div>
     </React.Fragment>
   );

@@ -13,6 +13,7 @@ import ToolsMenu from "./Menu/ToolsMenu";
 import Workspace from "./Workspace";
 /* Styles */
 import './styles/App.css';
+import Workspace from "./Workspace";
 
 
 var activeContainer = 'loop1'
@@ -343,7 +344,12 @@ function App() {
         onDragEnd={handleDragEnd}
       >
         <div style={{ display: "flex", justifyContent: 'center' }}>
-          <Workspace itemGroups={itemGroups} itemProps={itemProps} loopParams={loopParams} adjustLoopParams={adjustLoopParams} adjustProperties={adjustProperties} activeId={activeId}/>
+          <Workspace     itemProps={itemProps}
+    itemGroups={itemGroups}
+    loopParams={loopParams}
+    activeId={activeId}
+    adjustProperties={adjustProperties}
+    adjustLoopParams={adjustLoopParams}/>
           <div style={{background: 'white', width: '20%', borderRadius: '10px', padding: '10px', margin: '5px' }}>
             <h2 style={{textAlign: 'center'}}>
               Upload Samples

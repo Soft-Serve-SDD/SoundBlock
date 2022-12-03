@@ -45,18 +45,6 @@ const LoopChild = ({ id, params, adjustLoopParams }) => {
         />
         <label id={'Iteration'}>Iteration</label>
       </div>
-      {/* <div style={{ gridColumn: '2', gridRow: '1' }}>
-        <Basic
-          diameter={diameter}
-          min={0}
-          max={200}
-          step={1}
-          value={params.interval}
-          onValueChange={setInterval}
-          ariaLabelledBy={'Interval'}
-        />
-        <label id={'Interval'}>Interval</label>
-      </div> */}
     </div>
   );
 };

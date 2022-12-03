@@ -6,8 +6,8 @@ import UploadFile from './UploadFile';
 import BlockDeleteButton from './BlockDeleteButton';
 
 function LibraryMenu(props) {
-  const title = "Upload Samples";
-  const {generateBlock, deleteBlock} = props;
+  const title = 'Upload Samples';
+  const { generateBlock, deleteBlock } = props;
   return (
     <div
       style={{
