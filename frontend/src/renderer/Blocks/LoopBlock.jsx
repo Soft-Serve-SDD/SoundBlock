@@ -32,7 +32,7 @@ const LoopChild = ({ id, params, adjustLoopParams }) => {
   const diameter = 65;
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div>
         <Basic
           diameter={diameter}

@@ -65,7 +65,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
   return (
     // 3 x 2 grid of Basic knobs
     <React.Fragment>
-      <h3 style={{ textAlign: 'center', paddingTop: '5px' }}>{props.name}</h3>
+      <h3 style={{ textAlign: 'center', paddingTop: '5px' }}>{ props.name.split(".")[0]}</h3>
 
       <div style={style} className="item">
         <div style={{ gridColumn: '1', gridRow: '1' }}>
@@ -96,9 +96,11 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
               ariaLabelledBy={'deltarate'}
             />
           </div>
-          <label id={'deltarate'} style={{ textAlign: 'center' }}>
-            Rate Change
-          </label>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <label id={'deltarate'} style={{ textAlign: 'center' }}>
+              Rate Change
+            </label>
+          </div>
         </div>
         <div style={{ gridColumn: '3', gridRow: '1' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
