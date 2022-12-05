@@ -3,9 +3,10 @@ import React from 'react';
 import '../styles/Item.css';
 import { Basic } from 'react-dial-knob';
 
-const Item = ({ id, dragOverlay, props, adjustProperties }) => {
+const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
   // console.log('Item id: ', id);
   // console.log('Item props: ', props);
+  const showTooltip = false;
 
   const style = {
     cursor: dragOverlay ? 'grabbing' : 'grab',
@@ -81,7 +82,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span data-text="modify tones" id={'rate'}class="tooltip">Semitones</span>
+            <span data-text="modify tones" id={'rate'} class={showTooltip &&"tooltip"}>Semitones</span>
           </div>
         </div>
         <div style={{ gridColumn: '2', gridRow: '1' }}>
@@ -97,7 +98,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-             <span data-text="modify speed" id={'deltarate'} style={{ textAlign: 'center' }} class="tooltip">Rate Change</span>
+             <span data-text="modify speed" id={'deltarate'} style={{ textAlign: 'center' }} lass={showTooltip &&"tooltip"}>Rate Change</span>
           </div>
         </div>
         <div style={{ gridColumn: '3', gridRow: '1' }}>
@@ -113,7 +114,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span data-text="modify loudness" id={'amp'} style={{ textAlign: 'center' }} class="tooltip">Amp</span>
+            <span data-text="modify loudness" id={'amp'} style={{ textAlign: 'center' }} class={showTooltip &&"tooltip"}>Amp</span>
           </div>
         </div>
         <div style={{ gridColumn: '1', gridRow: '2' }}>
@@ -129,7 +130,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span data-text="modify attack" id={'attack'} style={{ textAlign: 'center' }} class="tooltip">Attack</span>
+            <span data-text="modify attack" id={'attack'} style={{ textAlign: 'center' }} class={showTooltip &&"tooltip"}>Attack</span>
           </div>
        
         </div>
@@ -146,7 +147,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span data-text="modify start" id={'start'} style={{ textAlign: 'center' }} class="tooltip">Start</span>
+            <span data-text="modify start" id={'start'} style={{ textAlign: 'center' }} class={showTooltip &&"tooltip"}>Start</span>
           </div>
         </div>
         <div style={{ gridColumn: '3', gridRow: '2' }}>
@@ -162,7 +163,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span data-text="modify finish" id={'finish'} style={{ textAlign: 'center' }} class="tooltip">Finish</span>
+            <span data-text="modify finish" id={'finish'} style={{ textAlign: 'center' }} class={showTooltip &&"tooltip"}>Finish</span>
           </div>
         </div>
         <div style={{ gridColumn: '1', gridRow: '3', gridColumnEnd: 'span 3' }}>
@@ -175,4 +176,4 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
   );
 };
 
-export default Item;
+export default SampleBlock;
