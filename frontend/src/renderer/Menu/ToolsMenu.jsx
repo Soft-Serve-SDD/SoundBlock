@@ -6,9 +6,15 @@ import { PlayButton, DownloadButton, LoopButton } from './Buttons';
 import LoopDeleteButton from './LoopDeleteButton';
 import SleepBlockButton from './SleepBlockButton';
 
+import { useContext } from 'react';
+import { TooltipContext } from '../Context/context';
+
+import '../styles/toggle.css';
 // All Tools for adjusting workspace interface are here
 // Props are used to pass state back to parent (App.jsx)
 function ToolsMenu(props) {
+  const { showTooltip, setShowTooltip } = props;
+
   return (
     <div
       style={{
@@ -56,6 +62,14 @@ function ToolsMenu(props) {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <SleepBlockButton onClick={props.sleepBlock} />
         </div>
+      </div>
+
+      <div style={{ marginLeft: '15px', marginRight: '15px' }}>
+        <h4>Toggle tooptip</h4>
+        <label className="switch">
+          <input type="checkbox" checked={showTooltip} onChange={()=>setShowTooltip(!showTooltip)}/>
+          <span className="slider round"></span>
+        </label>
       </div>
     </div>
   );

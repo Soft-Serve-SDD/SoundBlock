@@ -2,7 +2,7 @@ import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import grip from '../../../assets/icons/grip-vertical.svg';
-import Item from './Item';
+import SampleBlock from './SampleBlock';
 import Sleep from './Sleep';
 
 const SortableItem = ({ id, props, adjustProperties }) => {
@@ -53,7 +53,7 @@ const SortableItem = ({ id, props, adjustProperties }) => {
 
   return (
     <li style={style} ref={setNodeRef}>
-      <Item id={id} props={props} adjustProperties={adjustProperties} />
+      <SampleBlock id={id} props={props} adjustProperties={adjustProperties} />
       <div className="grip" {...listeners} {...attributes}>
         <img width="30" rotate="20" src={grip} alt="grip" style={image_style} />
       </div>
