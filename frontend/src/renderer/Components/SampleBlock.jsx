@@ -9,7 +9,6 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
   // console.log('Item id: ', id);
   // console.log('Item props: ', props);
   const { showTooltip } = useContext(TooltipContext);
-  console.log('sample', showTooltip);
 
   const style = {
     cursor: dragOverlay ? 'grabbing' : 'grab',

@@ -14,10 +14,7 @@ import '../styles/toggle.css';
 // Props are used to pass state back to parent (App.jsx)
 function ToolsMenu(props) {
   const { showTooltip, setShowTooltip } = props;
-  // const setShowTooltipCaller = setShowTooltip.setShowTooltip
 
-  
-  console.log("Tools Menu", showTooltip)
   return (
     <div
       style={{
