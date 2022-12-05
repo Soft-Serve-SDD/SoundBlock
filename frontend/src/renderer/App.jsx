@@ -34,25 +34,29 @@ function App() {
     loop1: { iterations: 1, sleep: 1, interval: 1 }, 
   });
 
+  const numGroups = Object.keys(itemGroups).length;
 
   const addGroup = () => {
+    console.log('all groups: ', itemGroups);
     const last_id = Object.keys(itemGroups).slice(-1)[0]
-    const new_id = 'loop' + (parseInt(last_id.slice(4)) + 1)
+    const new_id = 'loop' + (numGroups + 1).toString()
     setItemGroups({ ...itemGroups, [new_id]: [] });
     setItemProps({ ...itemProps, [new_id]: [] });
     setLoopParams({ ...loopParams, [new_id]: { iterations: 1, sleep: 1, interval: 1 } });
+    console.log('all groups after add: ', itemGroups);
     // console.log('itemGroups', itemGroups);
     // console.log('itemProps', itemProps);
     // console.log('loopParams', loopParams);
   };
 
   const removeLastGroup = () => {
+    console.log('all groups: ', itemGroups);
     // There must be at least one  loop lane
     // disable last loop lane from being removed
     if (Object.keys(loopParams).length ==1){
       return;
     }
-
+    
     const newGroups = { ...itemGroups };
     delete newGroups[Object.keys(newGroups)[Object.keys(newGroups).length - 1]];
     setItemGroups(newGroups);
@@ -62,6 +66,7 @@ function App() {
     const newItems = { ...itemProps};
     delete newItems[Object.keys(newItems)[Object.keys(newItems).length -1]];
     setItemProps(newItems)
+    console.log('all groups after remove: ', itemGroups);
   };
 
   // Deletes most recently added block
@@ -330,7 +335,7 @@ function App() {
     var new_block = {
       id: uuidv4(),
       name: "Sleep",
-      sleeptime: 1
+      sleeptime: 20
     }
     // Auto Add to group 1:
     setItemGroups({...itemGroups, loop1: [...itemGroups.loop1, new_block.id]})

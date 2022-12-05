@@ -17,7 +17,7 @@ const Sleep = ({ id, dragOverlay, props, adjustProperties }) => {
 
   const diameter = 65;
   const default_values = {
-    sleeptime: 0,
+    sleeptime: 20,
   };
 
   const setDefault = () => {
