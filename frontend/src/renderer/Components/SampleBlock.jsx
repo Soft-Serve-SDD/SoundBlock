@@ -81,7 +81,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'rate'}>Semitones</label>
+            <span data-text="modify tones" id={'rate'}class="tooltip">Semitones</span>
           </div>
         </div>
         <div style={{ gridColumn: '2', gridRow: '1' }}>
@@ -97,9 +97,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'deltarate'} style={{ textAlign: 'center' }}>
-              Rate Change
-            </label>
+             <span data-text="modify speed" id={'deltarate'} style={{ textAlign: 'center' }} class="tooltip">Rate Change</span>
           </div>
         </div>
         <div style={{ gridColumn: '3', gridRow: '1' }}>
@@ -115,9 +113,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'amp'} style={{ textAlign: 'center' }}>
-              Amp
-            </label>
+            <span data-text="modify loudness" id={'amp'} style={{ textAlign: 'center' }} class="tooltip">Amp</span>
           </div>
         </div>
         <div style={{ gridColumn: '1', gridRow: '2' }}>
@@ -133,8 +129,9 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'attack'}>Attack</label>
+            <span data-text="modify attack" id={'attack'} style={{ textAlign: 'center' }} class="tooltip">Attack</span>
           </div>
+       
         </div>
         <div style={{ gridColumn: '2', gridRow: '2' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -149,7 +146,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'start'}>Start</label>
+            <span data-text="modify start" id={'start'} style={{ textAlign: 'center' }} class="tooltip">Start</span>
           </div>
         </div>
         <div style={{ gridColumn: '3', gridRow: '2' }}>
@@ -165,7 +162,7 @@ const Item = ({ id, dragOverlay, props, adjustProperties }) => {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <label id={'finish'}>Finish</label>
+            <span data-text="modify finish" id={'finish'} style={{ textAlign: 'center' }} class="tooltip">Finish</span>
           </div>
         </div>
         <div style={{ gridColumn: '1', gridRow: '3', gridColumnEnd: 'span 3' }}>
