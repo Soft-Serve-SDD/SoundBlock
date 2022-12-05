@@ -66,9 +66,9 @@ function ToolsMenu(props) {
 
       <div style={{ marginLeft: '15px', marginRight: '15px' }}>
         <h4>Toggle tooptip</h4>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" checked={showTooltip} onChange={()=>setShowTooltip(!showTooltip)}/>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </div>
     </div>
