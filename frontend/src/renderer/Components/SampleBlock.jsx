@@ -87,7 +87,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify tones"
+              data-text="Increase or decrease the playback rate of the sample."
               id={'rate'}
               class={showTooltip && 'tooltip'}
             >
@@ -109,7 +109,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify speed"
+              data-text="Modify the playback rate of the sample each time it is played."
               id={'deltarate'}
               style={{ textAlign: 'center' }}
               class={showTooltip && 'tooltip'}
@@ -132,7 +132,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify loudness"
+              data-text="Modify the volume of the sample."
               id={'amp'}
               style={{ textAlign: 'center' }}
               class={showTooltip && 'tooltip'}
@@ -155,7 +155,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify attack"
+              data-text="Modify the attack time of the sample."
               id={'attack'}
               style={{ textAlign: 'center' }}
               class={showTooltip && 'tooltip'}
@@ -178,7 +178,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify start"
+              data-text="Modify where the sample starts playing from."
               id={'start'}
               style={{ textAlign: 'center' }}
               class={showTooltip && 'tooltip'}
@@ -201,7 +201,7 @@ const SampleBlock = ({ id, dragOverlay, props, adjustProperties }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span
-              data-text="modify finish"
+              data-text="Modify where the sample finishes playing"
               id={'finish'}
               style={{ textAlign: 'center' }}
               class={showTooltip && 'tooltip'}
