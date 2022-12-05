@@ -42,7 +42,7 @@ function App() {
 
   const addGroup = () => {
     const last_id = Object.keys(itemGroups).slice(-1)[0]
-    const new_id = 'loop' + (numGroups + 1).toString()
+    const new_id = 'loop' + (parseInt(last_id.slice(-1)) + 1).toString();
     setItemGroups({ ...itemGroups, [new_id]: [] });
     setItemProps({ ...itemProps, [new_id]: [] });
     setLoopParams({ ...loopParams, [new_id]: { iterations: 1, sleep: 1, interval: 1 } });
