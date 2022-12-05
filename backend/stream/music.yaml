@@ -1,14 +1,14 @@
-- export: 762cfa0e-4f11-4939-a31b-c80a04ae56c5
+- export: 8f2917c7-8bd5-403b-af68-b22309459af9
 - loop:
-    iterations: 4
+    iterations: 8
     sleeptime: 0
     subblocks:
       - sample:
-          id: 3f047ae7-dcec-4e81-828e-b21eeada8360
-          name: flute short.wav
-          path: flute short.wav
+          id: 5d1362ef-02f5-46c0-9462-1043fdb3b554
+          name: Cymatics - Odyssey Kick 6 - G.wav
+          path: Cymatics - Odyssey Kick 6 - G.wav
           rate: 1
-          deltarate: 0.2599210498948734
+          deltarate: 0
           amp: 1
           attack: 0
           release: 0
@@ -16,6 +16,6 @@
           finish: 1
           interval: 1
       - sleep:
-          id: b380c342-5265-4762-864d-14e93c5be274
+          id: 89551aa3-3fc7-48a6-9e6b-61ad18382a5b
           name: Sleep
-          sleeptime: 0.45
+          sleeptime: 0.2

@@ -6,6 +6,9 @@ import SampleBlock from './SampleBlock';
 import Sleep from './Sleep';
 
 const SortableItem = ({ id, props, adjustProperties }) => {
+  // if props undefined, set default values
+  if (!props) {
+    props = {}};
   const {
     attributes,
     listeners,

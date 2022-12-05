@@ -38,36 +38,36 @@ function App() {
     loop1: { iterations: 1, sleep: 1, interval: 1 },
   });
 
+  const numGroups = Object.keys(itemGroups).length;
+
   const addGroup = () => {
-    const last_id = Object.keys(itemGroups).slice(-1)[0];
-    const new_id = 'loop' + (parseInt(last_id.slice(4)) + 1);
+    const last_id = Object.keys(itemGroups).slice(-1)[0]
+    const new_id = 'loop' + (numGroups + 1).toString()
     setItemGroups({ ...itemGroups, [new_id]: [] });
     setItemProps({ ...itemProps, [new_id]: [] });
-    setLoopParams({
-      ...loopParams,
-      [new_id]: { iterations: 1, sleep: 1, interval: 1 },
-    });
+    setLoopParams({ ...loopParams, [new_id]: { iterations: 1, sleep: 1, interval: 1 } });
     // console.log('itemGroups', itemGroups);
     // console.log('itemProps', itemProps);
     // console.log('loopParams', loopParams);
   };
 
   const removeLastGroup = () => {
+    console.log('all groups: ', itemGroups);
     // There must be at least one  loop lane
     // disable last loop lane from being removed
     if (Object.keys(loopParams).length == 1) {
       return;
     }
-
+    
     const newGroups = { ...itemGroups };
     delete newGroups[Object.keys(newGroups)[Object.keys(newGroups).length - 1]];
     setItemGroups(newGroups);
     const newParams = { ...loopParams };
     delete newParams[Object.keys(newParams)[Object.keys(newParams).length - 1]];
-    setLoopParams(newParams);
-    const newItems = { ...itemProps };
-    delete newItems[Object.keys(newItems)[Object.keys(newItems).length - 1]];
-    setItemProps(newItems);
+    setLoopParams(newParams)
+    const newItems = { ...itemProps};
+    delete newItems[Object.keys(newItems)[Object.keys(newItems).length -1]];
+    setItemProps(newItems)
   };
 
   // Deletes most recently added block
@@ -337,9 +337,9 @@ function App() {
     console.log(itemProps.loop1);
     var new_block = {
       id: uuidv4(),
-      name: 'Sleep',
-      sleeptime: 1,
-    };
+      name: "Sleep",
+      sleeptime: 20
+    }
     // Auto Add to group 1:
     setItemGroups({
       ...itemGroups,
