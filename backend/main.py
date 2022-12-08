@@ -3,7 +3,7 @@ from platform import release
 from tracemalloc import start
 from venv import create
 import yaml
-from block import *
+from block.block import *
 import os
 import time
 

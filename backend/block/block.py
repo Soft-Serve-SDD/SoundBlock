@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 from email import iterators
 from psonic import *
 
+
 def switch_slashes(s):
     if s is not None:
         return s.replace('\\', '/')
@@ -40,7 +41,11 @@ class Block:
                 m.modify(self)
     
     def print(self, buffer = ""): #debug if blocks are working correctly
-        print(buffer, self)
+        modifierString = ""
+        for i in self.modifiers:
+            if (isinstance(i, Modifier)):
+                modifierString += str(i) + " "
+        print(buffer, self, "\t", modifierString)
         for i in self.subBlocks:
             if (isinstance(i, Block)):
                 i.print(buffer + " ") #todo modifiers

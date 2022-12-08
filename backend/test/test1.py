@@ -1,3 +1,5 @@
+""" old testing code
+
 import sys
 import os
 sys.path.append(os.path.abspath('backend'))
@@ -61,3 +63,4 @@ if __name__ == '__main__':
     test_deltaRate()
 
 
+"""
