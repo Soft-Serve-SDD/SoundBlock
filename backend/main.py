@@ -9,7 +9,8 @@ import time
 
 YAML_FILENAME = "stream/music.yaml"
 
-def createBlock(type, thing):  # todo modifiers
+
+def createblock(type, thing):  # todo modifiers
     return_value = Block()
     print("type: ", type)
     if type == "start":
@@ -33,32 +34,33 @@ def createBlock(type, thing):  # todo modifiers
         deltarate = thing.get("deltarate")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
-        return_value.addModifier(deltaRate(deltarate))
+        return_value.addmodifier(deltaRate(deltarate))
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
         return None
-    if (thing.get("subblocks") != None):
-        for i in thing["subblocks"]: #list of dicts
+    if thing.get("subblocks") is not None:
+        for i in thing["subblocks"]:  # list of dicts
             for key in i:
-                return_value.addSubBlock(createBlock(key, i[key]))
+                return_value.addsubblock(createBlock(key, i[key]))
     return return_value
 
 
-def readInput(input):
+def readinput(input):
     blocks = []
     export_filename = None
     newblock = None
     for i in input:
         for key in i:
             print("key: ", key)
-            if(key != "export"):
-                newblock = createBlock(key, i[key])
+            if key != "export":
+                newblock = createblock(key, i[key])
             else:
-                export_filename = i[key]+".wav"
+                export_filename = i[key] + ".wav"
                 print("export_wav = ", export_filename)
-            if newblock != None:
+            if newblock is not None:
                 blocks.append(newblock)
     return blocks, export_filename
+
 
 def run():
     from threading import Thread
@@ -70,13 +72,13 @@ def run():
             blocks, export_path = readInput(input)
         except yaml.YAMLError as exc:
             print(exc)
-    
-    if(export_path != None):
+
+    if export_path is not None:
         start_recording()
     for block in blocks:
         block_thread = Thread(target=block.play)
         block_thread.start()
-    if(export_path != None):
+    if export_path is not None:
         sleep(10)
         stop_recording()
         dir = "../recordings/"
@@ -85,13 +87,14 @@ def run():
         print("export_path = ", export_path)
         save_recording(export_path)
 
+
 def detect_changes():
     # detects changes in YAML_FILENAME, and calls run if there are any
     while True:
         old_time = os.path.getmtime(YAML_FILENAME)
         time.sleep(0.1)
         new_time = os.path.getmtime(YAML_FILENAME)
-        if (new_time != old_time):
+        if new_time != old_time:
             run()
 
 
