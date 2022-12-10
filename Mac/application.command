@@ -6,7 +6,7 @@ echo "Preparing to run Sonic-Pi Frontend"
 cd $base/../frontend
 npm install --force
 echo "Running Sonic-Pi Frontend"
-npm start &
+npm start
 cd ../backend
 echo "Running Sonic-Pi Backend"
-python3 main.py &
+python3 main.py
