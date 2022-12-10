@@ -9,7 +9,8 @@ We follow the coding standards of prettier, and opinionated code formatter. Thes
 - Add space after keywords such as `if` and `for`
 - Terminating statements with a semicolon
 - Aligning opening and closing braces in the the same column 
-- More can be found in the prettier documentation: https://prettier.io/docs/en/rationale.html
+- More can be found in the prettier documentation: https://prettier.io/docs/en/rationale.html  
+
 Running `prettier --write .` will enforce these conventions.
 
 We make use of ESlint, a linter system for the frontend. The command `eslint .` will check all the files in the current direction, looking for potential errors and issues, and enforcing certain coding standards. 
