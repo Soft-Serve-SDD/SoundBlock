@@ -12,7 +12,7 @@ YAML_FILENAME = "stream/music.yaml"
 
 def createblock(type, thing):  # todo modifiers
     return_value = Block()
-    print("type: ", type)
+    # print("type: ", type)
     if type == "start":
         return_value = Start()
     elif type == "sleep":
