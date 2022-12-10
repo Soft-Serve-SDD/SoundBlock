@@ -8,6 +8,7 @@ def switch_slashes(s):
         return s.replace('\\', '/')
     return None
 
+
 # Abstract Classes
 
 class Block:
@@ -19,14 +20,14 @@ class Block:
         self.modifiers = []  # blocks that cannot be played and act to modify the current Block
 
     # adds to sublock array if element to add is a block
-    def addSubBlock(self, subBlock):
-        if (isinstance(subBlock, Block)):  # input validation
-            self.subBlocks.append(subBlock)
+    def addsubblock(self, subblock):
+        if isinstance(subblock, Block):  # input validation
+            self.subBlocks.append(subblock)
             return 1
         return 0
 
-    def addModifier(self, modifier):
-        if (isinstance(modifier, Modifier)):
+    def addmodifier(self, modifier):
+        if isinstance(modifier, Modifier):
             self.modifiers.append(modifier)
             return 1
         return 0
@@ -34,27 +35,28 @@ class Block:
     @abstractmethod
     def play(self):
         for i in self.subBlocks:
-            if (isinstance(i, Block)):  # input validation
+            if isinstance(i, Block):  # input validation
                 i.play()
         for m in self.modifiers:
-            if (isinstance(m, Modifier)):  # input validation
+            if isinstance(m, Modifier):  # input validation
                 m.modify(self)
-    
-    def print(self, buffer = ""): #debug if blocks are working correctly
-        modifierString = ""
+
+    def print(self, buffer=""):  # debug if blocks are working correctly
+        modifierstring = ""
         for i in self.modifiers:
-            if (isinstance(i, Modifier)):
-                modifierString += str(i) + " "
-        print(buffer, self, "\t", modifierString)
+            if isinstance(i, Modifier):
+                modifierstring += str(i) + " "
+        print(buffer, self, "\t", modifierstring)
         for i in self.subBlocks:
-            if (isinstance(i, Block)):
-                i.print(buffer + " ") #todo modifiers
+            if isinstance(i, Block):
+                i.print(buffer + " ")  # todo modifiers
 
 
 class Modifier:  # assuming all modifications will happen post block
     @abstractmethod
     def modify(self, block):
         pass
+
 
 # Block child classes
 
@@ -67,12 +69,14 @@ class Sleep(Block):
         sleep(self.sleeptime)
         return 1
 
-class Start(Block): #everything will be a subblock of Start; would make recording easier
+
+class Start(Block):  # everything will be a subblock of Start; would make recording easier
     def record(self, path):
-        start_recording() #TODO recording; make sure this starts recording appropriately 
+        start_recording()  # TODO recording; make sure this starts recording appropriately
         self.play()
-        stop_recording() #TODO recording; make sure this stops recording appropriately
+        stop_recording()  # TODO recording; make sure this stops recording appropriately
         save_recording(path)
+
 
 class Loop(Block):
     def __init__(self, sleeptime, iterations, interval=0):
@@ -104,40 +108,40 @@ class Sample(Block):
                rate=self.rate, amp=self.amp, start=self.start, finish=self.finish)
         return super().play()
 
+
 # Modifier child classes
 
 
-class deltaSleeptime(Modifier):
+class DeltaSleepTime(Modifier):
     def __init__(self, delta):
         self.delta = delta
 
     def modify(self, block):
-        if (isinstance(block, Sleep)):
-            if (block.sleeptime + self.delta > 0):
+        if isinstance(block, Sleep):
+            if block.sleeptime + self.delta > 0:
                 block.sleeptime += self.delta
-        elif (isinstance(block, Loop)):
-            if (block.sleep.sleeptime + self.delta > 0):
+        elif isinstance(block, Loop):
+            if block.sleep.sleeptime + self.delta > 0:
                 block.sleep.sleeptime += self.delta
         return super().modify(block)
 
 
-class deltaRate(Modifier):
-    def __init__(self, rateDelta):
-        self.rateDelta = rateDelta
+class DeltaRate(Modifier):
+    def __init__(self, ratedelta):
+        self.rateDelta = ratedelta
 
     def modify(self, block):
-        if (isinstance(block, Sample)):
+        if isinstance(block, Sample):
             block.rate += self.rateDelta
         return super().modify(block)
 
 
-class deltaFinish(Modifier):
-    def __init__(self, finishDelta):
-        self.finishDelta = finishDelta
+class DeltaFinish(Modifier):
+    def __init__(self, finishdelta):
+        self.finishDelta = finishdelta
 
     def modify(self, block):
-        if (isinstance(block, Sample)):
-            if (block.finish + self.finishDelta > 0 and block.finish + self.finishDelta < 1):
+        if isinstance(block, Sample):
+            if 0 < block.finish + self.finishDelta < 1:
                 block.finish += self.finishDelta
         return super().modify(block)
-
