@@ -34,14 +34,14 @@ def createblock(type, thing):  # todo modifiers
         deltarate = thing.get("deltarate")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
-        return_value.addmodifier(deltaRate(deltarate))
+        return_value.addmodifier(deltarate(deltarate))
     else:
         print("ERROR: unexpected or unimplemented block type: ", type)
         return None
     if thing.get("subblocks") is not None:
         for i in thing["subblocks"]:  # list of dicts
             for key in i:
-                return_value.addsubblock(createBlock(key, i[key]))
+                return_value.addsubblock(createblock(key, i[key]))
     return return_value
 
 
@@ -69,7 +69,7 @@ def run():
     with open(YAML_FILENAME, "r") as stream:
         try:
             input = yaml.safe_load(stream)
-            blocks, export_path = readInput(input)
+            blocks, export_path = readinput(input)
         except yaml.YAMLError as exc:
             print(exc)
 
