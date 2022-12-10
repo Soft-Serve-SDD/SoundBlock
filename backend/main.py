@@ -31,7 +31,7 @@ def createblock(type, thing):  # todo modifiers
         release = thing.get("release")
         start = thing.get("start")
         finish = thing.get("finish")
-        deltarate = thing.get("deltarate")
+        deltarate = thing.get("DeltaRate")
         return_value = Sample(path=path, rate=rate, amp=amp,
                               attack=attack, release=release, start=start, finish=finish)
         return_value.addmodifier(deltarate(deltarate))
