@@ -1,11 +1,11 @@
 @ECHO OFF
-ECHO Preparing to run Sonic-Pi Frontend
+ECHO Preparing to run Soundblocks Frontend
 cd ../frontend
 start /b npm install
-ECHO Running Sonic-Pi Frontend
+ECHO Running Soundblocks Frontend
 start /b npm start
 cd ..
 cd backend
-ECHO Running Sonic-Pi Backend
+ECHO Running Soundblocks Backend
 start /b python3 main.py
 PAUSE
