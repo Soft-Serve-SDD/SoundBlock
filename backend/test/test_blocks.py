@@ -85,7 +85,7 @@ class TestSampleBlock(unittest.TestCase):
             print(capture_io_output.getvalue())
         line_split = capture_io_output.getvalue().splitlines()
         self.assertTrue("Sample" in line_split[0])
-        self.assertTrue("deltaRate" in line_split[0])
+        self.assertTrue("DeltaRate" in line_split[0])
         self.assertEqual(modifier.rateDelta, 10)
 
     def testSampleModifierDeltaFinish(self):
@@ -100,5 +100,5 @@ class TestSampleBlock(unittest.TestCase):
             print(capture_io_output.getvalue())
         line_split = capture_io_output.getvalue().splitlines()
         self.assertTrue("Sample" in line_split[0])
-        self.assertTrue("deltaFinish" in line_split[0])
+        self.assertTrue("DeltaFinish" in line_split[0])
         self.assertEqual(modifier.finishDelta, 10)
