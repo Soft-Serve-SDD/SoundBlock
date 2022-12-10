@@ -31,4 +31,4 @@ python main.py
 Note: For there be sound, Sonic Pi needs to be running in the background. 
 
 #### Instructions 2 : Running application 
-We should have a `bat` and `sh` file. This runs the above commands 2-5 for you. Double click on `sonic-pi`.
+We should have a `bat` and `sh` file. This runs the above commands 2-5 for you.
