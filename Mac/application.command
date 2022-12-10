@@ -1,10 +1,9 @@
 #!/bin/bash
 pkill npm
-base="$(dirname "$BASH_SOURCE")"
-touch "$base/example.txt"
+base="$(dirname "$BASH_SOURCE")" 
 
 echo "Preparing to run Sonic-Pi Frontend"
-cd $base/src/frontend
+cd $base/../frontend
 npm install --force
 echo "Running Sonic-Pi Frontend"
 npm start &
