@@ -5,6 +5,8 @@ Similar to scratch, it allows the user to write non-code code, using loop blocks
 and music blocks to do so. Soundblock provides music lovers a way to make sounds differently, 
 but without the steep learning curve of coding.
 
+![](https://github.com/Soft-Serve-SDD/SoundBlock/blob/dev/demo.gif)
+
 ### Instructions to download
 
 Our backend depends on Sonic Pi v2.11.0  
